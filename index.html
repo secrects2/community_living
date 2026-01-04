@@ -158,10 +158,12 @@
         <section class="section-padding bg-gradient-to-br from-primary via-blue-800 to-teal-700 text-white">
             <div class="container mx-auto px-4">
                 <div class="text-center fade-in">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">全齡共融的都市再生計畫</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">All-Age Inclusive Urban Regeneration Plan</h2>
                     <p class="text-blue-200 text-sm uppercase tracking-wider mb-8">Cool-Aging Park: An All-Age Inclusive Urban Regeneration Plan</p>
                     <p class="text-lg text-blue-100 max-w-3xl mx-auto leading-relaxed">
-                        我們提出不僅僅是一個健康照護系統，而是一場關於「酷老生活（Cool Aging）」的都市再生運動。本計畫借鏡日本池袋「IKEBUKURO LIVING LOOP」的成功模式，將傳統封閉的醫療節點，翻轉為開放、逐步且具備經濟活力的「酷老公園（Cool-Aging Park）」
+                        We propose not just a healthcare system, but an urban regeneration movement centered on 'Cool Aging'. 
+                        Inspired by Japan's Ikebukuro Living Loop, we transform traditional closed medical nodes into open, 
+                        progressive, and economically vibrant 'Cool-Aging Parks'.
                     </p>
                 </div>
             </div>
@@ -323,6 +325,295 @@
                             </div>
                         </div>
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 課程推薦區塊 -->
+        <section class="section-padding bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">根據您的興趣和需求，精選以下內容</h2>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- 日本紅繩運動 -->
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-lg card-hover">
+                        <div class="relative">
+                            <img src="images/course-red-rope.jpg" alt="日本紅繩運動" class="w-full h-48 object-cover">
+                            <span class="absolute top-4 right-4 bg-accent text-primary px-4 py-2 rounded-full text-sm font-bold">推薦</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <i data-lucide="book-open" class="w-5 h-5 text-primary"></i>
+                                <span class="text-sm text-gray-600">課程</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-primary mb-3">日本紅繩運動</h3>
+                            <p class="text-gray-600 mb-4">使用懸吐繩索進行全身訓練，提升肌力與量和平衡感</p>
+                            <button onclick="registerEvent('日本紅繩運動')" class="text-secondary font-medium flex items-center gap-2 hover:gap-3 transition-all">
+                                熱門課程推薦
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 地板滾球 -->
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-lg card-hover">
+                        <div class="relative">
+                            <img src="images/course-boccia.jpg" alt="地板滾球" class="w-full h-48 object-cover">
+                            <span class="absolute top-4 right-4 bg-accent text-primary px-4 py-2 rounded-full text-sm font-bold">推薦</span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <i data-lucide="book-open" class="w-5 h-5 text-primary"></i>
+                                <span class="text-sm text-gray-600">課程</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-primary mb-3">地板滾球</h3>
+                            <p class="text-gray-600 mb-4">低衝擊性的運動，適合所有年齡層，增進手眼協調</p>
+                            <button onclick="registerEvent('地板滾球')" class="text-secondary font-medium flex items-center gap-2 hover:gap-3 transition-all">
+                                熱門課程推薦
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 輔具 -->
+                    <div class="bg-white rounded-3xl overflow-hidden shadow-lg card-hover">
+                        <div class="relative">
+                            <img src="images/device-wheelchair.jpg" alt="輪椅" class="w-full h-48 object-cover">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <i data-lucide="wrench" class="w-5 h-5 text-primary"></i>
+                                <span class="text-sm text-gray-600">輔具</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-primary mb-3">輪椅</h3>
+                            <p class="text-gray-600 mb-4">多樣化輪椅選擇，提供試用和購買服務</p>
+                            <button onclick="bookDevice('輪椅')" class="text-secondary font-medium flex items-center gap-2 hover:gap-3 transition-all">
+                                熱門輔具推薦
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 真實改變，真實故事 -->
+        <section class="section-padding bg-gradient-to-br from-blue-50 to-teal-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">真實改變，真實故事</h2>
+                    <p class="text-xl text-gray-600">看看我們如何幫助社區長者和家庭，創造更美好的生活</p>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <!-- 左側圖片 -->
+                    <div class="relative">
+                        <div class="absolute top-8 left-8 bg-accent text-primary px-6 py-3 rounded-full font-bold text-lg z-10">
+                            健康促進
+                        </div>
+                        <img src="images/testimonial-group.jpg" alt="溫和運動課程" class="w-full rounded-3xl shadow-2xl">
+                    </div>
+
+                    <!-- 右側內容 -->
+                    <div>
+                        <h3 class="text-3xl md:text-4xl font-bold text-primary mb-6">溫和運動課程，讓王奶奶重拾活力</h3>
+                        <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                            75歲的王奶奶因為膨蓋退化，長期不敢運動。透過我們的溫和運動課程，在專業教練的指導下，她逐漸恢復肌力和平衡感，現在每週都期待來上課。
+                        </p>
+
+                        <div class="bg-white rounded-2xl p-6 shadow-lg mb-6">
+                            <p class="text-gray-700 italic mb-4 text-lg">
+                                「我本來以為自己再也無法像年輕時那樣活動了，但這個課程讓我發現，只要用對方法，我還是可以保持活力！現在我不只膥蓋不痛了，整個人的精神都變好了。」
+                            </p>
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                                    王
+                                </div>
+                                <div>
+                                    <p class="font-bold text-primary text-lg">王秀蘭</p>
+                                    <p class="text-gray-600">75歲，課程學員</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="text-center">
+                                <p class="text-sm text-gray-600 mb-1">參與時間</p>
+                                <p class="text-3xl font-bold text-secondary">6個月</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-sm text-gray-600 mb-1">健康改善</p>
+                                <p class="text-3xl font-bold text-secondary">70%</p>
+                                <p class="text-xs text-gray-500">膨蓋疼痛減少</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-sm text-gray-600 mb-1">社交連結</p>
+                                <p class="text-3xl font-bold text-secondary">8位</p>
+                                <p class="text-xs text-gray-500">結識新朋友</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 高齡化社會的四大結構性風險 -->
+        <section class="section-padding bg-gradient-to-br from-primary via-blue-900 to-primary text-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">高齡化社會的四大結構性風險</h2>
+                    <p class="text-xl text-blue-200 max-w-3xl mx-auto">這些風險彼此放大，形成惡性循環。點擊每個風險，深入了解其影響範圍和我們的解決方案。</p>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- 風險 1 -->
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/20 hover:bg-white/15 transition-all cursor-pointer" onclick="alert('生活空間的功能斷裂\\n\\n住宅社區缺乏支持健康與互動的日常設計，導致長者隔離和功能退化。')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center">
+                                    <i data-lucide="heart" class="w-8 h-8 text-primary"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-1">生活空間的功能斷裂</h3>
+                                    <p class="text-blue-200">住宅社區缺乏支持健康與互動的日常設計</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-5xl font-bold text-accent">78%</p>
+                                <p class="text-sm text-blue-200">受影響人口</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 風險 2 -->
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/20 hover:bg-white/15 transition-all cursor-pointer" onclick="alert('孤獨與照顧壓力被私化\\n\\n家庭成為長期照顧唯一承擔者，缺乏社會支持系統。')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-coral rounded-full flex items-center justify-center">
+                                    <i data-lucide="users" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-1">孤獨與照顧壗力被私化</h3>
+                                    <p class="text-blue-200">家庭成為長期照顧唯一承擔者</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-5xl font-bold text-coral">82%</p>
+                                <p class="text-sm text-blue-200">受影響人口</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 風險 3 -->
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/20 hover:bg-white/15 transition-all cursor-pointer" onclick="alert('高齡化下的財務脆弱\\n\\n照顧需求來自系統脆弱與缺之連結，導致財務壓力。')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center">
+                                    <i data-lucide="trending-up" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-1">高齡化下的財務脆弱</h3>
+                                    <p class="text-blue-200">照顧需求來自系統脆弱與缺之連結</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-5xl font-bold text-secondary">71%</p>
+                                <p class="text-sm text-blue-200">受影響人口</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 風險 4 -->
+                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/20 hover:bg-white/15 transition-all cursor-pointer" onclick="alert('逐漸失去角色與使命感\\n\\n退休後缺乏社會參與和貢獻機會，導致失去生活目標。')">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-lavender rounded-full flex items-center justify-center">
+                                    <i data-lucide="file-text" class="w-8 h-8 text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-1">逐漸失去角色與使命感</h3>
+                                    <p class="text-blue-200">退休後缺乏社會參與和貢獻機會</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-5xl font-bold text-lavender">65%</p>
+                                <p class="text-sm text-blue-200">受影響人口</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 服務網絡地圖 -->
+        <section id="calendar" class="section-padding bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">服務網絡地圖</h2>
+                    <p class="text-xl text-gray-600">探索我們遣布各地的服務據點、合作夥伴和成功案例</p>
+                </div>
+
+                <!-- 地圖切換按鈕 -->
+                <div class="flex justify-center gap-4 mb-8">
+                    <button class="px-6 py-3 bg-secondary text-white rounded-full font-medium hover:bg-secondary/90 transition">
+                        <i data-lucide="filter" class="w-4 h-4 inline mr-2"></i>
+                        全部顯示
+                    </button>
+                    <button class="px-6 py-3 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-100 transition border-2 border-gray-200">
+                        <i data-lucide="map-pin" class="w-4 h-4 inline mr-2"></i>
+                        服務據點
+                    </button>
+                    <button class="px-6 py-3 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-100 transition border-2 border-gray-200">
+                        <i data-lucide="file-text" class="w-4 h-4 inline mr-2"></i>
+                        合作夥伴
+                    </button>
+                    <button class="px-6 py-3 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-100 transition border-2 border-gray-200">
+                        <i data-lucide="award" class="w-4 h-4 inline mr-2"></i>
+                        成功案例
+                    </button>
+                </div>
+
+                <!-- 地圖容器 -->
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden mb-8">
+                    <div class="aspect-video bg-gray-200 relative">
+                        <!-- Google Maps 嵌入 -->
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14632.123456789!2d120.4372!3d23.7069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQyJzI0LjgiTiAxMjDCsDI2JzE0LjAiRQ!5e0!3m2!1szh-TW!2stw!4v1234567890" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- 統計數據 -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-2xl p-8 text-center shadow-lg">
+                        <div class="w-20 h-20 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="map-pin" class="w-10 h-10 text-secondary"></i>
+                        </div>
+                        <p class="text-5xl font-bold text-secondary mb-2">4</p>
+                        <p class="text-gray-600 font-medium">服務據點</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-8 text-center shadow-lg">
+                        <div class="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="file-text" class="w-10 h-10 text-accent"></i>
+                        </div>
+                        <p class="text-5xl font-bold text-accent mb-2">3</p>
+                        <p class="text-gray-600 font-medium">合作夥伴</p>
+                    </div>
+                    <div class="bg-white rounded-2xl p-8 text-center shadow-lg">
+                        <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i data-lucide="award" class="w-10 h-10 text-primary"></i>
+                        </div>
+                        <p class="text-5xl font-bold text-primary mb-2">3</p>
+                        <p class="text-gray-600 font-medium">成功案例</p>
+                    </div>
                 </div>
             </div>
         </section>
