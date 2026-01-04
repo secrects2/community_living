@@ -18,24 +18,41 @@
                     fontFamily: { sans: ['Noto Sans TC', 'sans-serif'] },
                     colors: {
                         brand: {
-                            green: '#669644',   // PDF 原版綠色
-                            orange: '#E87A30',  // PDF 原版橘色
-                            dark: '#333333',    // 主要文字黑
-                            light: '#F8F9FA',   // 背景灰白
+                            green: '#669644',   // PDF 主色綠
+                            orange: '#E87A30',  // PDF 強調橘
+                            dark: '#333333',    // 文字黑
+                            light: '#F4F8F1',   // 淺綠背景
                             blue: '#4A90E2',    // 輔助藍
                             purple: '#9013FE',  // 輔助紫
-                            red: '#D0021B'      // 輔助紅
+                            red: '#D0021B',     // 輔助紅
+                            line: '#06C755'     // LINE 綠
                         }
                     },
                     boxShadow: {
                         'card': '0 4px 20px rgba(0,0,0,0.08)',
+                    },
+                    animation: {
+                        'cart-bounce': 'cartBounce 2s infinite',
+                        'fade-in': 'fadeIn 0.3s ease-out',
+                    },
+                    keyframes: {
+                        cartBounce: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
+        /* 優化捲軸與互動 */
         .no-scrollbar::-webkit-scrollbar { display: none; }
+        html.font-large { font-size: 110%; } /* 字體放大模式 */
         .risk-card:hover { transform: translateY(-5px); }
     </style>
 </head>
@@ -45,7 +62,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <div class="w-10 h-10 bg-brand-green rounded-full flex items-center justify-center text-white text-xl">
+                    <div class="w-10 h-10 bg-brand-green rounded-full flex items-center justify-center text-white text-xl shadow-lg">
                         <i class="fa-solid fa-leaf"></i>
                     </div>
                     <div class="flex flex-col">
@@ -57,39 +74,80 @@
                 <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600">
                     <a href="#mission" class="hover:text-brand-green transition">都市再生</a>
                     <a href="#risks" class="hover:text-brand-green transition">社會議題</a>
-                    <a href="#services" class="hover:text-brand-green transition">服務內容</a>
+                    <a href="#services" class="hover:text-brand-green transition">服務與產品</a>
                     <a href="#stories" class="hover:text-brand-green transition">成功案例</a>
+                    
+                    <div class="flex items-center border-l border-gray-300 pl-6 space-x-2">
+                        <button onclick="toggleFontSize()" class="w-8 h-8 rounded-full bg-gray-100 hover:bg-brand-green hover:text-white text-xs transition font-bold" title="放大字體">A+</button>
+                    </div>
+
+                    <div id="nav-auth-section">
+                        <button onclick="toggleAuthModal()" class="flex items-center gap-2 bg-gray-800 text-white px-5 py-2 rounded-full hover:bg-gray-700 transition shadow-md text-sm font-bold">
+                            <i class="fa-regular fa-user"></i> <span>登入 / 註冊</span>
+                        </button>
+                    </div>
                 </div>
 
-                <div class="flex items-center gap-3">
-                    <button onclick="toggleAuthModal()" class="text-sm font-medium text-gray-500 hover:text-brand-green">登入</button>
-                    <button onclick="toggleAuthModal()" class="bg-brand-green text-white px-6 py-2 rounded-full text-sm font-bold shadow-md hover:bg-[#558038] transition">
-                        免費註冊
-                    </button>
-                    <button onclick="toggleCart()" class="md:hidden relative text-gray-600 ml-2">
+                <div class="md:hidden flex items-center gap-4">
+                    <button onclick="toggleCart()" class="relative text-gray-600">
                         <i class="fa-solid fa-cart-shopping text-xl"></i>
+                        <span id="mobile-cart-badge" class="absolute -top-2 -right-2 bg-brand-orange text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden">0</span>
+                    </button>
+                    <button onclick="toggleAuthModal()" class="text-gray-600">
+                        <i class="fa-regular fa-user text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-[#F4F8F1]">
+    <div id="auth-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm animate-fade-in">
+        <div class="bg-white rounded-3xl w-full max-w-md overflow-hidden shadow-2xl relative">
+            <button onclick="toggleAuthModal()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200 transition">
+                <i class="fa-solid fa-times"></i>
+            </button>
+
+            <div class="p-8">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mx-auto mb-4 text-brand-green text-2xl">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-1">歡迎回到樂齡生活</h3>
+                    <p class="text-gray-500 text-sm">一鍵登入，同步您的健康數據與訂單</p>
+                </div>
+
+                <div class="space-y-3 mb-8">
+                    <button onclick="handleLogin('LINE')" class="w-full bg-[#06C755] hover:bg-[#05b54d] text-white py-3.5 rounded-xl font-bold flex items-center justify-center gap-3 transition shadow-sm group">
+                        <i class="fa-brands fa-line text-2xl group-hover:scale-110 transition"></i>
+                        <span>使用 LINE 帳號登入</span>
+                    </button>
+                    <button onclick="handleLogin('Google')" class="w-full bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 py-3.5 rounded-xl font-bold flex items-center justify-center gap-3 transition shadow-sm">
+                        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-6 h-6">
+                        <span>使用 Google 帳號登入</span>
+                    </button>
+                </div>
+                
+                <p class="text-center text-xs text-gray-400">
+                    登入即代表您同意服務條款與隱私權政策
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-brand-light">
         <div class="absolute right-0 top-0 w-full lg:w-1/2 h-full bg-cover bg-center opacity-100" 
              style="background-image: url('https://images.unsplash.com/photo-1576201836106-db1758fd1c97?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); border-bottom-left-radius: 80px;">
         </div>
 
         <div class="max-w-7xl mx-auto px-4 relative z-10">
             <div class="w-full lg:w-1/2 flex flex-col items-start">
-                <div class="inline-block bg-white border border-brand-green text-brand-green px-4 py-1 rounded-full text-xs font-bold mb-6 tracking-wide">
+                <div class="inline-block bg-white border border-brand-green text-brand-green px-4 py-1 rounded-full text-xs font-bold mb-6 tracking-wide shadow-sm">
                     まちなかリビングのある
                 </div>
-                
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 text-gray-900">
                     您的全方位<br>
                     <span class="text-brand-green">樂齡生活</span>夥伴
                 </h1>
-                
                 <p class="text-lg text-gray-600 mb-8 max-w-md leading-relaxed">
                     連結社區、健康與專業照護。探索附近活動、訂購營養餐點、申請專業輔具，一站式滿足您的需求。
                 </p>
@@ -176,7 +234,6 @@
                     <h3 class="text-xl font-bold mb-3 leading-snug">生活空間的<br>功能斷裂</h3>
                     <p class="text-sm text-gray-500 leading-relaxed">住宅社區缺乏支持健康與互動的日常設計。</p>
                 </div>
-
                 <div class="bg-white p-8 rounded-3xl shadow-card risk-card transition duration-300 border border-gray-100 relative overflow-hidden group">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-brand-red/10 rounded-bl-[4rem] transition group-hover:bg-brand-red/20"></div>
                     <div class="text-5xl font-bold text-brand-red mb-2">82%</div>
@@ -184,7 +241,6 @@
                     <h3 class="text-xl font-bold mb-3 leading-snug">孤獨與照顧<br>壓力被私化</h3>
                     <p class="text-sm text-gray-500 leading-relaxed">家庭成為長期照顧的唯一承擔者。</p>
                 </div>
-
                 <div class="bg-white p-8 rounded-3xl shadow-card risk-card transition duration-300 border border-gray-100 relative overflow-hidden group">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-brand-blue/10 rounded-bl-[4rem] transition group-hover:bg-brand-blue/20"></div>
                     <div class="text-5xl font-bold text-brand-blue mb-2">71%</div>
@@ -192,7 +248,6 @@
                     <h3 class="text-xl font-bold mb-3 leading-snug">高齡化下的<br>財務脆弱</h3>
                     <p class="text-sm text-gray-500 leading-relaxed">照顧需求來自系統脆弱與缺乏連結。</p>
                 </div>
-
                 <div class="bg-white p-8 rounded-3xl shadow-card risk-card transition duration-300 border border-gray-100 relative overflow-hidden group">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-brand-purple/10 rounded-bl-[4rem] transition group-hover:bg-brand-purple/20"></div>
                     <div class="text-5xl font-bold text-brand-purple mb-2">69%</div>
@@ -277,8 +332,8 @@
             </div>
 
             <div class="flex flex-col lg:flex-row gap-8 h-[500px]">
-                <div class="w-full lg:w-2/3 h-full rounded-3xl overflow-hidden shadow-card border border-gray-200 relative">
-                    <iframe src="https://maps.google.com/maps?q=Huwei&t=&z=14&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                <div class="w-full lg:w-2/3 h-full rounded-3xl overflow-hidden shadow-card border border-gray-200 relative bg-gray-200">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58438.99370162598!2d120.40484555820313!3d23.712176800000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346eb6cd1776d637%3A0x678225055b46b2b6!2z6ZuD5p6X5biD6KKL5oiy6aSo!5e0!3m2!1szh-TW!2stw!4v1704375000000!5m2!1szh-TW!2stw" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
 
                 <div class="w-full lg:w-1/3 flex flex-col gap-4 overflow-y-auto pr-2">
@@ -290,7 +345,6 @@
                         <h4 class="font-bold text-lg text-gray-800 group-hover:text-brand-green">虎尾寮營運中心</h4>
                         <p class="text-sm text-gray-500 mt-1">雲林縣虎尾鎮 (總部)</p>
                     </div>
-
                     <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-brand-orange cursor-pointer transition group">
                         <div class="flex items-center gap-2 mb-2">
                             <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
@@ -299,7 +353,6 @@
                         <h4 class="font-bold text-lg text-gray-800 group-hover:text-brand-orange">興隆毛巾觀光工廠</h4>
                         <p class="text-sm text-gray-500 mt-1">毛巾操推廣據點</p>
                     </div>
-
                     <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-brand-orange cursor-pointer transition group">
                         <div class="flex items-center gap-2 mb-2">
                             <span class="w-2 h-2 rounded-full bg-brand-orange"></span>
@@ -308,16 +361,64 @@
                         <h4 class="font-bold text-lg text-gray-800 group-hover:text-brand-orange">雲林布袋戲館</h4>
                         <p class="text-sm text-gray-500 mt-1">樂齡文化課程教室</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:border-brand-blue cursor-pointer transition group">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="w-2 h-2 rounded-full bg-brand-blue"></span>
-                            <span class="text-xs text-gray-400">成功案例</span>
+    <section id="stories" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-brand-orange font-bold tracking-widest text-sm uppercase">Real Stories</span>
+                <h2 class="text-3xl font-bold mt-2 text-gray-900">真實改變，真實故事</h2>
+            </div>
+            
+            <div class="bg-[#F4F8F1] rounded-[3rem] p-8 md:p-12 shadow-sm border border-[#E0EAD8] overflow-hidden">
+                <div class="flex flex-col lg:flex-row items-center gap-12">
+                    <div class="lg:w-1/2 relative w-full group cursor-pointer">
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl transform transition duration-500 group-hover:scale-[1.02]">
+                            <img src="https://images.unsplash.com/photo-1545224144-b38cd309a967?w=800&q=80" class="w-full h-80 md:h-96 object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition">
+                                <div class="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center text-brand-green pl-1 shadow-lg group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-play text-2xl"></i>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 bg-gray-900/80 text-white p-6 w-full backdrop-blur-sm">
+                                <div class="flex justify-between items-end">
+                                    <div>
+                                        <p class="font-bold text-xl mb-1">王秀蘭 (85歲)</p>
+                                        <p class="text-sm text-brand-orange font-medium">參與計畫：6 個月</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-2xl font-bold text-brand-green">95%</div>
+                                        <div class="text-xs text-gray-400">生活滿意度</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <h4 class="font-bold text-lg text-gray-800 group-hover:text-brand-blue">虎尾夜市 (週五)</h4>
-                        <p class="text-sm text-gray-500 mt-1">社區互動宣導攤位</p>
+                    </div>
+                    
+                    <div class="lg:w-1/2">
+                        <div class="mb-6"><span class="bg-white border border-brand-green text-brand-green px-3 py-1 rounded-full text-xs font-bold">健康轉變</span></div>
+                        <h3 class="text-3xl font-bold mb-6 text-gray-900 leading-snug">「溫和運動課程，<br>讓我<span class="text-brand-green">重拾活力</span>」</h3>
+                        <div class="relative pl-6 border-l-4 border-brand-orange/30 mb-8">
+                            <i class="fa-solid fa-quote-left text-brand-orange/20 text-4xl absolute -top-2 left-4"></i>
+                            <p class="text-gray-600 italic text-lg leading-relaxed relative z-10">
+                                「35歲那年退休後，我以為自己只能待在家裡看電視。因為長期不運動，肌力流失很快。直到參加了這裡的混合運動課程，在教練指導下，我發現只要用對方法，我還是可以保持活力！」
+                            </p>
+                        </div>
+                        <button class="bg-brand-green text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-[#558038] transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-circle-play"></i> 觀看完整紀錄片
+                        </button>
                     </div>
                 </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 text-center divide-x divide-gray-100">
+                <div><div class="text-4xl font-bold text-brand-dark mb-2">500+</div><div class="text-sm text-gray-500">服務長者</div></div>
+                <div><div class="text-4xl font-bold text-brand-dark mb-2">95%</div><div class="text-sm text-gray-500">滿意度</div></div>
+                <div><div class="text-4xl font-bold text-brand-dark mb-2">1,200+</div><div class="text-sm text-gray-500">課程參與</div></div>
+                <div><div class="text-4xl font-bold text-brand-dark mb-2">80+</div><div class="text-sm text-gray-500">空間改造</div></div>
             </div>
         </div>
     </section>
@@ -326,14 +427,10 @@
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
             <div class="md:col-span-2">
                 <div class="flex items-center gap-2 mb-4">
-                    <div class="w-8 h-8 bg-brand-green rounded-full flex items-center justify-center text-white">
-                        <i class="fa-solid fa-leaf"></i>
-                    </div>
+                    <div class="w-8 h-8 bg-brand-green rounded-full flex items-center justify-center text-white"><i class="fa-solid fa-leaf"></i></div>
                     <span class="font-bold text-lg">樂齡生活網</span>
                 </div>
-                <p class="text-gray-400 max-w-sm leading-relaxed">
-                    我們整合政府、市場、社區三方資源，建立一套可複製、可持續的社群整合型系統，讓長者不只是被照顧者，更是社區的貢獻者。
-                </p>
+                <p class="text-gray-400 max-w-sm leading-relaxed">我們整合政府、市場、社區三方資源，建立一套可複製、可持續的社群整合型系統，讓長者不只是被照顧者，更是社區的貢獻者。</p>
             </div>
             <div>
                 <h4 class="font-bold mb-4 text-white">快速連結</h4>
@@ -357,7 +454,7 @@
         </div>
     </footer>
 
-    <div onclick="toggleCart()" class="fixed bottom-6 right-6 z-30 bg-[#333333] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center cursor-pointer hover:scale-110 transition duration-300 border-2 border-white">
+    <div onclick="toggleCart()" class="fixed bottom-6 right-6 z-30 bg-[#333333] text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center cursor-pointer hover:scale-110 transition duration-300 border-2 border-white animate-cart-bounce">
         <i class="fa-solid fa-cart-shopping text-xl"></i>
         <span id="cart-badge" class="absolute -top-1 -right-1 bg-brand-orange text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center hidden border border-white">0</span>
     </div>
@@ -367,29 +464,31 @@
             <span class="font-bold text-lg"><i class="fa-solid fa-basket-shopping mr-2"></i>購物車</span>
             <button onclick="toggleCart()" class="w-8 h-8 flex items-center justify-center hover:bg-green-700 rounded-full transition"><i class="fa-solid fa-times"></i></button>
         </div>
-        <div id="cart-items" class="flex-1 overflow-y-auto p-5 space-y-4 bg-gray-50">
-            </div>
+        <div id="cart-items" class="flex-1 overflow-y-auto p-5 space-y-4 bg-gray-50"></div>
         <div class="p-5 border-t bg-white">
             <div class="flex justify-between items-center mb-4">
                 <span class="text-gray-600">總金額</span>
                 <span id="cart-total" class="text-2xl font-bold text-brand-orange">NT$ 0</span>
             </div>
-            <button onclick="alert('進入結帳流程...')" class="w-full bg-brand-orange text-white py-3 rounded-xl font-bold shadow-lg hover:bg-[#d66a25] transition">
-                前往結帳
-            </button>
+            <button onclick="alert('進入結帳流程...')" class="w-full bg-brand-orange text-white py-3 rounded-xl font-bold shadow-lg hover:bg-[#d66a25] transition">前往結帳</button>
         </div>
     </div>
     <div id="cart-overlay" onclick="toggleCart()" class="fixed inset-0 bg-black/50 z-40 hidden backdrop-blur-sm transition-opacity"></div>
 
     <script>
-        // --- 登入 ---
-        function toggleAuthModal() {
-            document.getElementById('auth-modal').classList.toggle('hidden');
+        // 字體放大
+        function toggleFontSize() { document.documentElement.classList.toggle('font-large'); }
+        
+        // 登入
+        function toggleAuthModal() { document.getElementById('auth-modal').classList.toggle('hidden'); }
+        function handleLogin(provider) {
+            alert(`正在連接 ${provider} 登入... (此為演示)`);
+            toggleAuthModal();
+            document.getElementById('nav-auth-section').innerHTML = `<div class="flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-full"><div class="w-6 h-6 bg-brand-green rounded-full flex items-center justify-center text-white text-xs">王</div><span class="text-sm font-bold text-gray-700">王奶奶</span></div>`;
         }
 
-        // --- 購物車 ---
+        // 購物車
         let cart = [];
-        
         function addToCart(id, name, price, img) {
             const item = cart.find(i => i.id === id);
             if(item) item.qty++;
@@ -397,55 +496,30 @@
             updateCart();
             toggleCart(true);
         }
-
         function updateCart() {
             const container = document.getElementById('cart-items');
             container.innerHTML = '';
             let total = 0, count = 0;
-
-            if(cart.length === 0) {
-                container.innerHTML = `<div class="text-center text-gray-400 mt-10"><i class="fa-solid fa-basket-shopping text-4xl mb-2 opacity-20"></i><p>購物車是空的</p></div>`;
-            }
-
+            if(cart.length === 0) container.innerHTML = `<div class="text-center text-gray-400 mt-10"><i class="fa-solid fa-basket-shopping text-4xl mb-2 opacity-20"></i><p>購物車是空的</p></div>`;
+            
             cart.forEach((item, index) => {
                 total += item.price * item.qty;
                 count += item.qty;
-                container.innerHTML += `
-                    <div class="flex gap-3 bg-white p-3 rounded-xl border border-gray-100">
-                        <img src="${item.img}" class="w-16 h-16 rounded-lg object-cover">
-                        <div class="flex-1">
-                            <div class="font-bold text-sm text-gray-800">${item.name}</div>
-                            <div class="text-brand-orange text-sm font-bold">NT$ ${item.price}</div>
-                        </div>
-                        <div class="flex flex-col items-end justify-between">
-                            <button onclick="removeFromCart(${index})" class="text-gray-300 hover:text-red-500"><i class="fa-solid fa-trash"></i></button>
-                            <div class="bg-gray-100 rounded-lg px-2 text-sm font-bold">x${item.qty}</div>
-                        </div>
-                    </div>
-                `;
+                container.innerHTML += `<div class="flex gap-3 bg-white p-3 rounded-xl border border-gray-100"><img src="${item.img}" class="w-16 h-16 rounded-lg object-cover"><div class="flex-1"><div class="font-bold text-sm text-gray-800">${item.name}</div><div class="text-brand-orange text-sm font-bold">NT$ ${item.price}</div></div><div class="flex flex-col items-end justify-between"><button onclick="removeFromCart(${index})" class="text-gray-300 hover:text-red-500"><i class="fa-solid fa-trash"></i></button><div class="bg-gray-100 rounded-lg px-2 text-sm font-bold">x${item.qty}</div></div></div>`;
             });
-
             document.getElementById('cart-total').innerText = 'NT$ ' + total.toLocaleString();
-            
             const badge = document.getElementById('cart-badge');
             badge.innerText = count;
             count > 0 ? badge.classList.remove('hidden') : badge.classList.add('hidden');
         }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
-
+        function removeFromCart(index) { cart.splice(index, 1); updateCart(); }
         function toggleCart(forceOpen = false) {
             const drawer = document.getElementById('cart-drawer');
             const overlay = document.getElementById('cart-overlay');
             if(forceOpen || drawer.classList.contains('translate-x-full')) {
-                drawer.classList.remove('translate-x-full');
-                overlay.classList.remove('hidden');
+                drawer.classList.remove('translate-x-full'); overlay.classList.remove('hidden');
             } else {
-                drawer.classList.add('translate-x-full');
-                overlay.classList.add('hidden');
+                drawer.classList.add('translate-x-full'); overlay.classList.add('hidden');
             }
         }
     </script>
