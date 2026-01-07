@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社區活動 | 全齡共融賦能生態圈</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: '#1E3A8A', secondary: '#4ECDC4', accent: '#F7DC6F' } } } }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 font-bold text-primary">
+                <i data-lucide="arrow-left"></i> 返回首頁
+            </a>
+            <h1 class="text-xl font-bold">社區活動中心</h1>
+            <div class="w-20"></div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex gap-4 mb-8 overflow-x-auto pb-2">
+            <button class="px-6 py-2 bg-primary text-white rounded-full font-medium whitespace-nowrap">全部活動</button>
+            <button class="px-6 py-2 bg-white border border-gray-200 text-gray-600 rounded-full font-medium hover:bg-gray-50 whitespace-nowrap">運動健康</button>
+            <button class="px-6 py-2 bg-white border border-gray-200 text-gray-600 rounded-full font-medium hover:bg-gray-50 whitespace-nowrap">數位學習</button>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                <div class="relative h-48 bg-gray-200">
+                    <img src="images/course-red-rope.jpg" alt="Yoga" class="w-full h-full object-cover">
+                    <span class="absolute top-4 right-4 bg-secondary text-white px-3 py-1 rounded-full text-sm font-bold">報名中</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-2 text-sm text-gray-500 mb-2"><i data-lucide="calendar" class="w-4 h-4"></i> 2025.01.20 (一) 10:00</div>
+                    <h3 class="text-xl font-bold text-primary mb-2">銀髮椅上瑜珈</h3>
+                    <p class="text-gray-600 mb-4 line-clamp-2">適合行動不便長者的溫和伸展運動，增進柔軟度與血液循環。</p>
+                    <div class="flex items-center justify-between border-t pt-4">
+                        <span class="font-bold text-lg text-primary">免費</span>
+                        <button onclick="alert('報名成功！')" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90">立即報名</button>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                <div class="relative h-48 bg-gray-200">
+                    <img src="images/course-boccia.jpg" alt="Tech" class="w-full h-full object-cover">
+                    <span class="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold">熱門</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-2 text-sm text-gray-500 mb-2"><i data-lucide="calendar" class="w-4 h-4"></i> 2025.01.22 (三) 14:00</div>
+                    <h3 class="text-xl font-bold text-primary mb-2">智慧型手機應用班</h3>
+                    <p class="text-gray-600 mb-4 line-clamp-2">教您如何使用 LINE、拍照、查公車時刻表。</p>
+                    <div class="flex items-center justify-between border-t pt-4">
+                        <span class="font-bold text-lg text-primary">NT$ 100</span>
+                        <button onclick="alert('報名成功！')" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90">立即報名</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>lucide.createIcons();</script>
+</body>
+</html>
