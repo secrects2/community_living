@@ -20,7 +20,19 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['Noto Sans TC', 'sans-serif'], serif: ['Noto Serif JP', 'serif'] },
-                    colors: { primary: '#1E3A8A', secondary: '#4ECDC4', accent: '#F7DC6F', coral: '#FFB6A3', lavender: '#A78BFA', success: '#10B981', warning: '#F59E0B' },
+                    colors: { 
+                        primary: '#1E3A8A', 
+                        secondary: '#4ECDC4', 
+                        accent: '#F7DC6F', 
+                        coral: '#FFB6A3', 
+                        lavender: '#A78BFA', 
+                        success: '#10B981', 
+                        warning: '#F59E0B',
+                        // 新增 Bento Grid 專用色
+                        pink: '#FFB7B2',      
+                        purple: '#C4B5FD',    
+                        journal: '#2A4365'   
+                    },
                     animation: { 'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite' }
                 }
             }
@@ -42,6 +54,11 @@
         }
         .map-filter-btn {
             transition: all 0.2s;
+        }
+
+        /* Bento Grid 虛線邊框效果 */
+        .dashed-border {
+            border: 2px dashed rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
@@ -119,7 +136,7 @@
                         <p class="text-lg md:text-xl text-gray-700 mb-8 max-w-xl" data-lang-key="hero_desc">
                             連結社區、健康與專業照護。探索附近活動、訂購營養餐點、申請專業輔具租借服務，您的所有需求都在這裡。
                         </p>
-                        <a href="activities.html" class="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-8 py-6 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all">
+                        <a href="family.html" class="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-8 py-6 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all">
                             <span data-lang-key="btn_explore">開始探索服務</span>
                             <i data-lucide="arrow-right" class="w-5 h-5"></i>
                         </a>
@@ -133,41 +150,80 @@
             </div>
         </section>
 
-        <section class="section-padding py-20 relative overflow-hidden">
+        <section class="section-padding py-20 relative overflow-hidden bg-gray-50/50">
             <div class="container mx-auto px-4 relative" style="z-index: 1;">
                 <div class="text-center mb-12">
                     <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">CONTENTS</h2>
                     <p class="text-xl text-gray-600" data-lang-key="contents_desc">探索我們的服務內容</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <a href="activities.html" class="lg:col-span-2 group block">
-                        <div class="group bg-gradient-to-br from-secondary to-secondary/80 rounded-[2rem] p-8 border-4 border-dashed border-white hover:scale-[1.02] transition-transform cursor-pointer h-full">
-                            <div class="inline-block p-3 bg-white/20 rounded-2xl mb-4"><i data-lucide="users" class="w-8 h-8 text-white"></i></div>
-                            <h3 class="text-3xl font-bold text-white mb-2">MARKET</h3>
-                            <p class="text-white/90 text-lg" data-lang-key="cat_market">社區活動 & 課程</p>
-                        </div>
-                    </a>
-                    <a href="nutrition.html" class="group block">
-                        <div class="group bg-gradient-to-br from-coral to-coral/80 rounded-[2rem] p-8 border-4 border-dashed border-white hover:scale-[1.02] transition-transform cursor-pointer h-full">
-                            <div class="inline-block p-3 bg-white/30 rounded-2xl mb-4"><i data-lucide="shopping-cart" class="w-8 h-8 text-white"></i></div>
-                            <h3 class="text-3xl font-bold text-white mb-2">STREET</h3>
-                            <p class="text-white/90 text-lg" data-lang-key="cat_street">產品營養組合</p>
-                        </div>
-                    </a>
-                    <a href="devices.html" class="group block">
-                        <div class="group bg-gradient-to-br from-lavender to-lavender/80 rounded-[2rem] p-8 border-4 border-dashed border-white hover:scale-[1.02] transition-transform cursor-pointer h-full">
-                            <div class="inline-block p-3 bg-white/30 rounded-2xl mb-4"><i data-lucide="wrench" class="w-8 h-8 text-white"></i></div>
-                            <h3 class="text-3xl font-bold text-white mb-2">FURNITURE</h3>
-                            <p class="text-white/90 text-lg" data-lang-key="cat_furniture">輔具申請租借</p>
-                        </div>
-                    </a>
-                    <div onclick="openEcosystemApp()" class="group block cursor-pointer">
-                        <div class="group bg-gradient-to-br from-primary to-primary/80 rounded-[2rem] p-8 border-4 border-dashed border-white hover:scale-[1.02] transition-transform h-full">
-                            <div class="inline-block p-3 bg-white/20 rounded-2xl mb-4"><i data-lucide="building-2" class="w-8 h-8 text-white"></i></div>
-                            <h3 class="text-3xl font-bold text-white mb-2">JOURNAL</h3>
-                            <p class="text-white/90 text-lg" data-lang-key="cat_journal">社區資源入口</p>
-                        </div>
+                <div class="max-w-6xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[600px]">
+                        
+                        <a href="family.html" class="group relative col-span-1 md:col-span-2 bg-secondary rounded-[2.5rem] p-8 dashed-border flex flex-col justify-between overflow-hidden hover:shadow-2xl hover:shadow-secondary/30 transition-all duration-300 hover:-translate-y-1">
+                            <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-16 -mt-16 transition-transform duration-500 group-hover:scale-110"></div>
+                            <div class="relative z-10">
+                                <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center text-white mb-4">
+                                    <i data-lucide="users" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-white font-serif text-3xl md:text-4xl tracking-wide mb-2">MARKET</h3>
+                                <p class="text-white/90 font-bold tracking-wider text-sm">社區活動 & 課程</p>
+                            </div>
+                            <div class="relative z-10 flex justify-end">
+                                <span class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-secondary group-hover:scale-110 transition shadow-lg">
+                                    <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
+                                </span>
+                            </div>
+                        </a>
+
+                        <a href="family.html" class="group relative col-span-1 md:col-span-1 bg-pink rounded-[2.5rem] p-8 dashed-border flex flex-col justify-between overflow-hidden hover:shadow-2xl hover:shadow-pink/30 transition-all duration-300 hover:-translate-y-1">
+                            <div class="absolute bottom-0 left-0 w-40 h-40 bg-white/10 rounded-full -ml-10 -mb-10 transition-transform duration-500 group-hover:scale-110"></div>
+                            <div class="relative z-10">
+                                <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center text-white mb-4">
+                                    <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-white font-serif text-3xl tracking-wide mb-2">STREET</h3>
+                                <p class="text-white/90 font-bold tracking-wider text-sm">產品營養組合</p>
+                            </div>
+                            <div class="relative z-10 flex justify-end">
+                                <span class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-pink group-hover:scale-110 transition shadow-lg">
+                                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                                </span>
+                            </div>
+                        </a>
+
+                        <a href="family.html" class="group relative col-span-1 md:col-span-1 bg-purple rounded-[2.5rem] p-8 dashed-border flex flex-col justify-between overflow-hidden hover:shadow-2xl hover:shadow-purple/30 transition-all duration-300 hover:-translate-y-1">
+                            <div class="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full -ml-8 -mt-8 transition-transform duration-500 group-hover:scale-110"></div>
+                            <div class="relative z-10">
+                                <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center text-white mb-4">
+                                    <i data-lucide="armchair" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-white font-serif text-2xl tracking-wide mb-2">FURNITURE</h3>
+                                <p class="text-white/90 font-bold tracking-wider text-sm">輔具申請租借</p>
+                            </div>
+                            <div class="relative z-10 flex justify-end">
+                                <span class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-purple group-hover:scale-110 transition shadow-lg">
+                                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                                </span>
+                            </div>
+                        </a>
+
+                        <a href="partner.html" class="group relative col-span-1 md:col-span-2 bg-journal rounded-[2.5rem] p-8 dashed-border flex flex-col justify-between overflow-hidden hover:shadow-2xl hover:shadow-journal/30 transition-all duration-300 hover:-translate-y-1">
+                            <div class="absolute bottom-0 right-0 w-56 h-56 bg-white/5 rounded-full -mr-10 -mb-10 transition-transform duration-500 group-hover:scale-110"></div>
+                            <div class="relative z-10 flex items-start justify-between">
+                                <div>
+                                    <div class="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center text-white mb-4">
+                                        <i data-lucide="book-open" class="w-6 h-6"></i>
+                                    </div>
+                                    <h3 class="text-white font-serif text-3xl tracking-wide mb-2">JOURNAL</h3>
+                                    <p class="text-white/70 font-bold tracking-wider text-sm">社區資源入口 & 據點管理</p>
+                                </div>
+                                <span class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white border border-white/20 group-hover:bg-white group-hover:text-journal transition">
+                                    <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                                </span>
+                            </div>
+                        </a>
+
                     </div>
                 </div>
             </div>
@@ -372,8 +428,7 @@
                 btn.classList.remove('active', 'bg-gray-600', 'text-white', 'border-gray-600');
                 btn.classList.add('bg-white', 'text-gray-600', 'border-gray-300');
             });
-            // 找出被點擊的按鈕並設為 Active (這裡簡化，直接根據 onclick 觸發的 type 來找對應按鈕有點麻煩，改用 event.currentTarget 會更好，但為了不大幅改 HTML 結構，這裡用簡單的 DOM 操作)
-            // 實際專案建議改用 class 綁定
+            
             const btnMap = {
                 'all': 0, 'service': 1, 'partner': 2, 'success': 3
             };
@@ -386,8 +441,6 @@
             // 3. 根據類型篩選資料並新增 Markers
             locations.forEach(loc => {
                 if (type === 'all' || loc.type === type) {
-                    // 設定不同顏色的 Marker (這裡用簡單的 CSS icon 或預設藍色)
-                    // 為了區分，我們可以在 Popup 中顯示類別
                     const marker = L.marker([loc.lat, loc.lng])
                         .addTo(map)
                         .bindPopup(`<b>${loc.name}</b><br>${loc.desc}`);
