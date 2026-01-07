@@ -3,64 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>社區活動 | 全齡共融賦能生態圈</title>
+    <title>社區活動媒合 | 全齡共融賦能生態圈</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
     <script>
-        tailwind.config = { theme: { extend: { colors: { primary: '#1E3A8A', secondary: '#4ECDC4', accent: '#F7DC6F' } } } }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Noto Sans TC', 'sans-serif'] },
+                    colors: { 
+                        primary: '#1E3A8A', 
+                        secondary: '#4ECDC4', 
+                        accent: '#F7DC6F'
+                    }
+                }
+            }
+        }
     </script>
+    <style>
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
         <div class="container mx-auto px-4 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-2 font-bold text-primary">
+            <a href="index.html" class="flex items-center gap-2 font-bold text-gray-600 hover:text-primary transition">
                 <i data-lucide="arrow-left"></i> 返回首頁
             </a>
-            <h1 class="text-xl font-bold">社區活動中心</h1>
-            <div class="w-20"></div>
-        </div>
+            <h1 class="text-xl font-bold text-primary">社區活動媒合中心</h1>
+            <div class="w-20"></div> </div>
     </nav>
 
-    <div class="container mx-auto px-4 py-8">
-        <div class="flex gap-4 mb-8 overflow-x-auto pb-2">
-            <button class="px-6 py-2 bg-primary text-white rounded-full font-medium whitespace-nowrap">全部活動</button>
-            <button class="px-6 py-2 bg-white border border-gray-200 text-gray-600 rounded-full font-medium hover:bg-gray-50 whitespace-nowrap">運動健康</button>
-            <button class="px-6 py-2 bg-white border border-gray-200 text-gray-600 rounded-full font-medium hover:bg-gray-50 whitespace-nowrap">數位學習</button>
+    <section class="bg-white border-b border-gray-200 py-6 sticky top-16 z-30">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-4 justify-between items-center">
+                <div class="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto hide-scrollbar">
+                    <button class="px-5 py-2 rounded-full bg-primary text-white font-bold whitespace-nowrap shadow-md">全部活動</button>
+                    <button class="px-5 py-2 rounded-full bg-gray-100 text-gray-600 font-medium hover:bg-gray-200 whitespace-nowrap transition">運動健康</button>
+                    <button class="px-5 py-2 rounded-full bg-gray-100 text-gray-600 font-medium hover:bg-gray-200 whitespace-nowrap transition">腦力益智</button>
+                    <button class="px-5 py-2 rounded-full bg-gray-100 text-gray-600 font-medium hover:bg-gray-200 whitespace-nowrap transition">數位學習</button>
+                    <button class="px-5 py-2 rounded-full bg-gray-100 text-gray-600 font-medium hover:bg-gray-200 whitespace-nowrap transition">共餐聯誼</button>
+                </div>
+                <div class="relative w-full md:w-64">
+                    <input type="text" placeholder="搜尋活動或據點..." class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary">
+                    <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                <div class="relative h-48 bg-gray-200">
-                    <img src="images/course-red-rope.jpg" alt="Yoga" class="w-full h-full object-cover">
-                    <span class="absolute top-4 right-4 bg-secondary text-white px-3 py-1 rounded-full text-sm font-bold">報名中</span>
-                </div>
-                <div class="p-6">
-                    <div class="flex items-center gap-2 text-sm text-gray-500 mb-2"><i data-lucide="calendar" class="w-4 h-4"></i> 2025.01.20 (一) 10:00</div>
-                    <h3 class="text-xl font-bold text-primary mb-2">紅繩運動</h3>
-                    <p class="text-gray-600 mb-4 line-clamp-2">懸吊式運動療法，透過紅繩訓練改善肌力、平衡能力與核心穩定度，適合各年齡層的長者參與。</p>
-                    <div class="flex items-center justify-between border-t pt-4">
-                        <span class="font-bold text-lg text-primary">免費</span>
-                        <button onclick="alert('報名成功！')" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90">立即報名</button>
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 activity-card transition-all duration-300">
+                    <div class="relative h-48">
+                        <img src="images/activity-boccia.jpg" alt="地板滾球" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470&auto=format&fit=crop'">
+                        <span class="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">熱門</span>
+                        <span class="absolute bottom-4 left-4 bg-black/60 text-white text-xs px-2 py-1 rounded backdrop-blur-sm"><i data-lucide="map-pin" class="inline w-3 h-3 mb-0.5"></i> 虎尾東區發展協會</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">地板滾球 (Boccia) 友誼賽</h3>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                            <i data-lucide="calendar" class="w-4 h-4 text-secondary"></i> 2026/02/15 (日) 14:00
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 line-clamp-2">適合全齡參與的室內運動，訓練專注力與手眼協調。無需激烈跑動，坐著也能開心玩！</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-primary font-bold text-lg">免費參加</span>
+                            <button onclick="openModal('地板滾球 (Boccia) 友誼賽', '2026/02/15', '虎尾東區發展協會')" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-800 transition">立即報名</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                <div class="relative h-48 bg-gray-200">
-                    <img src="images/course-boccia.jpg" alt="Tech" class="w-full h-full object-cover">
-                    <span class="absolute top-4 right-4 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold">熱門</span>
-                </div>
-                <div class="p-6">
-                    <div class="flex items-center gap-2 text-sm text-gray-500 mb-2"><i data-lucide="calendar" class="w-4 h-4"></i> 2025.01.22 (三) 14:00</div>
-                    <h3 class="text-xl font-bold text-primary mb-2">地板滾球</h3>
-                    <p class="text-gray-600 mb-4 line-clamp-2">參加我們舉辦的地板滾球活動</p>
-                    <div class="flex items-center justify-between border-t pt-4">
-                        <span class="font-bold text-lg text-primary">NT$ 100</span>
-                        <button onclick="alert('報名成功！')" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90">立即報名</button>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 activity-card transition-all duration-300">
+                    <div class="relative h-48">
+                        <img src="images/activity-redcord.jpg" alt="紅繩運動" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1470&auto=format&fit=crop'">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">報名中</span>
+                        <span class="absolute bottom-4 left-4 bg-black/60 text-white text-xs px-2 py-1 rounded backdrop-blur-sm"><i data-lucide="map-pin" class="inline w-3 h-3 mb-0.5"></i> 斗六長青樂活館</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">銀髮族肌力訓練 (Red Cord)</h3>
+                        <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                            <i data-lucide="calendar" class="w-4 h-4 text-secondary"></i> 2026/02/18 (三) 09:30
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 line-clamp-2">透過懸吊系統進行低強度肌力訓練，有效預防跌倒，增強核心肌群，由專業物理治療師帶領。</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-gray-900 font-bold text-lg">NT$ 100 <span class="text-xs text-gray-500 font-normal">/ 堂</span></span>
+                            <button onclick="openModal('銀髮族肌力訓練 (Red Cord)', '2026/02/18', '斗六長青樂活館')" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-800 transition">立即報名</button>
+                        </div>
                     </div>
                 </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 activity-card transition-all duration-300">
+                    <div class="relative h-48">
+                        <img src="images/activity-phone.jpg" alt="手機教學" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1470&auto=format&fit=crop'">
+                        <span class="absolute top-4 right-4 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">即將額滿</span>
+                        <span class="absolute bottom-4 left-4 bg-black/60 text-white text-xs px-2 py-1 rounded backdrop-blur-sm"><i data-lucide="map-pin" class="inline w-3 h-3 mb-0.5"></i> 土庫鎮老人會館</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">智慧手機生活應用班</h3>
+                        <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                            <i data-lucide="calendar" class="w-4 h-4 text-secondary"></i> 2026/02/20 (五) 14:00
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 line-clamp-2">教您使用 LINE 視訊、醫院掛號 App、Uber 叫車服務，讓生活更便利，跟孫子聊天無障礙！</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-primary font-bold text-lg">免費參加</span>
+                            <button onclick="openModal('智慧手機生活應用班', '2026/02/20', '土庫鎮老人會館')" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-800 transition">立即報名</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 activity-card transition-all duration-300">
+                    <div class="relative h-48">
+                        <img src="images/activity-boardgame.jpg" alt="益智桌遊" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1632501641765-e568d9088bed?q=80&w=1470&auto=format&fit=crop'">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">報名中</span>
+                        <span class="absolute bottom-4 left-4 bg-black/60 text-white text-xs px-2 py-1 rounded backdrop-blur-sm"><i data-lucide="map-pin" class="inline w-3 h-3 mb-0.5"></i> 西螺延平老街文化站</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">腦力激盪：益智桌遊派對</h3>
+                        <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                            <i data-lucide="calendar" class="w-4 h-4 text-secondary"></i> 2026/02/22 (日) 10:00
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 line-clamp-2">透過拉密 (Rummikub)、麻將等益智遊戲，活化腦力，預防失智，還能結交新朋友。</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-gray-900 font-bold text-lg">NT$ 50 <span class="text-xs text-gray-500 font-normal">(場地費)</span></span>
+                            <button onclick="openModal('腦力激盪：益智桌遊派對', '2026/02/22', '西螺延平老街文化站')" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-800 transition">立即報名</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 activity-card transition-all duration-300">
+                    <div class="relative h-48">
+                        <img src="images/activity-health.jpg" alt="養生講座" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1544367563-12123d8959bd?q=80&w=1470&auto=format&fit=crop'">
+                        <span class="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">報名中</span>
+                        <span class="absolute bottom-4 left-4 bg-black/60 text-white text-xs px-2 py-1 rounded backdrop-blur-sm"><i data-lucide="map-pin" class="inline w-3 h-3 mb-0.5"></i> 北港媽祖醫院巷弄站</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">中醫養生食療講座</h3>
+                        <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                            <i data-lucide="calendar" class="w-4 h-4 text-secondary"></i> 2026/02/25 (三) 14:00
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 line-clamp-2">邀請專業中醫師講解春季養生之道，現場示範適合高齡者的養生茶飲與藥膳。</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-primary font-bold text-lg">免費參加</span>
+                            <button onclick="openModal('中醫養生食療講座', '2026/02/25', '北港媽祖醫院巷弄站')" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-800 transition">立即報名</button>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 activity-card transition-all duration-300">
+                    <div class="relative h-48">
+                        <img src="images/activity-lunch.jpg" alt="社區共餐" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1543362906-ac1b452601d8?q=80&w=1470&auto=format&fit=crop'">
+                        <span class="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">剩 3 名額</span>
+                        <span class="absolute bottom-4 left-4 bg-black/60 text-white text-xs px-2 py-1 rounded backdrop-blur-sm"><i data-lucide="map-pin" class="inline w-3 h-3 mb-0.5"></i> 虎尾堀頭社區發展協會</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">社區共餐：懷舊古早味</h3>
+                        <div class="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                            <i data-lucide="calendar" class="w-4 h-4 text-secondary"></i> 2026/02/28 (六) 11:30
+                        </div>
+                        <p class="text-gray-600 text-sm mb-6 line-clamp-2">邀請社區長輩一同共餐，品嚐在地阿嬤的手路菜（滷肉飯、白菜滷），凝聚社區情感。</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-gray-900 font-bold text-lg">NT$ 60 <span class="text-xs text-gray-500 font-normal">(餐費)</span></span>
+                            <button onclick="openModal('社區共餐：懷舊古早味', '2026/02/28', '虎尾堀頭社區發展協會')" class="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-blue-800 transition">立即報名</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
+        </div>
+    </section>
+
+    <div id="registerModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl w-full max-w-md p-8 shadow-2xl transform transition-all scale-100">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            
+            <h3 class="text-2xl font-bold text-gray-900 mb-1">活動報名</h3>
+            <p class="text-sm text-gray-500 mb-6">請填寫以下資訊以完成報名</p>
+            
+            <div class="bg-blue-50 p-4 rounded-xl mb-6 border border-blue-100">
+                <p class="font-bold text-primary mb-1" id="modalActivityTitle">活動名稱</p>
+                <div class="flex items-center gap-4 text-sm text-gray-600">
+                    <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3 h-3"></i> <span id="modalActivityDate">日期</span></span>
+                    <span class="flex items-center gap-1"><i data-lucide="map-pin" class="w-3 h-3"></i> <span id="modalActivityLoc">地點</span></span>
+                </div>
+            </div>
+            
+            <form id="registerForm" onsubmit="submitRegistration(event)" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">您的姓名 <span class="text-red-500">*</span></label>
+                    <input type="text" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="請輸入姓名">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">聯絡電話 <span class="text-red-500">*</span></label>
+                    <input type="tel" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="09xx-xxx-xxx">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">電子信箱 (選填)</label>
+                    <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="example@email.com">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">備註需求 (如有飲食禁忌或需輪椅協助)</label>
+                    <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none" rows="2" placeholder="無"></textarea>
+                </div>
+                
+                <button type="submit" class="w-full bg-primary text-white py-3 rounded-xl font-bold text-lg hover:bg-blue-800 transition shadow-lg mt-2">
+                    確認送出
+                </button>
+            </form>
         </div>
     </div>
-    <script>lucide.createIcons();</script>
+
+    <div id="successToast" class="fixed bottom-8 right-8 bg-green-600 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-500 z-50">
+        <div class="bg-white/20 p-2 rounded-full"><i data-lucide="check" class="w-5 h-5"></i></div>
+        <div>
+            <h4 class="font-bold">報名成功！</h4>
+            <p class="text-sm text-green-100">我們已發送確認簡訊至您的手機。</p>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function openModal(title, date, location) {
+            document.getElementById('modalActivityTitle').innerText = title;
+            document.getElementById('modalActivityDate').innerText = date;
+            document.getElementById('modalActivityLoc').innerText = location;
+            
+            const modal = document.getElementById('registerModal');
+            modal.classList.remove('hidden');
+            // 動畫效果
+            setTimeout(() => {
+                modal.querySelector('.bg-white').classList.remove('scale-95', 'opacity-0');
+            }, 10);
+            
+            document.body.style.overflow = 'hidden'; // 防止背景滾動
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('registerModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function submitRegistration(e) {
+            e.preventDefault();
+            // 模擬送出
+            closeModal();
+            
+            // 顯示成功通知
+            const toast = document.getElementById('successToast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            // 3秒後消失
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+            
+            // 重置表單
+            document.getElementById('registerForm').reset();
+        }
+    </script>
 </body>
 </html>
