@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>首頁 | 全齡共融賦能生態圈 - Community Living Loop</title>
-    <meta name="description" content="連結社區、健康與專業照護。探索附近活動、訂購營養餐點、申請專業輔具租借服務。">
+    <meta name="description" content="連結社區、健康與專業照護。探索附近活動、訂購營養餐點、申請專業輔具租借服務，您的所有需求都在這裡。">
+    <meta name="keywords" content="銀髮族,社區服務,健康照護,輔具租借,營養餐點,長者活動,樂齡課程">
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -29,8 +30,8 @@
                         accent: '#F7DC6F',
                         coral: '#FFB6A3',
                         lavender: '#A78BFA',
-                        success: '#10B981',
-                        warning: '#F59E0B'
+                        success: '#10B981', // 新增成功色
+                        warning: '#F59E0B'  // 新增警告色
                     },
                     animation: {
                         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -43,6 +44,9 @@
         .modal-open { overflow: hidden; }
         .dashboard-card { transition: all 0.3s ease; }
         .dashboard-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        /* 隱藏滾動條但保留功能 */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-white text-gray-900">
@@ -58,89 +62,115 @@
                 </a>
 
                 <div class="hidden md:flex items-center gap-6">
-                    <a href="#home" class="text-sm font-semibold hover:text-secondary text-primary">首頁</a>
-                    <a href="#icope-match" class="text-sm font-semibold hover:text-secondary text-primary">AI 智能媒合</a>
-                    <a href="#sop-center" class="text-sm font-semibold hover:text-secondary text-primary">數位賦能中心</a>
-                    <a href="#dashboard-demo" class="text-sm font-semibold hover:text-secondary text-primary">生態系後台</a>
+                    <a href="#home" class="text-sm font-semibold transition-colors hover:text-secondary text-primary">Home</a>
+                    <a href="#logic-flow" class="text-sm font-semibold transition-colors hover:text-secondary text-primary">How it Works</a>
+                    <a href="#icope-match" class="text-sm font-semibold transition-colors hover:text-secondary text-primary">AI Matching</a>
+                    <a href="#sop-center" class="text-sm font-semibold transition-colors hover:text-secondary text-primary">SOP Standard</a>
+                    <a href="#dashboard-demo" class="text-sm font-semibold transition-colors hover:text-secondary text-primary">Dashboard</a>
                 </div>
 
                 <div class="hidden md:flex items-center gap-3">
-                    <button onclick="openDashboardModal()" class="bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 font-medium transition shadow-lg flex items-center gap-2">
+                    <button class="p-2 rounded-full hover:bg-gray-100" onclick="openSearch()">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </button>
+                    <button onclick="openDashboardModal()" class="bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 font-medium transition flex items-center gap-2 shadow-lg">
                         <i data-lucide="log-in" class="w-4 h-4"></i>
                         登入生態系
+                    </button>
+                    <button class="p-2 rounded-full hover:bg-gray-100" onclick="toggleLanguage()">
+                        <i data-lucide="globe" class="w-5 h-5"></i>
                     </button>
                 </div>
 
                 <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                    <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
+                    <i data-lucide="menu" class="w-6 h-6 text-gray-700" id="menu-icon"></i>
                 </button>
+            </div>
+            
+            <div id="mobile-menu" class="hidden md:hidden py-4 border-t border-gray-200">
+                <div class="flex flex-col gap-2">
+                    <a href="#home" class="px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Home</a>
+                    <a href="#icope-match" class="px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">AI Matching</a>
+                    <a href="#sop-center" class="px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">SOP Standard</a>
+                    <button onclick="openDashboardModal()" class="mx-4 mt-2 bg-primary text-white rounded-lg py-3 font-medium">登入生態系後台</button>
+                </div>
             </div>
         </div>
     </nav>
 
     <div class="pt-16">
         
-        <section id="home" class="relative overflow-hidden py-12 md:py-20 bg-gradient-to-br from-blue-50 to-white">
-            <div class="container mx-auto px-4 relative z-10">
+        <section id="home" class="relative overflow-hidden py-12 md:py-20">
+            <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary opacity-15 blur-3xl organic-shape" style="clip-path: polygon(30% 0%, 100% 0%, 100% 70%, 60% 100%, 0% 80%, 0% 30%); z-index: 0;"></div>
+            <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent opacity-15 blur-3xl organic-shape" style="clip-path: polygon(0% 20%, 50% 0%, 100% 30%, 80% 100%, 20% 100%, 0% 70%); z-index: 0; animation-delay: 2s;"></div>
+            
+            <div class="container mx-auto px-4 relative fade-in" style="z-index: 1;">
                 <div class="grid lg:grid-cols-2 gap-8 items-center">
                     <div class="order-2 lg:order-1">
                         <div class="inline-block mb-4 px-4 py-2 bg-white border-2 border-dashed border-secondary rounded-full animate-pulse-slow">
                             <span class="text-sm font-medium text-primary flex items-center gap-2">
                                 <span class="w-2 h-2 bg-green-500 rounded-full"></span>
-                                系統狀態：即時媒合中
+                                System Status: Live Matching
                             </span>
                         </div>
-                        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-primary">
-                            數據驅動的<br>
-                            <span class="text-secondary">精準照護對接</span>
+                        
+                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                            <span class="text-primary block">Data-Driven</span>
+                            <span class="text-secondary block">Precision Care</span>
+                            <span class="text-primary block">Ecosystem</span>
                         </h1>
-                        <p class="text-lg text-gray-700 mb-8 max-w-xl">
+                        
+                        <p class="text-lg md:text-xl text-gray-700 mb-8 max-w-xl">
                             我們將 ICOPE 篩檢數據轉化為具體的服務處方箋，透過 AI 自動媒合鄰近的專業健康大使，讓「需求」與「服務」在社區內無縫接軌。
                         </p>
+                        
                         <div class="flex flex-col sm:flex-row gap-4">
                             <button onclick="openIcopeModal()" class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
                                 <i data-lucide="activity" class="w-5 h-5"></i>
-                                開始 ICOPE 快篩媒合
+                                開始 ICOPE 快篩
                             </button>
                             <button onclick="openDashboardModal()" class="bg-white border-2 border-primary text-primary hover:bg-gray-50 px-8 py-4 rounded-full text-lg font-medium transition-all flex items-center justify-center gap-2">
                                 <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
-                                體驗三方管理介面
+                                體驗三方後台
                             </button>
                         </div>
                     </div>
+
                     <div class="order-1 lg:order-2 relative">
-                        <div class="bg-white rounded-[2rem] p-6 shadow-2xl border border-gray-100 relative z-10">
+                        <div class="bg-white rounded-[2rem] p-6 shadow-2xl border border-gray-100 relative z-10 card-hover">
                             <div class="flex items-center justify-between mb-4 border-b pb-4">
                                 <div class="flex items-center gap-3">
                                     <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
                                         <img src="images/caregiver-1.jpg" class="w-full h-full object-cover">
                                     </div>
                                     <div>
-                                        <p class="font-bold text-sm">系統通知</p>
+                                        <p class="font-bold text-sm">系統通知中心</p>
                                         <p class="text-xs text-gray-500">剛剛</p>
                                     </div>
                                 </div>
-                                <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">媒合成功</span>
+                                <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full flex items-center gap-1">
+                                    <i data-lucide="check-circle" class="w-3 h-3"></i> 媒合成功
+                                </span>
                             </div>
                             <div class="space-y-3">
-                                <p class="text-sm font-medium">王大明 (長輩) <span class="text-gray-400">-></span> 需求：肌力訓練</p>
+                                <p class="text-sm font-medium">王大明 (長輩) <span class="text-gray-400">→</span> 需求：肌力訓練</p>
                                 <div class="h-1 w-full bg-gray-100 rounded-full overflow-hidden">
                                     <div class="h-full bg-secondary w-full"></div>
                                 </div>
-                                <p class="text-sm font-medium text-primary">已指派：健康大使 李秀英</p>
+                                <p class="text-sm font-medium text-primary">已自動指派：健康大使 李秀英</p>
                                 <p class="text-xs text-gray-500 flex items-center gap-1">
                                     <i data-lucide="map-pin" class="w-3 h-3"></i> 距離 500m (虎尾社區據點)
                                 </p>
                             </div>
                         </div>
-                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-2xl -z-10"></div>
-                        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-secondary/20 rounded-full blur-2xl -z-10"></div>
+                        <div class="absolute -top-4 -right-4 w-24 h-24 bg-coral rounded-full opacity-60 blur-xl"></div>
+                        <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-lavender rounded-full opacity-40 blur-xl"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-12 bg-white border-b border-gray-100">
+        <section id="logic-flow" class="py-12 bg-white border-b border-gray-100">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-10">
                     <h2 class="text-2xl font-bold text-primary">系統運作邏輯 (Logic Flow)</h2>
@@ -210,7 +240,7 @@
                         </button>
                     </div>
                     <div class="bg-white rounded-3xl p-2 shadow-xl">
-                        <img src="images/sop-flow.jpg" alt="SOP Flow" class="w-full h-auto rounded-2xl">
+                        <img src="images/sop-flow.jpg" alt="System Flow" class="w-full h-auto rounded-2xl">
                     </div>
                 </div>
             </div>
@@ -282,9 +312,56 @@
             </div>
         </section>
 
+        <section class="section-padding bg-gradient-to-br from-primary via-blue-800 to-teal-700 text-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">All-Age Inclusive Urban Regeneration Plan</h2>
+                    <p class="text-blue-200 text-sm uppercase tracking-wider mb-8">Cool-Aging Park</p>
+                    <p class="text-lg text-blue-100 max-w-3xl mx-auto leading-relaxed">
+                        We propose not just a healthcare system, but an urban regeneration movement centered on 'Cool Aging'. 
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="courses" class="section-padding relative overflow-hidden">
+             <div class="container mx-auto px-4 relative" style="z-index: 1;">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">CONTENTS</h2>
+                    <p class="text-xl text-gray-600">探索我們的服務內容</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <a href="#activities" class="lg:col-span-2">
+                        <div class="group bg-gradient-to-br from-secondary to-secondary/80 rounded-[2rem] p-8 border-4 border-dashed border-white hover-scale cursor-pointer">
+                            <h3 class="text-3xl font-bold text-white mb-2">MARKET</h3>
+                            <p class="text-white/90 text-lg">社區活動</p>
+                            </div>
+                    </a>
+                    <a href="/courses.html">
+                        <div class="group bg-gradient-to-br from-accent to-accent/80 rounded-[2rem] p-8 border-4 border-dashed border-white hover-scale cursor-pointer h-full">
+                             <h3 class="text-3xl font-bold text-primary mb-2">CULTURE</h3>
+                             <p class="text-primary/80 text-lg mb-4">培訓課程</p>
+                        </div>
+                    </a>
+                    </div>
+            </div>
+        </section>
+
+        <section class="section-padding bg-gradient-to-br from-primary via-blue-900 to-primary text-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">高齡化社會的四大結構性風險</h2>
+                </div>
+                <div class="space-y-4">
+                     <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/20 hover:bg-white/15 transition-all cursor-pointer">
+                        <h3 class="text-2xl font-bold mb-1">生活空間的功能斷裂</h3>
+                     </div>
+                     </div>
+            </div>
+        </section>
+
         <section id="dashboard-demo" class="section-padding bg-gradient-to-br from-gray-900 to-primary text-white relative overflow-hidden">
             <div class="absolute top-0 right-0 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"></div>
-            
             <div class="container mx-auto px-4 relative z-10 text-center">
                 <span class="text-secondary font-bold tracking-wider uppercase mb-2 block">UI/UX Experience</span>
                 <h2 class="text-3xl md:text-4xl font-bold mb-6">三方視角：看板式管理</h2>
@@ -300,13 +377,29 @@
             </div>
         </section>
 
+        <section id="calendar" class="section-padding bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">服務網絡地圖</h2>
+                </div>
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden mb-8">
+                    <div class="aspect-video bg-gray-200 relative">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14632.123456789!2d120.4372!3d23.7069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQyJzI0LjgiTiAxMjDCsDI2JzE0LjAiRQ!5e0!3m2!1szh-TW!2stw!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
             <div class="container mx-auto px-4 text-center">
                 <h3 class="text-2xl font-bold mb-2">全齡共融賦能生態圈</h3>
-                <p class="text-sm text-gray-400 mb-6">Community Living Loop</p>
                 <p class="text-xs text-gray-500">© 2026 Community Living Loop. All rights reserved.</p>
             </div>
         </footer>
+
+        <button id="back-to-top" onclick="scrollToTop()" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full shadow-lg hover:bg-primary/90 transition z-40 flex items-center justify-center" style="opacity: 0; visibility: hidden;">
+            <i data-lucide="arrow-up" class="w-5 h-5"></i>
+        </button>
 
     </div>
 
@@ -412,8 +505,9 @@
         </div>
     </div>
 
+    <script src="js/main.js"></script>
     <script>
-        // Init Lucide Icons
+        // 初始化 Lucide Icons
         lucide.createIcons();
 
         // --- ICOPE Modal Logic ---
@@ -429,7 +523,6 @@
         }
 
         function selectOption(btn) {
-            // Visual feedback for selection
             const parent = btn.parentElement;
             const buttons = parent.getElementsByTagName('button');
             for(let b of buttons) {
@@ -446,7 +539,6 @@
             document.getElementById('icopeStep1').classList.add('hidden');
             document.getElementById('icopeStep2').classList.remove('hidden');
             
-            // Simulate AI delay
             setTimeout(() => {
                 document.getElementById('icopeStep2').classList.add('hidden');
                 document.getElementById('icopeStep3').classList.remove('hidden');
@@ -456,18 +548,17 @@
         // --- Dashboard Logic ---
         function openDashboardModal() {
             document.getElementById('dashboardModal').classList.remove('hidden');
-            switchRole('user'); // Default view
+            switchRole('user');
         }
 
         function closeDashboardModal() {
             document.getElementById('dashboardModal').classList.add('hidden');
         }
 
-        // Data for different roles
+        // Dashboard Data
         const dashboardData = {
             'user': {
                 title: '我的健康存摺 (使用者視角)',
-                color: 'blue',
                 content: `
                     <div class="grid md:grid-cols-3 gap-6 mb-8">
                         <div class="bg-white p-6 rounded-xl shadow-sm border border-blue-100 dashboard-card">
@@ -478,7 +569,6 @@
                         <div class="bg-white p-6 rounded-xl shadow-sm border border-blue-100 dashboard-card">
                             <p class="text-sm text-gray-500 mb-1">累積健康點數</p>
                             <h3 class="text-4xl font-bold text-accent">1,250 <span class="text-sm font-normal text-gray-500">pts</span></h3>
-                            <p class="text-xs text-gray-400 mt-2">可兌換 3 份營養餐盒</p>
                         </div>
                         <div class="bg-white p-6 rounded-xl shadow-sm border border-blue-100 dashboard-card">
                             <p class="text-sm text-gray-500 mb-1">下一次課程</p>
@@ -507,7 +597,6 @@
             },
             'community': {
                 title: '據點營運儀表板 (經營者視角)',
-                color: 'green',
                 content: `
                     <div class="grid md:grid-cols-4 gap-6 mb-8">
                         <div class="bg-white p-5 rounded-xl shadow-sm border border-green-100 dashboard-card">
@@ -547,14 +636,12 @@
                                 <i data-lucide="alert-circle" class="text-red-500"></i>
                                 <span class="text-sm text-red-700">3 位新會員尚未完成 ICOPE 初篩</span>
                             </div>
-                            <button class="w-full py-2 bg-white border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50">查看所有通知</button>
                         </div>
                     </div>
                 `
             },
             'expert': {
                 title: '個人賦能工單 (健康大使視角)',
-                color: 'purple',
                 content: `
                     <div class="grid md:grid-cols-3 gap-6 mb-8">
                         <div class="bg-white p-6 rounded-xl shadow-sm border border-purple-100 dashboard-card">
@@ -575,30 +662,15 @@
                         <div class="space-y-4">
                             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-purple-50 rounded-xl border border-purple-100">
                                 <div class="flex items-center gap-4 mb-3 sm:mb-0">
-                                    <div class="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center text-purple-700 font-bold">
-                                        新
-                                    </div>
+                                    <div class="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center text-purple-700 font-bold">新</div>
                                     <div>
                                         <p class="font-bold text-gray-900">個案：張爺爺 (需求：防跌訓練)</p>
                                         <p class="text-sm text-gray-600">地點：虎尾社區中心 (距離 1.2km)</p>
                                     </div>
                                 </div>
                                 <div class="flex gap-2 w-full sm:w-auto">
-                                    <button class="flex-1 sm:flex-none px-4 py-2 bg-white border border-gray-300 text-gray-600 rounded-lg text-sm hover:bg-gray-50">婉拒</button>
                                     <button class="flex-1 sm:flex-none px-4 py-2 bg-purple-600 text-white rounded-lg text-sm hover:bg-purple-700 shadow-md">確認接單</button>
                                 </div>
-                            </div>
-                             <div class="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100 opacity-75">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-500">
-                                        <i data-lucide="check" class="w-5 h-5"></i>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold text-gray-900 line-through">個案：林奶奶 (需求：營養諮詢)</p>
-                                        <p class="text-sm text-gray-500">已完成授課</p>
-                                    </div>
-                                </div>
-                                <span class="text-green-600 text-sm font-bold">已入帳 $800</span>
                             </div>
                         </div>
                     </div>
@@ -607,12 +679,11 @@
         };
 
         function switchRole(role) {
-            // Update buttons style
             ['user', 'community', 'expert'].forEach(r => {
                 const btn = document.getElementById(`btn-${r}`);
                 if (r === role) {
                     btn.classList.remove('text-gray-500', 'bg-transparent');
-                    btn.classList.add('bg-white', 'shadow-sm', 'text-primary'); // Active style
+                    btn.classList.add('bg-white', 'shadow-sm', 'text-primary'); 
                     if(role === 'community') btn.classList.add('text-green-600');
                     if(role === 'expert') btn.classList.add('text-purple-600');
                 } else {
@@ -621,15 +692,12 @@
                 }
             });
 
-            // Update content
             const data = dashboardData[role];
             const contentDiv = document.getElementById('dashboardContent');
             contentDiv.innerHTML = `
                 <h2 class="text-2xl font-bold mb-6 text-gray-800">${data.title}</h2>
                 ${data.content}
             `;
-            
-            // Re-render icons for new content
             lucide.createIcons();
         }
     </script>
