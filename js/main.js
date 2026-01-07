@@ -33,6 +33,7 @@ const translations = {
         map_title: '服務網絡地圖', stat_loc: '服務據點', stat_partner: '合作夥伴', stat_success: '成功案例',
         footer_title: '全齡共融賦能生態圈',
         sop_title: '專業照護 SOP', sop_desc: '標準化場域與服務，確保品質',
+        nav_partner: '合作夥伴招募', // 新增
         app_title: '全齡生態系整合平台'
     },
     'en': {
@@ -51,6 +52,7 @@ const translations = {
         map_title: 'Service Network', stat_loc: 'Locations', stat_partner: 'Partners', stat_success: 'Success Stories',
         footer_title: 'Community Living Loop',
         sop_title: 'Professional Care SOP', sop_desc: 'Standardized services ensuring quality',
+        nav_partner: 'Become a Partner', // 新增
         app_title: 'Ecosystem Platform'
     }
 };
