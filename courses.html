@@ -1,24 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-Hant" class="scroll-smooth">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>專業培訓課程 | 全齡共融賦能生態圈 - Community Living Loop</title>
-    <meta name="description" content="提升照護專業能力，為長者提供更優質的服務。瀏覽我們的運動復健、休閒運動、健康照護、專業認證、認知訓練、營養專業等課程。">
-    <meta name="keywords" content="培訓課程,專業認證,運動復健,健康照護,營養專業,長者照護">
+    <title>專業培訓課程 | 全齡共融賦能生態圈</title>
     
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Lucide Icons CDN -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <!-- 自定義 CSS -->
-    <link rel="stylesheet" href="css/style.css">
     
     <script>
         tailwind.config = {
@@ -26,456 +17,496 @@
                 extend: {
                     fontFamily: { 
                         sans: ['Noto Sans TC', 'sans-serif'],
-                        serif: ['Noto Serif JP', 'serif']
+                        serif: ['Noto Serif TC', 'serif']
                     },
                     colors: {
-                        primary: '#1E3A8A',
-                        secondary: '#4ECDC4',
-                        accent: '#F7DC6F',
-                        coral: '#FFB6A3',
-                        lavender: '#A78BFA'
+                        primary: '#1E3A8A', // 深藍文字
+                        secondary: '#4ECDC4', // 按鈕綠色
+                        accent: '#F7DC6F', // 價格黃色
+                        beige: '#FFFBF0', // 背景米色
+                        'card-border': '#A5D8D6' // 卡片虛線邊框色
                     }
                 }
             }
         }
     </script>
+    <style>
+        /* 仿照圖片的虛線邊框效果 */
+        .dashed-card {
+            border: 2px dashed #BCE0FD;
+            border-radius: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .dashed-card:hover {
+            border-color: #4ECDC4;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        /* 隱藏 Modal 捲軸 */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
-<body class="bg-[#FFF8F0] text-gray-900">
+<body class="bg-white text-gray-800 font-sans">
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b-2 border-secondary/30">
-        <div class="container mx-auto px-4">
-            <div class="flex items-center justify-between h-16">
-                <!-- Logo -->
-                <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                    <div class="flex flex-col">
-                        <span class="font-bold text-lg leading-tight">全齡共融賦能生態圈</span>
-                        <span class="text-xs text-gray-600">Community Living Loop</span>
-                    </div>
-                </a>
-
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center gap-6">
-                    <a href="index.html" class="text-sm font-semibold transition-colors hover:text-secondary text-gray-700">Home</a>
-                    <a href="courses.html" class="text-sm font-semibold transition-colors hover:text-secondary text-secondary">Courses</a>
-                    <a href="index.html#devices" class="text-sm font-semibold transition-colors hover:text-secondary text-gray-700">Assistive Devices</a>
-                    <a href="index.html#calendar" class="text-sm font-semibold transition-colors hover:text-secondary text-gray-700">Calendar</a>
-                    <a href="index.html#community" class="text-sm font-semibold transition-colors hover:text-secondary text-gray-700">Community</a>
-                </div>
-
-                <!-- Desktop Actions -->
-                <div class="hidden md:flex items-center gap-3">
-                    <button class="p-2 rounded-full hover:bg-gray-100" onclick="openSearch()">
-                        <i data-lucide="search" class="w-5 h-5"></i>
-                    </button>
-                    <button class="p-2 rounded-full hover:bg-gray-100 relative" onclick="toggleCart()">
-                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-                        <span id="cart-count" class="hidden absolute -top-1 -right-1 bg-coral text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                    </button>
-                    <a href="#login">
-                        <button class="bg-coral hover:bg-coral/90 text-white rounded-full px-6 py-2 font-medium transition">
-                            Login/Register
-                        </button>
-                    </a>
-                    <button class="p-2 rounded-full hover:bg-gray-100" onclick="toggleLanguage()">
-                        <i data-lucide="globe" class="w-5 h-5"></i>
-                    </button>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                    <i data-lucide="menu" class="w-6 h-6 text-gray-700" id="menu-icon"></i>
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 font-bold text-primary">
+                <i data-lucide="arrow-left"></i> 返回首頁
+            </a>
+            <div class="flex items-center gap-3">
+                <button class="p-2 rounded-full hover:bg-gray-100 relative">
+                    <i data-lucide="shopping-cart" class="w-5 h-5 text-gray-600"></i>
                 </button>
-            </div>
-
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden py-4 border-t border-gray-200">
-                <div class="flex flex-col gap-2">
-                    <a href="index.html" class="px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Home</a>
-                    <a href="courses.html" class="px-4 py-3 rounded-lg text-sm font-medium text-secondary bg-secondary/10">Courses</a>
-                    <a href="index.html#devices" class="px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Assistive Devices</a>
-                    <a href="index.html#calendar" class="px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Calendar</a>
-                    <a href="index.html#community" class="px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Community</a>
-                    <div class="flex items-center gap-2 px-4 pt-2">
-                        <button class="flex-1 bg-coral hover:bg-coral/90 text-white rounded-full py-2">登入/註冊</button>
-                    </div>
-                </div>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="pt-16">
-        
-        <!-- Hero Section -->
-        <section class="section-padding bg-gradient-to-br from-blue-50 to-teal-50">
-            <div class="container mx-auto px-4 text-center">
-                <h1 class="text-4xl md:text-6xl font-bold text-primary mb-6">專業培訓課程</h1>
-                <p class="text-xl md:text-2xl text-gray-700 mb-8">提升照護專業能力，為長者提供更優質的服務</p>
+    <header class="bg-beige py-16 text-center">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl font-bold text-primary font-serif mb-4 tracking-wide">專業培訓課程</h1>
+            <p class="text-gray-600 text-lg mb-10 tracking-wider">提升照護專業能力，為長者提供更優質的服務</p>
+            
+            <div class="flex flex-wrap justify-center gap-3 md:gap-4">
+                <button class="px-6 py-2 rounded-full border-2 border-secondary text-primary bg-white font-medium hover:bg-secondary hover:text-white transition-colors dashed-border">全部課程</button>
+                <button class="px-6 py-2 rounded-full border-2 border-secondary text-gray-500 bg-white border-dashed font-medium hover:bg-secondary hover:text-white transition-colors">運動復健</button>
+                <button class="px-6 py-2 rounded-full border-2 border-secondary text-gray-500 bg-white border-dashed font-medium hover:bg-secondary hover:text-white transition-colors">休閒運動</button>
+                <button class="px-6 py-2 rounded-full border-2 border-secondary text-gray-500 bg-white border-dashed font-medium hover:bg-secondary hover:text-white transition-colors">健康照護</button>
+                <button class="px-6 py-2 rounded-full border-2 border-secondary text-gray-500 bg-white border-dashed font-medium hover:bg-secondary hover:text-white transition-colors">專業認證</button>
+                <button class="px-6 py-2 rounded-full border-2 border-secondary text-gray-500 bg-white border-dashed font-medium hover:bg-secondary hover:text-white transition-colors">認知訓練</button>
+                <button class="px-6 py-2 rounded-full border-2 border-secondary text-gray-500 bg-white border-dashed font-medium hover:bg-secondary hover:text-white transition-colors">營養專業</button>
             </div>
-        </section>
+        </div>
+    </header>
 
-        <!-- Filter Section -->
-        <section class="py-8 bg-white border-b-2 border-gray-200 sticky top-16 z-40">
-            <div class="container mx-auto px-4">
-                <div class="flex flex-wrap justify-center gap-3">
-                    <button onclick="filterCourses('all')" class="filter-btn active px-6 py-2 rounded-full border-2 border-secondary text-secondary bg-white hover:bg-secondary hover:text-white transition-all font-medium">
-                        全部課程
-                    </button>
-                    <button onclick="filterCourses('運動復健')" class="filter-btn px-6 py-2 rounded-full border-2 border-secondary text-secondary bg-white hover:bg-secondary hover:text-white transition-all font-medium">
-                        運動復健
-                    </button>
-                    <button onclick="filterCourses('休閒運動')" class="filter-btn px-6 py-2 rounded-full border-2 border-secondary text-secondary bg-white hover:bg-secondary hover:text-white transition-all font-medium">
-                        休閒運動
-                    </button>
-                    <button onclick="filterCourses('健康照護')" class="filter-btn px-6 py-2 rounded-full border-2 border-secondary text-secondary bg-white hover:bg-secondary hover:text-white transition-all font-medium">
-                        健康照護
-                    </button>
-                    <button onclick="filterCourses('專業認證')" class="filter-btn px-6 py-2 rounded-full border-2 border-secondary text-secondary bg-white hover:bg-secondary hover:text-white transition-all font-medium">
-                        專業認證
-                    </button>
-                    <button onclick="filterCourses('認知訓練')" class="filter-btn px-6 py-2 rounded-full border-2 border-secondary text-secondary bg-white hover:bg-secondary hover:text-white transition-all font-medium">
-                        認知訓練
-                    </button>
-                    <button onclick="filterCourses('營養專業')" class="filter-btn px-6 py-2 rounded-full border-2 border-secondary text-secondary bg-white hover:bg-secondary hover:text-white transition-all font-medium">
-                        營養專業
-                    </button>
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="dashed-card bg-white overflow-hidden p-2 flex flex-col h-full">
+                    <div class="relative h-56 rounded-2xl overflow-hidden">
+                        <img src="images/course-icope.jpg" alt="ICOPE" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-yellow-400 text-primary px-3 py-1 rounded-full text-sm font-bold shadow-sm">專業認證</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-2xl font-bold text-primary font-serif mb-3">ICOPE培訓</h3>
+                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">WHO整合式高齡照護評估與介入培訓，提升照護專業能力。</p>
+                        
+                        <div class="space-y-2 text-sm text-gray-500 mb-6">
+                            <div class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4 text-secondary"></i> 22/30 人已報名</div>
+                            <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-secondary"></i> 12週課程 (每週1次, 每次180分鐘)</div>
+                            <div class="flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4 text-secondary"></i> 近期開課：2026/2/6</div>
+                            <div class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-secondary"></i> 嘉義市醫療中心</div>
+                        </div>
+
+                        <div class="mt-auto flex items-center justify-between pt-4 border-t border-dashed border-gray-200">
+                            <span class="text-2xl font-bold text-[#E6C65B]">NT$ 8,000</span>
+                            <div class="flex gap-2">
+                                <button class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 text-gray-400"><i data-lucide="info" class="w-4 h-4"></i></button>
+                                <button onclick="openModal('icope')" class="px-4 py-1.5 bg-secondary text-white rounded-full font-medium hover:bg-[#3dbdb4] transition flex items-center gap-1">查看詳情 <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashed-card bg-white overflow-hidden p-2 flex flex-col h-full">
+                    <div class="relative h-56 rounded-2xl overflow-hidden">
+                        <img src="images/course-book.jpg" alt="Book" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-yellow-400 text-primary px-3 py-1 rounded-full text-sm font-bold shadow-sm">認知訓練</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-2xl font-bold text-primary font-serif mb-3">繪本模組培訓</h3>
+                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">學習使用繪本進行認知刺激與情感交流，適合照護者與教育工作者。</p>
+                        
+                        <div class="space-y-2 text-sm text-gray-500 mb-6">
+                            <div class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4 text-secondary"></i> 10/15 人已報名</div>
+                            <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-secondary"></i> 6週課程 (每週1次, 每次120分鐘)</div>
+                            <div class="flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4 text-secondary"></i> 近期開課：2026/2/4</div>
+                            <div class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-secondary"></i> 嘉義市圖書館</div>
+                        </div>
+
+                        <div class="mt-auto flex items-center justify-between pt-4 border-t border-dashed border-gray-200">
+                            <span class="text-2xl font-bold text-[#E6C65B]">NT$ 2,400</span>
+                            <div class="flex gap-2">
+                                <button class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 text-gray-400"><i data-lucide="info" class="w-4 h-4"></i></button>
+                                <button onclick="openModal('book')" class="px-4 py-1.5 bg-secondary text-white rounded-full font-medium hover:bg-[#3dbdb4] transition flex items-center gap-1">查看詳情 <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashed-card bg-white overflow-hidden p-2 flex flex-col h-full">
+                    <div class="relative h-56 rounded-2xl overflow-hidden">
+                        <img src="images/course-nutrition.jpg" alt="Nutrition" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-yellow-400 text-primary px-3 py-1 rounded-full text-sm font-bold shadow-sm">營養專業</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-2xl font-bold text-primary font-serif mb-3">營養及飲食培訓</h3>
+                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">銀髮族營養需求與飲食計劃實務，學習設計適合長者的健康餐點。</p>
+                        
+                        <div class="space-y-2 text-sm text-gray-500 mb-6">
+                            <div class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4 text-secondary"></i> 14/18 人已報名</div>
+                            <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-secondary"></i> 8週課程 (每週1次, 每次150分鐘)</div>
+                            <div class="flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4 text-secondary"></i> 近期開課：2026/2/7</div>
+                            <div class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-secondary"></i> 嘉義市烹飪教室</div>
+                        </div>
+
+                        <div class="mt-auto flex items-center justify-between pt-4 border-t border-dashed border-gray-200">
+                            <span class="text-2xl font-bold text-[#E6C65B]">NT$ 3,600</span>
+                            <div class="flex gap-2">
+                                <button class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 text-gray-400"><i data-lucide="info" class="w-4 h-4"></i></button>
+                                <button onclick="openModal('nutrition')" class="px-4 py-1.5 bg-secondary text-white rounded-full font-medium hover:bg-[#3dbdb4] transition flex items-center gap-1">查看詳情 <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashed-card bg-white overflow-hidden p-2 flex flex-col h-full">
+                    <div class="relative h-56 rounded-2xl overflow-hidden">
+                        <img src="images/course-red-rope.jpg" alt="Red Rope" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-yellow-400 text-primary px-3 py-1 rounded-full text-sm font-bold shadow-sm">運動復健</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-2xl font-bold text-primary font-serif mb-3">日本紅繩運動</h3>
+                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">懸吊式運動療法，透過紅繩訓練改善肌力、平衡能力與核心穩定度。</p>
+                        
+                        <div class="space-y-2 text-sm text-gray-500 mb-6">
+                            <div class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4 text-secondary"></i> 8/12 人已報名</div>
+                            <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-secondary"></i> 8週課程 (每週2次, 每次60分鐘)</div>
+                            <div class="flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4 text-secondary"></i> 近期開課：2026/2/1</div>
+                            <div class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-secondary"></i> 嘉義市社區活動中心</div>
+                        </div>
+
+                        <div class="mt-auto flex items-center justify-between pt-4 border-t border-dashed border-gray-200">
+                            <span class="text-2xl font-bold text-[#E6C65B]">NT$ 3,200</span>
+                            <div class="flex gap-2">
+                                <button class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 text-gray-400"><i data-lucide="info" class="w-4 h-4"></i></button>
+                                <button onclick="openModal('redrope')" class="px-4 py-1.5 bg-secondary text-white rounded-full font-medium hover:bg-[#3dbdb4] transition flex items-center gap-1">查看詳情 <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashed-card bg-white overflow-hidden p-2 flex flex-col h-full">
+                    <div class="relative h-56 rounded-2xl overflow-hidden">
+                        <img src="images/course-boccia.jpg" alt="Boccia" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-yellow-400 text-primary px-3 py-1 rounded-full text-sm font-bold shadow-sm">休閒運動</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-2xl font-bold text-primary font-serif mb-3">地板滾球</h3>
+                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">適合銀髮族的運動，透過地板滾球增進社交互動，提升手眼協調與認知功能。</p>
+                        
+                        <div class="space-y-2 text-sm text-gray-500 mb-6">
+                            <div class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4 text-secondary"></i> 12/16 人已報名</div>
+                            <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-secondary"></i> 6週課程 (每週1次, 每次90分鐘)</div>
+                            <div class="flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4 text-secondary"></i> 近期開課：2026/2/5</div>
+                            <div class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-secondary"></i> 嘉義市體育館</div>
+                        </div>
+
+                        <div class="mt-auto flex items-center justify-between pt-4 border-t border-dashed border-gray-200">
+                            <span class="text-2xl font-bold text-[#E6C65B]">NT$ 1,800</span>
+                            <div class="flex gap-2">
+                                <button class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 text-gray-400"><i data-lucide="info" class="w-4 h-4"></i></button>
+                                <button onclick="openModal('boccia')" class="px-4 py-1.5 bg-secondary text-white rounded-full font-medium hover:bg-[#3dbdb4] transition flex items-center gap-1">查看詳情 <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashed-card bg-white overflow-hidden p-2 flex flex-col h-full">
+                    <div class="relative h-56 rounded-2xl overflow-hidden">
+                        <img src="images/course-oral.jpg" alt="Oral" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-yellow-400 text-primary px-3 py-1 rounded-full text-sm font-bold shadow-sm">健康照護</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-2xl font-bold text-primary font-serif mb-3">口腔照護</h3>
+                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">學習長者口腔保健技巧，預防牙齒疾病，維持良好的口腔健康。</p>
+                        
+                        <div class="space-y-2 text-sm text-gray-500 mb-6">
+                            <div class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4 text-secondary"></i> 15/20 人已報名</div>
+                            <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-secondary"></i> 4週課程 (每週1次, 每次120分鐘)</div>
+                            <div class="flex items-center gap-2"><i data-lucide="calendar" class="w-4 h-4 text-secondary"></i> 近期開課：2026/2/3</div>
+                            <div class="flex items-center gap-2"><i data-lucide="map-pin" class="w-4 h-4 text-secondary"></i> 嘉義市衛生所</div>
+                        </div>
+
+                        <div class="mt-auto flex items-center justify-between pt-4 border-t border-dashed border-gray-200">
+                            <span class="text-2xl font-bold text-[#E6C65B]">NT$ 1,200</span>
+                            <div class="flex gap-2">
+                                <button class="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 text-gray-400"><i data-lucide="info" class="w-4 h-4"></i></button>
+                                <button onclick="openModal('oral')" class="px-4 py-1.5 bg-secondary text-white rounded-full font-medium hover:bg-[#3dbdb4] transition flex items-center gap-1">查看詳情 <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold mb-2">全齡共融賦能生態圈</h3>
+            <p class="text-xs text-gray-500">© 2025 Community Living Loop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="courseModal" class="fixed inset-0 z-50 hidden overflow-hidden bg-gray-900 bg-opacity-75 flex items-center justify-center">
+        <div class="bg-white w-full max-w-6xl h-[90vh] rounded-2xl overflow-hidden flex flex-col md:flex-row relative mx-4 shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-50 p-2 bg-white/80 rounded-full hover:bg-gray-100 transition">
+                <i data-lucide="x" class="w-6 h-6 text-gray-500"></i>
+            </button>
+
+            <div class="w-full md:w-2/3 h-full overflow-y-auto p-8 hide-scrollbar bg-white">
+                <div id="modalImageContainer" class="w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-8">
+                    <img id="modalImg" src="" alt="Course" class="w-full h-full object-cover">
+                </div>
+                
+                <h2 id="modalTitle" class="text-3xl md:text-4xl font-bold text-primary font-serif mb-4">課程標題</h2>
+                <p id="modalDesc" class="text-gray-600 text-lg mb-8 leading-relaxed">課程描述...</p>
+
+                <div class="grid grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <p class="text-sm text-gray-400 mb-1">講師</p>
+                        <p id="modalInstructor" class="text-lg font-bold text-gray-800">張文華 護理師</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-400 mb-1">課程時長</p>
+                        <p id="modalDuration" class="text-lg font-bold text-gray-800">12週</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-400 mb-1">名額</p>
+                        <p id="modalCapacity" class="text-lg font-bold text-gray-800">22/30 人</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-400 mb-1">課程費用</p>
+                        <p id="modalPrice" class="text-xl font-bold text-[#E6C65B]">NT$ 8,000</p>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-primary mb-4 border-l-4 border-secondary pl-3">課程特色</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="modalFeatures">
+                        </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-primary mb-4 border-l-4 border-secondary pl-3">近期開課時間</h3>
+                    <div class="space-y-4" id="modalSchedule">
+                        </div>
                 </div>
             </div>
-        </section>
 
-        <!-- Courses Grid -->
-        <section class="section-padding">
-            <div class="container mx-auto px-4">
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="w-full md:w-1/3 h-full bg-[#F8FAFC] border-l border-gray-100 p-8 flex flex-col overflow-y-auto">
+                <h3 class="text-xl font-bold text-primary mb-6">立即報名</h3>
+                
+                <form onsubmit="event.preventDefault(); alert('報名申請已送出！'); closeModal();" class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">選擇上課時段 *</label>
+                        <div class="space-y-2" id="formScheduleOptions">
+                            </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">姓名 *</label>
+                        <div class="relative">
+                            <i data-lucide="user" class="absolute left-3 top-3 w-5 h-5 text-gray-400"></i>
+                            <input type="text" placeholder="請輸入姓名" class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">電話 *</label>
+                        <div class="relative">
+                            <i data-lucide="phone" class="absolute left-3 top-3 w-5 h-5 text-gray-400"></i>
+                            <input type="tel" placeholder="請輸入電話" class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Email</label>
+                        <div class="relative">
+                            <i data-lucide="mail" class="absolute left-3 top-3 w-5 h-5 text-gray-400"></i>
+                            <input type="email" placeholder="請輸入Email (選填)" class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent outline-none">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">備註</label>
+                        <textarea rows="3" placeholder="特殊需求或備註 (選填)" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent outline-none resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-secondary text-white font-bold py-3.5 rounded-lg hover:bg-[#3dbdb4] transition-colors shadow-lg mt-4">
+                        確認報名
+                    </button>
                     
-                    <!-- 課程 1: 日本紅繩運動 -->
-                    <div class="course-card bg-white rounded-3xl overflow-hidden border-4 border-dashed border-secondary/30 hover:border-secondary transition-all" data-category="運動復健">
-                        <div class="relative">
-                            <img src="images/course-red-rope.jpg" alt="日本紅繩運動" class="w-full h-48 object-cover">
-                            <span class="absolute top-4 right-4 bg-accent text-primary px-4 py-2 rounded-full text-sm font-bold">運動復健</span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold text-primary mb-3">日本紅繩運動</h3>
-                            <p class="text-gray-600 mb-4">懸吊式運動療法，透過紅繩訓練改善肌力、平衡能力與核心穩定度，適合各年齡層的長者參與。</p>
-                            
-                            <div class="space-y-2 mb-4 text-sm">
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="users" class="w-4 h-4 text-secondary"></i>
-                                    <span>8/12 人已報名</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="clock" class="w-4 h-4 text-secondary"></i>
-                                    <span>8週課程（每週2次，每次60分鐘）</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="calendar" class="w-4 h-4 text-secondary"></i>
-                                    <span>近期開課：2026/2/1</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="map-pin" class="w-4 h-4 text-secondary"></i>
-                                    <span>嘉義市林森活動中心</span>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="text-3xl font-bold text-secondary">NT$ 3,200</p>
-                                </div>
-                                <div class="flex gap-2">
-                                    <button onclick="alert('課程詳情')" class="p-2 rounded-full hover:bg-gray-100">
-                                        <i data-lucide="info" class="w-5 h-5 text-gray-600"></i>
-                                    </button>
-                                    <button onclick="registerEvent('日本紅繩運動')" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-2 rounded-full font-medium transition flex items-center gap-2">
-                                        查看詳情
-                                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 課程 2: 地板滾球 -->
-                    <div class="course-card bg-white rounded-3xl overflow-hidden border-4 border-dashed border-secondary/30 hover:border-secondary transition-all" data-category="休閒運動">
-                        <div class="relative">
-                            <img src="images/course-boccia.jpg" alt="地板滾球" class="w-full h-48 object-cover">
-                            <span class="absolute top-4 right-4 bg-accent text-primary px-4 py-2 rounded-full text-sm font-bold">休閒運動</span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold text-primary mb-3">地板滾球</h3>
-                            <p class="text-gray-600 mb-4">適合銀髮族的運動，透過性格與策略性提升互動，提升手眼協調與認知功能。</p>
-                            
-                            <div class="space-y-2 mb-4 text-sm">
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="users" class="w-4 h-4 text-secondary"></i>
-                                    <span>12/16 人已報名</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="clock" class="w-4 h-4 text-secondary"></i>
-                                    <span>6週課程（每週1次，每次90分鐘）</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="calendar" class="w-4 h-4 text-secondary"></i>
-                                    <span>近期開課：2026/2/5</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="map-pin" class="w-4 h-4 text-secondary"></i>
-                                    <span>嘉義市體育館</span>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="text-3xl font-bold text-secondary">NT$ 1,800</p>
-                                </div>
-                                <div class="flex gap-2">
-                                    <button onclick="alert('課程詳情')" class="p-2 rounded-full hover:bg-gray-100">
-                                        <i data-lucide="info" class="w-5 h-5 text-gray-600"></i>
-                                    </button>
-                                    <button onclick="registerEvent('地板滾球')" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-2 rounded-full font-medium transition flex items-center gap-2">
-                                        查看詳情
-                                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 課程 3: 口腔照護 -->
-                    <div class="course-card bg-white rounded-3xl overflow-hidden border-4 border-dashed border-secondary/30 hover:border-secondary transition-all" data-category="健康照護">
-                        <div class="relative">
-                            <img src="images/course-oral-care.jpg" alt="口腔照護" class="w-full h-48 object-cover">
-                            <span class="absolute top-4 right-4 bg-accent text-primary px-4 py-2 rounded-full text-sm font-bold">健康照護</span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold text-primary mb-3">口腔照護</h3>
-                            <p class="text-gray-600 mb-4">學習長者口腔保健技巧，預防牙齦疾病，維持良好的口腔健康。</p>
-                            
-                            <div class="space-y-2 mb-4 text-sm">
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="users" class="w-4 h-4 text-secondary"></i>
-                                    <span>15/20 人已報名</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="clock" class="w-4 h-4 text-secondary"></i>
-                                    <span>4週課程（每週1次，每次120分鐘）</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="calendar" class="w-4 h-4 text-secondary"></i>
-                                    <span>近期開課：2026/2/3</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="map-pin" class="w-4 h-4 text-secondary"></i>
-                                    <span>嘉義市衛生所</span>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="text-3xl font-bold text-secondary">NT$ 1,200</p>
-                                </div>
-                                <div class="flex gap-2">
-                                    <button onclick="alert('課程詳情')" class="p-2 rounded-full hover:bg-gray-100">
-                                        <i data-lucide="info" class="w-5 h-5 text-gray-600"></i>
-                                    </button>
-                                    <button onclick="registerEvent('口腔照護')" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-2 rounded-full font-medium transition flex items-center gap-2">
-                                        查看詳情
-                                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 課程 4: ICOPE培訓 -->
-                    <div class="course-card bg-white rounded-3xl overflow-hidden border-4 border-dashed border-secondary/30 hover:border-secondary transition-all" data-category="專業認證">
-                        <div class="relative">
-                            <img src="images/course-icope.jpg" alt="ICOPE培訓" class="w-full h-48 object-cover">
-                            <span class="absolute top-4 right-4 bg-accent text-primary px-4 py-2 rounded-full text-sm font-bold">專業認證</span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold text-primary mb-3">ICOPE培訓</h3>
-                            <p class="text-gray-600 mb-4">WHO整合式高齡照護系統培訓課程，提升照護專業能力。</p>
-                            
-                            <div class="space-y-2 mb-4 text-sm">
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="users" class="w-4 h-4 text-secondary"></i>
-                                    <span>22/30 人已報名</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="clock" class="w-4 h-4 text-secondary"></i>
-                                    <span>12週課程（每週1次，每次180分鐘）</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="calendar" class="w-4 h-4 text-secondary"></i>
-                                    <span>近期開課：2026/2/6</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="map-pin" class="w-4 h-4 text-secondary"></i>
-                                    <span>嘉義市衛生局</span>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="text-3xl font-bold text-secondary">NT$ 8,000</p>
-                                </div>
-                                <div class="flex gap-2">
-                                    <button onclick="alert('課程詳情')" class="p-2 rounded-full hover:bg-gray-100">
-                                        <i data-lucide="info" class="w-5 h-5 text-gray-600"></i>
-                                    </button>
-                                    <button onclick="registerEvent('ICOPE培訓')" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-2 rounded-full font-medium transition flex items-center gap-2">
-                                        查看詳情
-                                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 課程 5: 繪本模組培訓 -->
-                    <div class="course-card bg-white rounded-3xl overflow-hidden border-4 border-dashed border-secondary/30 hover:border-secondary transition-all" data-category="認知訓練">
-                        <div class="relative">
-                            <img src="images/course-cognitive.jpg" alt="繪本模組培訓" class="w-full h-48 object-cover">
-                            <span class="absolute top-4 right-4 bg-accent text-primary px-4 py-2 rounded-full text-sm font-bold">認知訓練</span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold text-primary mb-3">繪本模組培訓</h3>
-                            <p class="text-gray-600 mb-4">學習使用桌遊式認知訓練模組改善，適合照顧者與教育者。</p>
-                            
-                            <div class="space-y-2 mb-4 text-sm">
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="users" class="w-4 h-4 text-secondary"></i>
-                                    <span>10/15 人已報名</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="clock" class="w-4 h-4 text-secondary"></i>
-                                    <span>6週課程（每週1次，每次120分鐘）</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="calendar" class="w-4 h-4 text-secondary"></i>
-                                    <span>近期開課：2026/2/4</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="map-pin" class="w-4 h-4 text-secondary"></i>
-                                    <span>嘉義市圖書館</span>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="text-3xl font-bold text-secondary">NT$ 2,400</p>
-                                </div>
-                                <div class="flex gap-2">
-                                    <button onclick="alert('課程詳情')" class="p-2 rounded-full hover:bg-gray-100">
-                                        <i data-lucide="info" class="w-5 h-5 text-gray-600"></i>
-                                    </button>
-                                    <button onclick="registerEvent('繪本模組培訓')" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-2 rounded-full font-medium transition flex items-center gap-2">
-                                        查看詳情
-                                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 課程 6: 營養及飲食培訓 -->
-                    <div class="course-card bg-white rounded-3xl overflow-hidden border-4 border-dashed border-secondary/30 hover:border-secondary transition-all" data-category="營養專業">
-                        <div class="relative">
-                            <img src="images/course-nutrition.jpg" alt="營養及飲食培訓" class="w-full h-48 object-cover">
-                            <span class="absolute top-4 right-4 bg-accent text-primary px-4 py-2 rounded-full text-sm font-bold">營養專業</span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-2xl font-bold text-primary mb-3">營養及飲食培訓</h3>
-                            <p class="text-gray-600 mb-4">學習長者營養與飲食管理技巧，學習設計合宜食材的健康餐點。</p>
-                            
-                            <div class="space-y-2 mb-4 text-sm">
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="users" class="w-4 h-4 text-secondary"></i>
-                                    <span>14/18 人已報名</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="clock" class="w-4 h-4 text-secondary"></i>
-                                    <span>8週課程（每週1次，每次150分鐘）</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="calendar" class="w-4 h-4 text-secondary"></i>
-                                    <span>近期開課：2026/2/7</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-gray-600">
-                                    <i data-lucide="map-pin" class="w-4 h-4 text-secondary"></i>
-                                    <span>嘉義市烹飪教室</span>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="text-3xl font-bold text-secondary">NT$ 3,600</p>
-                                </div>
-                                <div class="flex gap-2">
-                                    <button onclick="alert('課程詳情')" class="p-2 rounded-full hover:bg-gray-100">
-                                        <i data-lucide="info" class="w-5 h-5 text-gray-600"></i>
-                                    </button>
-                                    <button onclick="registerEvent('營養及飲食培訓')" class="bg-secondary hover:bg-secondary/90 text-white px-6 py-2 rounded-full font-medium transition flex items-center gap-2">
-                                        查看詳情
-                                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                    <p class="text-center text-xs text-gray-400 mt-2">尚未登入？ <a href="#" class="text-secondary hover:underline">立即登入</a></p>
+                </form>
             </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="bg-gray-900 text-white py-12">
-            <div class="container mx-auto px-4 text-center">
-                <h3 class="text-2xl font-bold mb-2">全齡共融賦能生態圈</h3>
-                <p class="text-sm text-gray-400 mb-6">Community Living Loop</p>
-                <p class="text-xs text-gray-500">© 2025 Community Living Loop. All rights reserved.</p>
-            </div>
-        </footer>
-
-        <!-- Back to Top Button -->
-        <button id="back-to-top" onclick="scrollToTop()" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full shadow-lg hover:bg-primary/90 transition z-40 flex items-center justify-center" style="opacity: 0; visibility: hidden;">
-            <i data-lucide="arrow-up" class="w-5 h-5"></i>
-        </button>
-
+        </div>
     </div>
 
-    <!-- 自定義 JavaScript -->
-    <script src="js/main.js"></script>
-    
-    <!-- 課程篩選功能 -->
     <script>
-        function filterCourses(category) {
-            const cards = document.querySelectorAll('.course-card');
-            const buttons = document.querySelectorAll('.filter-btn');
-            
-            // 更新按鈕狀態
-            buttons.forEach(btn => {
-                btn.classList.remove('active', 'bg-secondary', 'text-white');
-                btn.classList.add('bg-white', 'text-secondary');
-            });
-            event.target.classList.add('active', 'bg-secondary', 'text-white');
-            event.target.classList.remove('bg-white', 'text-secondary');
-            
-            // 篩選課程
-            cards.forEach(card => {
-                if (category === 'all') {
-                    card.style.display = 'block';
-                } else {
-                    if (card.dataset.category === category) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                }
-            });
-        }
-    </script>
+        lucide.createIcons();
 
+        // 課程資料庫
+        const courses = {
+            'icope': {
+                title: 'ICOPE培訓',
+                desc: 'WHO整合式高齡照護評估與介入培訓，提升照護專業能力，學習如何評估長者內在能力，包含認知、行動、營養、視力、聽力及憂鬱等面向。',
+                img: 'images/course-icope.jpg',
+                instructor: '張文華 護理師',
+                duration: '12週 (每週1次 180分鐘)',
+                capacity: '22/30 人',
+                price: 'NT$ 8,000',
+                location: '嘉義市醫療中心',
+                features: ['WHO認證課程', '專業證書', '實務操作演練', '線上學習資源'],
+                schedule: [
+                    { date: '2026年2月6日 週五', time: '09:00-12:00' },
+                    { date: '2026年2月13日 週五', time: '09:00-12:00' },
+                    { date: '2026年2月20日 週五', time: '13:00-16:00' }
+                ]
+            },
+            'book': {
+                title: '繪本模組培訓',
+                desc: '學習使用繪本進行認知刺激與情感交流，適合照護者與教育工作者。透過故事引導長者回憶與表達。',
+                img: 'images/course-book.jpg',
+                instructor: '林美玲 職能治療師',
+                duration: '6週 (每週1次 120分鐘)',
+                capacity: '10/15 人',
+                price: 'NT$ 2,400',
+                location: '嘉義市圖書館',
+                features: ['繪本導讀技巧', '教案設計實務', '分組演練', '結業證書'],
+                schedule: [
+                    { date: '2026年2月4日 週三', time: '14:00-16:00' },
+                    { date: '2026年2月11日 週三', time: '14:00-16:00' }
+                ]
+            },
+            'nutrition': {
+                title: '營養及飲食培訓',
+                desc: '銀髮族營養需求與飲食計劃實務，學習設計適合長者的健康餐點，包含質地調整飲食製作。',
+                img: 'images/course-nutrition.jpg',
+                instructor: '王大同 營養師',
+                duration: '8週 (每週1次 150分鐘)',
+                capacity: '14/18 人',
+                price: 'NT$ 3,600',
+                location: '嘉義市烹飪教室',
+                features: ['營養學基礎', '軟食製作技巧', '菜單設計', '食材選購指南'],
+                schedule: [
+                    { date: '2026年2月7日 週六', time: '09:30-12:00' },
+                    { date: '2026年2月14日 週六', time: '09:30-12:00' }
+                ]
+            },
+            'redrope': {
+                title: '日本紅繩運動',
+                desc: '懸吊式運動療法，透過紅繩訓練改善肌力、平衡能力與核心穩定度。適合各年齡層的長者參與。',
+                img: 'images/course-red-rope.jpg',
+                instructor: '陳建宏 物理治療師',
+                duration: '8週 (每週2次 60分鐘)',
+                capacity: '8/12 人',
+                price: 'NT$ 3,200',
+                location: '嘉義市社區活動中心',
+                features: ['核心肌群強化', '平衡感訓練', '個別化指導', '小班制教學'],
+                schedule: [
+                    { date: '2026年2月1日 週日', time: '10:00-11:00' },
+                    { date: '2026年2月3日 週二', time: '19:00-20:00' }
+                ]
+            },
+            'boccia': {
+                title: '地板滾球',
+                desc: '適合銀髮族的運動，透過地板滾球增進社交互動，提升手眼協調與認知功能。',
+                img: 'images/course-boccia.jpg',
+                instructor: '李雅芬 運動教練',
+                duration: '6週 (每週1次 90分鐘)',
+                capacity: '12/16 人',
+                price: 'NT$ 1,800',
+                location: '嘉義市體育館',
+                features: ['規則講解', '戰術策略', '團隊合作', '友誼競賽'],
+                schedule: [
+                    { date: '2026年2月5日 週四', time: '09:00-10:30' },
+                    { date: '2026年2月12日 週四', time: '09:00-10:30' }
+                ]
+            },
+            'oral': {
+                title: '口腔照護',
+                desc: '學習長者口腔保健技巧，預防牙齒疾病，維持良好的口腔健康，進而促進全身健康。',
+                img: 'images/course-oral.jpg',
+                instructor: '黃醫師 牙醫師',
+                duration: '4週 (每週1次 120分鐘)',
+                capacity: '15/20 人',
+                price: 'NT$ 1,200',
+                location: '嘉義市衛生所',
+                features: ['口腔構造解說', '刷牙技巧實作', '假牙清潔', '吞嚥訓練'],
+                schedule: [
+                    { date: '2026年2月3日 週二', time: '14:00-16:00' },
+                    { date: '2026年2月10日 週二', time: '14:00-16:00' }
+                ]
+            }
+        };
+
+        const modal = document.getElementById('courseModal');
+
+        function openModal(id) {
+            const data = courses[id];
+            if(!data) return;
+
+            // 填充資料
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalDesc').innerText = data.desc;
+            document.getElementById('modalImg').src = data.img;
+            document.getElementById('modalInstructor').innerText = data.instructor;
+            document.getElementById('modalDuration').innerText = data.duration;
+            document.getElementById('modalCapacity').innerText = data.capacity;
+            document.getElementById('modalPrice').innerText = data.price;
+
+            // 特色列表 (Features)
+            const featuresHtml = data.features.map(f => `
+                <div class="flex items-center gap-2 text-gray-600">
+                    <i data-lucide="check-circle-2" class="w-5 h-5 text-secondary"></i> ${f}
+                </div>
+            `).join('');
+            document.getElementById('modalFeatures').innerHTML = featuresHtml;
+
+            // 開課時間列表 (Left Side)
+            const scheduleHtml = data.schedule.map(s => `
+                <div class="border border-gray-200 rounded-xl p-4 flex items-start gap-4 hover:border-secondary transition-colors">
+                    <div class="w-10 h-10 rounded-lg bg-green-50 flex items-center justify-center text-secondary">
+                        <i data-lucide="calendar-days" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800">${s.date}</p>
+                        <p class="text-sm text-gray-500 mt-1"><i data-lucide="clock" class="w-3 h-3 inline mr-1"></i>${s.time}</p>
+                        <p class="text-sm text-gray-500 mt-1"><i data-lucide="map-pin" class="w-3 h-3 inline mr-1"></i>${data.location}</p>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('modalSchedule').innerHTML = scheduleHtml;
+
+            // 報名表單選項 (Right Side Form)
+            const formOptionsHtml = data.schedule.map((s, index) => `
+                <label class="flex items-center p-3 border border-gray-200 rounded-lg cursor-pointer hover:bg-white transition-colors bg-white">
+                    <input type="radio" name="timeSlot" class="w-4 h-4 text-secondary focus:ring-secondary border-gray-300" ${index === 0 ? 'checked' : ''}>
+                    <span class="ml-3 text-sm text-gray-600">${s.date.split(' ')[0]} <span class="text-xs text-gray-400 ml-1">${s.time}</span></span>
+                </label>
+            `).join('');
+            document.getElementById('formScheduleOptions').innerHTML = formOptionsHtml;
+
+            // 顯示 Modal
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // 禁止背景捲動
+            lucide.createIcons(); // 重新渲染圖標
+        }
+
+        function closeModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // 點擊背景關閉
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
