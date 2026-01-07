@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>首頁 | 全齡共融賦能生態圈 - Community Living Loop</title>
-    <meta name="description" content="連結社區、健康與專業照護。探索附近活動、訂購營養餐點、申請專業輔具租借服務，您的所有需求都在這裡。">
-    <meta name="keywords" content="銀髮族,社區服務,健康照護,輔具租借,營養餐點,長者活動,樂齡課程">
+    <meta name="description" content="連結社區、健康與專業照護。探索附近活動、訂購營養餐點、申請專業輔具租借服務。">
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -29,17 +28,26 @@
                         secondary: '#4ECDC4',
                         accent: '#F7DC6F',
                         coral: '#FFB6A3',
-                        lavender: '#A78BFA'
+                        lavender: '#A78BFA',
+                        success: '#10B981',
+                        warning: '#F59E0B'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
                     }
                 }
             }
         }
     </script>
-    
+    <style>
+        .modal-open { overflow: hidden; }
+        .dashboard-card { transition: all 0.3s ease; }
+        .dashboard-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+    </style>
 </head>
 <body class="bg-white text-gray-900">
 
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b-2 border-secondary/30">
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b-2 border-secondary/30">
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between h-16">
                 <a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
@@ -50,666 +58,580 @@
                 </a>
 
                 <div class="hidden md:flex items-center gap-6">
-                    <a href="#home" class="text-sm font-semibold transition-colors hover:text-secondary text-primary">Home</a>
-                    <a href="/courses.html" class="text-sm font-semibold transition-colors hover:text-secondary text-primary">Courses</a>
-                    <a href="#devices" class="text-sm font-semibold transition-colors hover:text-secondary text-primary">Assistive Devices</a>
-                    <a href="#sop-training" class="text-sm font-semibold transition-colors hover:text-secondary text-primary">Professional Care</a>
-                    <a href="#calendar" class="text-sm font-semibold transition-colors hover:text-secondary text-primary">Calendar</a>
-                    <a href="#community" class="text-sm font-semibold transition-colors hover:text-secondary text-primary">Community</a>
+                    <a href="#home" class="text-sm font-semibold hover:text-secondary text-primary">首頁</a>
+                    <a href="#icope-match" class="text-sm font-semibold hover:text-secondary text-primary">AI 智能媒合</a>
+                    <a href="#sop-center" class="text-sm font-semibold hover:text-secondary text-primary">數位賦能中心</a>
+                    <a href="#dashboard-demo" class="text-sm font-semibold hover:text-secondary text-primary">生態系後台</a>
                 </div>
 
                 <div class="hidden md:flex items-center gap-3">
-                    <button class="p-2 rounded-full hover:bg-gray-100" onclick="openSearch()">
-                        <i data-lucide="search" class="w-5 h-5"></i>
-                    </button>
-                    <button class="p-2 rounded-full hover:bg-gray-100 relative" onclick="toggleCart()">
-                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-                        <span id="cart-count" class="hidden absolute -top-1 -right-1 bg-coral text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                    </button>
-                    <a href="#login">
-                        <button class="bg-coral hover:bg-coral/90 text-white rounded-full px-6 py-2 font-medium transition">
-                            Login/Register
-                        </button>
-                    </a>
-                    <button class="p-2 rounded-full hover:bg-gray-100" onclick="toggleLanguage()">
-                        <i data-lucide="globe" class="w-5 h-5"></i>
+                    <button onclick="openDashboardModal()" class="bg-primary hover:bg-primary/90 text-white rounded-full px-6 py-2 font-medium transition shadow-lg flex items-center gap-2">
+                        <i data-lucide="log-in" class="w-4 h-4"></i>
+                        登入生態系
                     </button>
                 </div>
 
                 <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
-                    <i data-lucide="menu" class="w-6 h-6 text-gray-700" id="menu-icon"></i>
+                    <i data-lucide="menu" class="w-6 h-6 text-gray-700"></i>
                 </button>
-            </div>
-
-            <div id="mobile-menu" class="hidden md:hidden py-4 border-t border-gray-200">
-                <div class="flex flex-col gap-2">
-                    <a href="#home" class="px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Home</a>
-                    <a href="/courses.html" class="px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Courses</a>
-                    <a href="#devices" class="px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Assistive Devices</a>
-                    <a href="#sop-training" class="px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Professional Care</a>
-                    <a href="#calendar" class="px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Calendar</a>
-                    <a href="#community" class="px-4 py-3 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-100">Community</a>
-                    <div class="flex items-center gap-2 px-4 pt-2">
-                        <button class="flex-1 bg-coral hover:bg-coral/90 text-white rounded-full py-2">登入/註冊</button>
-                    </div>
-                </div>
             </div>
         </div>
     </nav>
 
     <div class="pt-16">
         
-        <section id="home" class="relative overflow-hidden py-12 md:py-20">
-            <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary opacity-15 blur-3xl organic-shape" style="clip-path: polygon(30% 0%, 100% 0%, 100% 70%, 60% 100%, 0% 80%, 0% 30%); z-index: 0;"></div>
-            <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent opacity-15 blur-3xl organic-shape" style="clip-path: polygon(0% 20%, 50% 0%, 100% 30%, 80% 100%, 20% 100%, 0% 70%); z-index: 0; animation-delay: 2s;"></div>
-            <div class="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-coral opacity-12 blur-3xl organic-shape" style="clip-path: polygon(40% 0%, 100% 20%, 90% 80%, 50% 100%, 0% 60%, 10% 20%); z-index: 0; animation-delay: 4s;"></div>
-
-            <div class="container mx-auto px-4 relative fade-in" style="z-index: 1;">
+        <section id="home" class="relative overflow-hidden py-12 md:py-20 bg-gradient-to-br from-blue-50 to-white">
+            <div class="container mx-auto px-4 relative z-10">
                 <div class="grid lg:grid-cols-2 gap-8 items-center">
                     <div class="order-2 lg:order-1">
-                        <div class="inline-block mb-4 px-4 py-2 bg-white border-2 border-dashed border-secondary rounded-full">
-                            <span class="text-sm font-medium text-primary">#まちなかリビングのある日常</span>
+                        <div class="inline-block mb-4 px-4 py-2 bg-white border-2 border-dashed border-secondary rounded-full animate-pulse-slow">
+                            <span class="text-sm font-medium text-primary flex items-center gap-2">
+                                <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                系統狀態：即時媒合中
+                            </span>
                         </div>
-                        
-                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                            <span class="text-primary block">Your</span>
-                            <span class="text-primary block">Comprehensive</span>
-                            <span class="text-secondary block">Cool-Aging Life</span>
-                            <span class="text-primary block">Partner</span>
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-primary">
+                            數據驅動的<br>
+                            <span class="text-secondary">精準照護對接</span>
                         </h1>
-                        
-                        <p class="text-lg md:text-xl text-gray-700 mb-8 max-w-xl">
-                            Connecting Community, Health, and Professional Care<br>
-                            Explore nearby activities, order nutritious meals, apply for professional assistive devices—all your needs in one place.
+                        <p class="text-lg text-gray-700 mb-8 max-w-xl">
+                            我們將 ICOPE 篩檢數據轉化為具體的服務處方箋，透過 AI 自動媒合鄰近的專業健康大使，讓「需求」與「服務」在社區內無縫接軌。
                         </p>
-                        
-                        <button class="bg-primary hover:bg-primary/90 text-white px-8 py-6 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all flex items-center gap-2">
-                            Start Exploring Services
-                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="openIcopeModal()" class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2">
+                                <i data-lucide="activity" class="w-5 h-5"></i>
+                                開始 ICOPE 快篩媒合
+                            </button>
+                            <button onclick="openDashboardModal()" class="bg-white border-2 border-primary text-primary hover:bg-gray-50 px-8 py-4 rounded-full text-lg font-medium transition-all flex items-center justify-center gap-2">
+                                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                                體驗三方管理介面
+                            </button>
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2 relative">
+                        <div class="bg-white rounded-[2rem] p-6 shadow-2xl border border-gray-100 relative z-10">
+                            <div class="flex items-center justify-between mb-4 border-b pb-4">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden">
+                                        <img src="images/caregiver-1.jpg" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-sm">系統通知</p>
+                                        <p class="text-xs text-gray-500">剛剛</p>
+                                    </div>
+                                </div>
+                                <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">媒合成功</span>
+                            </div>
+                            <div class="space-y-3">
+                                <p class="text-sm font-medium">王大明 (長輩) <span class="text-gray-400">-></span> 需求：肌力訓練</p>
+                                <div class="h-1 w-full bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-secondary w-full"></div>
+                                </div>
+                                <p class="text-sm font-medium text-primary">已指派：健康大使 李秀英</p>
+                                <p class="text-xs text-gray-500 flex items-center gap-1">
+                                    <i data-lucide="map-pin" class="w-3 h-3"></i> 距離 500m (虎尾社區據點)
+                                </p>
+                            </div>
+                        </div>
+                        <div class="absolute -top-10 -right-10 w-40 h-40 bg-accent/20 rounded-full blur-2xl -z-10"></div>
+                        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-secondary/20 rounded-full blur-2xl -z-10"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 bg-white border-b border-gray-100">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl font-bold text-primary">系統運作邏輯 (Logic Flow)</h2>
+                    <p class="text-gray-500">從數據啟動到價值結算的完整閉環</p>
+                </div>
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4 relative">
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-1 bg-gray-100 -z-10 transform -translate-y-1/2"></div>
+                    
+                    <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm w-full md:w-48 text-center relative hover:scale-105 transition-transform">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 text-primary">1</div>
+                        <h3 class="font-bold mb-1">數據啟動</h3>
+                        <p class="text-xs text-gray-500">據點 ICOPE 篩檢<br>回傳中台</p>
+                    </div>
+                     <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm w-full md:w-48 text-center relative hover:scale-105 transition-transform">
+                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-3 text-purple-600">2</div>
+                        <h3 class="font-bold mb-1">AI 需求診斷</h3>
+                        <p class="text-xs text-gray-500">產生服務處方箋<br>(如:口腔訓練)</p>
+                    </div>
+                     <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm w-full md:w-48 text-center relative hover:scale-105 transition-transform">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3 text-green-600">3</div>
+                        <h3 class="font-bold mb-1">自動媒合</h3>
+                        <p class="text-xs text-gray-500">推播任務給<br>鄰近健康大使</p>
+                    </div>
+                     <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm w-full md:w-48 text-center relative hover:scale-105 transition-transform">
+                        <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 text-orange-600">4</div>
+                        <h3 class="font-bold mb-1">賦能執行</h3>
+                        <p class="text-xs text-gray-500">依 SOP 授課<br>領取生活選品</p>
+                    </div>
+                     <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm w-full md:w-48 text-center relative hover:scale-105 transition-transform">
+                        <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-3 text-yellow-600">5</div>
+                        <h3 class="font-bold mb-1">價值結算</h3>
+                        <p class="text-xs text-gray-500">自動分潤撥款<br>發放點數獎勵</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="icope-match" class="section-padding bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <span class="text-secondary font-bold tracking-wider uppercase mb-2 block">The Brain</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">媒合機制：精準供需對接</h2>
+                        <ul class="space-y-6">
+                            <li class="flex gap-4">
+                                <div class="w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center shrink-0 text-secondary">
+                                    <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">自動化人與事配對</h3>
+                                    <p class="text-gray-600">當系統偵測到長輩有「肌肉流失」風險，立即徵求具備「運動賦能證照」的專家。</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <div class="w-12 h-12 bg-white rounded-xl shadow-md flex items-center justify-center shrink-0 text-secondary">
+                                    <i data-lucide="map" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">地理與時間最佳化</h3>
+                                    <p class="text-gray-600">優先鎖定「社區健康轉運站」周邊 500 公尺內的專家，降低交通成本，實現真正的步行生活圈。</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <button onclick="openIcopeModal()" class="mt-8 px-6 py-3 bg-white border-2 border-secondary text-secondary font-bold rounded-xl hover:bg-secondary hover:text-white transition-colors flex items-center gap-2">
+                            <i data-lucide="play-circle" class="w-5 h-5"></i>
+                            模擬媒合流程
                         </button>
                     </div>
+                    <div class="bg-white rounded-3xl p-2 shadow-xl">
+                        <img src="images/sop-flow.jpg" alt="SOP Flow" class="w-full h-auto rounded-2xl">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="order-1 lg:order-2 relative">
-                        <div class="relative bg-gradient-to-br from-accent/30 to-coral/30 rounded-[3rem] p-8 border-4 border-dashed border-secondary card-hover">
-                            <img src="images/hero-japanese-community.jpg" alt="Community Living Loop" class="w-full rounded-2xl">
-                            <div class="absolute -top-4 -right-4 w-24 h-24 bg-coral rounded-full opacity-60"></div>
-                            <div class="absolute -bottom-4 -left-4 w-32 h-32 bg-lavender rounded-full opacity-40"></div>
+        <section id="sop-center" class="section-padding bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <span class="text-primary font-bold tracking-wider uppercase mb-2 block">The Standard</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">兩大核心 SOP 制定模組</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">透過數位化確保專業不因擴張而失真，打造可複製的服務模式。</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="border-2 border-dashed border-gray-200 rounded-3xl p-8 hover:border-secondary transition-colors group">
+                        <div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                            <i data-lucide="store" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">1. 社區據點場域標準</h3>
+                        <ul class="space-y-3 text-gray-600 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-green-500 shrink-0 mt-0.5"></i>
+                                <span><strong>空間模組化：</strong>標準化健康轉運站櫃檯與無障礙動線設計。</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-green-500 shrink-0 mt-0.5"></i>
+                                <span><strong>運營流程數位化：</strong>從簽到、數據上傳到零庫存取貨的自動路徑。</span>
+                            </li>
+                        </ul>
+                        <div class="bg-gray-50 rounded-xl p-4">
+                            <p class="text-xs text-gray-400 uppercase font-bold mb-2">Downloadable Resources</p>
+                            <div class="flex items-center justify-between bg-white p-3 rounded-lg shadow-sm border border-gray-100 cursor-pointer hover:bg-gray-50" onclick="alert('下載據點營運手冊 PDF')">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="file-text" class="w-4 h-4 text-red-500"></i>
+                                    <span class="text-sm font-medium">據點營運手冊 V2.0.pdf</span>
+                                </div>
+                                <i data-lucide="download" class="w-4 h-4 text-gray-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-2 border-dashed border-gray-200 rounded-3xl p-8 hover:border-accent transition-colors group">
+                        <div class="w-16 h-16 bg-yellow-50 rounded-2xl flex items-center justify-center mb-6 text-yellow-600 group-hover:bg-accent group-hover:text-white transition-colors">
+                            <i data-lucide="graduation-cap" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">2. 專家培訓專業標準</h3>
+                        <ul class="space-y-3 text-gray-600 mb-6">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-green-500 shrink-0 mt-0.5"></i>
+                                <span><strong>技術轉譯：</strong>引進日本 SEIDA 技術，拆解為易學的數位教案（如口腔照護）。</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle-2" class="w-5 h-5 text-green-500 shrink-0 mt-0.5"></i>
+                                <span><strong>認證分級制度：</strong>線上考核通過即核發數位證照，授權接單。</span>
+                            </li>
+                        </ul>
+                        <div class="bg-gray-50 rounded-xl p-4">
+                            <p class="text-xs text-gray-400 uppercase font-bold mb-2">Digital Certification</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xs">A級</div>
+                                <div>
+                                    <p class="text-sm font-bold">口腔照護指導員</p>
+                                    <p class="text-xs text-green-600">已認證：李秀英</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section-padding bg-gradient-to-br from-primary via-blue-800 to-teal-700 text-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center fade-in">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">All-Age Inclusive Urban Regeneration Plan</h2>
-                    <p class="text-blue-200 text-sm uppercase tracking-wider mb-8">Cool-Aging Park: An All-Age Inclusive Urban Regeneration Plan</p>
-                    <p class="text-lg text-blue-100 max-w-3xl mx-auto leading-relaxed">
-                        We propose not just a healthcare system, but an urban regeneration movement centered on 'Cool Aging'. 
-                        Inspired by Japan's Ikebukuro Living Loop, we transform traditional closed medical nodes into open, 
-                        progressive, and economically vibrant 'Cool-Aging Parks'.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section id="courses" class="section-padding relative overflow-hidden">
-            <div class="absolute top-10 left-10 w-[400px] h-[400px] bg-lavender opacity-10 blur-3xl organic-shape" style="clip-path: polygon(20% 0%, 80% 10%, 100% 50%, 70% 100%, 10% 90%, 0% 40%); z-index: 0;"></div>
-            <div class="absolute bottom-20 right-10 w-[450px] h-[450px] bg-secondary opacity-10 blur-3xl organic-shape" style="clip-path: polygon(10% 20%, 60% 0%, 100% 40%, 90% 90%, 30% 100%, 0% 60%); z-index: 0; animation-delay: 3s;"></div>
+        <section id="dashboard-demo" class="section-padding bg-gradient-to-br from-gray-900 to-primary text-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-secondary/20 rounded-full blur-3xl"></div>
             
-            <div class="container mx-auto px-4 relative" style="z-index: 1;">
-                <div class="text-center mb-12 fade-in">
-                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">CONTENTS</h2>
-                    <p class="text-xl text-gray-600">探索我們的服務內容</p>
-                </div>
+            <div class="container mx-auto px-4 relative z-10 text-center">
+                <span class="text-secondary font-bold tracking-wider uppercase mb-2 block">UI/UX Experience</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">三方視角：看板式管理</h2>
+                <p class="text-blue-200 mb-10 max-w-2xl mx-auto">為了讓三方都看得懂，我們將複雜流程簡化為直覺的儀表板。點擊下方按鈕，親自體驗不同角色的操作介面。</p>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <a href="#activities" class="lg:col-span-2">
-                        <div class="group bg-gradient-to-br from-secondary to-secondary/80 rounded-[2rem] p-8 border-4 border-dashed border-white hover-scale cursor-pointer">
-                            <div class="flex flex-col">
-                                <div class="mb-4">
-                                    <div class="inline-block p-3 bg-white/20 rounded-2xl mb-4">
-                                        <i data-lucide="users" class="w-8 h-8 text-white"></i>
-                                    </div>
-                                    <h3 class="text-3xl font-bold text-white mb-2">MARKET</h3>
-                                    <p class="text-white/90 text-lg">社區活動</p>
-                                </div>
-                                <div class="space-y-3">
-                                    <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 border-2 border-dashed border-white/40">
-                                        <div class="flex items-start gap-3">
-                                            <div class="flex-shrink-0 bg-white rounded-lg px-2 py-1">
-                                                <span class="text-xs font-bold text-secondary">2025.01.15</span>
-                                            </div>
-                                            <div class="flex-1">
-                                                <p class="text-white font-medium text-sm">銀髮健身房 - 溫和運動課程</p>
-                                                <p class="text-white/80 text-xs mt-1 flex items-center">
-                                                    <i data-lucide="map-pin" class="w-3 h-3 mr-1"></i>
-                                                    虎尾社區中心
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 border-2 border-dashed border-white/40">
-                                        <div class="flex items-start gap-3">
-                                            <div class="flex-shrink-0 bg-white rounded-lg px-2 py-1">
-                                                <span class="text-xs font-bold text-secondary">2025.01.18</span>
-                                            </div>
-                                            <div class="flex-1">
-                                                <p class="text-white font-medium text-sm">長青學苑 - 數位學習班</p>
-                                                <p class="text-white/80 text-xs mt-1 flex items-center">
-                                                    <i data-lucide="map-pin" class="w-3 h-3 mr-1"></i>
-                                                    虎尾圖書館
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 border-2 border-dashed border-white/40">
-                                        <div class="flex items-start gap-3">
-                                            <div class="flex-shrink-0 bg-white rounded-lg px-2 py-1">
-                                                <span class="text-xs font-bold text-secondary">2025.01.22</span>
-                                            </div>
-                                            <div class="flex-1">
-                                                <p class="text-white font-medium text-sm">社區健檢日 - 免費健康檢查</p>
-                                                <p class="text-white/80 text-xs mt-1 flex items-center">
-                                                    <i data-lucide="map-pin" class="w-3 h-3 mr-1"></i>
-                                                    虎尾衛生所
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="/courses.html">
-                        <div class="group bg-gradient-to-br from-accent to-accent/80 rounded-[2rem] p-8 border-4 border-dashed border-white hover-scale cursor-pointer h-full">
-                            <div class="inline-block p-3 bg-white/30 rounded-2xl mb-4">
-                                <i data-lucide="book-open" class="w-8 h-8 text-primary"></i>
-                            </div>
-                            <h3 class="text-3xl font-bold text-primary mb-2">CULTURE</h3>
-                            <p class="text-primary/80 text-lg mb-4">培訓課程</p>
-                            <div class="space-y-2">
-                                <div class="bg-white/50 rounded-xl p-3 border-2 border-dashed border-primary/20">
-                                    <p class="text-sm font-medium text-primary">健康大使培訓課程</p>
-                                    <p class="text-xs text-primary/60 mt-1">2025.01.20</p>
-                                </div>
-                                <div class="bg-white/50 rounded-xl p-3 border-2 border-dashed border-primary/20">
-                                    <p class="text-sm font-medium text-primary">營養師認證課程</p>
-                                    <p class="text-xs text-primary/60 mt-1">2025.01.25</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="#nutrition">
-                        <div class="group bg-gradient-to-br from-coral to-coral/80 rounded-[2rem] p-8 border-4 border-dashed border-white hover-scale cursor-pointer h-full">
-                            <div class="inline-block p-3 bg-white/30 rounded-2xl mb-4">
-                                <i data-lucide="shopping-cart" class="w-8 h-8 text-white"></i>
-                            </div>
-                            <h3 class="text-3xl font-bold text-white mb-2">STREET</h3>
-                            <p class="text-white/90 text-lg mb-4">產品營養組合</p>
-                            <div class="grid grid-cols-2 gap-2">
-                                <div class="bg-white/30 rounded-xl p-2 border-2 border-dashed border-white/40">
-                                    <div class="aspect-square bg-white/50 rounded-lg mb-2 overflow-hidden">
-                                        <img src="images/product-calcium-combo.png" alt="高鈣營養組合包" class="w-full h-full object-cover">
-                                    </div>
-                                    <p class="text-xs font-medium text-white text-center">高鈣營養組合包</p>
-                                </div>
-                                <div class="bg-white/30 rounded-xl p-2 border-2 border-dashed border-white/40">
-                                    <div class="aspect-square bg-white/50 rounded-lg mb-2 overflow-hidden">
-                                        <img src="images/product-nutrition-meal.png" alt="健康營養餐盒" class="w-full h-full object-cover">
-                                    </div>
-                                    <p class="text-xs font-medium text-white text-center">健康營養餐盒</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="#devices" id="devices">
-                        <div class="group bg-gradient-to-br from-lavender to-lavender/80 rounded-[2rem] p-8 border-4 border-dashed border-white hover-scale cursor-pointer h-full">
-                            <div class="inline-block p-3 bg-white/30 rounded-2xl mb-4">
-                                <i data-lucide="wrench" class="w-8 h-8 text-white"></i>
-                            </div>
-                            <h3 class="text-3xl font-bold text-white mb-2">FURNITURE</h3>
-                            <p class="text-white/90 text-lg mb-4">輔具申請</p>
-                            <div class="space-y-2">
-                                <div class="bg-white/20 rounded-xl p-3 border-2 border-dashed border-white/40">
-                                    <p class="text-sm font-medium text-white">專業輔具評估</p>
-                                </div>
-                                <div class="bg-white/20 rounded-xl p-3 border-2 border-dashed border-white/40">
-                                    <p class="text-sm font-medium text-white">快速申請流程</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="#community" id="community">
-                        <div class="group bg-gradient-to-br from-primary to-primary/80 rounded-[2rem] p-8 border-4 border-dashed border-white hover-scale cursor-pointer h-full">
-                            <div class="inline-block p-3 bg-white/20 rounded-2xl mb-4">
-                                <i data-lucide="building-2" class="w-8 h-8 text-white"></i>
-                            </div>
-                            <h3 class="text-3xl font-bold text-white mb-2">JOURNAL</h3>
-                            <p class="text-white/90 text-lg mb-4">社區資源</p>
-                            <div class="space-y-2">
-                                <div class="bg-white/10 rounded-xl p-3 border-2 border-dashed border-white/30">
-                                    <p class="text-sm font-medium text-white">社區論壇</p>
-                                </div>
-                                <div class="bg-white/10 rounded-xl p-3 border-2 border-dashed border-white/30">
-                                    <p class="text-sm font-medium text-white">資源分享</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <button onclick="openDashboardModal()" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-secondary font-pj rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary animate-bounce">
+                    <span class="absolute inset-0 transition-all duration-1000 group-hover:animate-pulse rounded-full bg-secondary opacity-50"></span>
+                    <span class="relative flex items-center gap-2">
+                        <i data-lucide="monitor-smartphone" class="w-6 h-6"></i>
+                        進入全生態系管理後台模擬
+                    </span>
+                </button>
             </div>
         </section>
 
-        <section class="section-padding bg-gray-50">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12 fade-in">
-                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">根據您的興趣和需求，精選以下內容</h2>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-3xl overflow-hidden shadow-lg card-hover">
-                        <div class="relative">
-                            <img src="images/course-red-rope.jpg" alt="日本紅繩運動" class="w-full h-48 object-cover">
-                            <span class="absolute top-4 right-4 bg-accent text-primary px-4 py-2 rounded-full text-sm font-bold">推薦</span>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-2 mb-3">
-                                <i data-lucide="book-open" class="w-5 h-5 text-primary"></i>
-                                <span class="text-sm text-gray-600">課程</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-primary mb-3">日本紅繩運動</h3>
-                            <p class="text-gray-600 mb-4">使用懸吐繩索進行全身訓練，提升肌力與量和平衡感</p>
-                            <button onclick="registerEvent('日本紅繩運動')" class="text-secondary font-medium flex items-center gap-2 hover:gap-3 transition-all">
-                                熱門課程推薦
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-3xl overflow-hidden shadow-lg card-hover">
-                        <div class="relative">
-                            <img src="images/course-boccia.jpg" alt="地板滾球" class="w-full h-48 object-cover">
-                            <span class="absolute top-4 right-4 bg-accent text-primary px-4 py-2 rounded-full text-sm font-bold">推薦</span>
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-2 mb-3">
-                                <i data-lucide="book-open" class="w-5 h-5 text-primary"></i>
-                                <span class="text-sm text-gray-600">課程</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-primary mb-3">地板滾球</h3>
-                            <p class="text-gray-600 mb-4">低衝擊性的運動，適合所有年齡層，增進手眼協調</p>
-                            <button onclick="registerEvent('地板滾球')" class="text-secondary font-medium flex items-center gap-2 hover:gap-3 transition-all">
-                                熱門課程推薦
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-3xl overflow-hidden shadow-lg card-hover">
-                        <div class="relative">
-                            <img src="images/device-wheelchair.jpg" alt="輪椅" class="w-full h-48 object-cover">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-2 mb-3">
-                                <i data-lucide="wrench" class="w-5 h-5 text-primary"></i>
-                                <span class="text-sm text-gray-600">輔具</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-primary mb-3">輪椅</h3>
-                            <p class="text-gray-600 mb-4">多樣化輪椅選擇，提供試用和購買服務</p>
-                            <button onclick="bookDevice('輪椅')" class="text-secondary font-medium flex items-center gap-2 hover:gap-3 transition-all">
-                                熱門輔具推薦
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-padding bg-gradient-to-br from-blue-50 to-teal-50">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12 fade-in">
-                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">真實改變，真實故事</h2>
-                    <p class="text-xl text-gray-600">看看我們如何幫助社區長者和家庭，創造更美好的生活</p>
-                </div>
-
-                <div class="grid lg:grid-cols-2 gap-8 items-center">
-                    <div class="relative">
-                        <div class="absolute top-8 left-8 bg-accent text-primary px-6 py-3 rounded-full font-bold text-lg z-10">
-                            健康促進
-                        </div>
-                        <img src="images/testimonial-group.jpg" alt="溫和運動課程" class="w-full rounded-3xl shadow-2xl">
-                    </div>
-
-                    <div>
-                        <h3 class="text-3xl md:text-4xl font-bold text-primary mb-6">溫和運動課程，讓王奶奶重拾活力</h3>
-                        <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                            75歲的王奶奶因為膨蓋退化，長期不敢運動。透過我們的溫和運動課程，在專業教練的指導下，她逐漸恢復肌力和平衡感，現在每週都期待來上課。
-                        </p>
-
-                        <div class="bg-white rounded-2xl p-6 shadow-lg mb-6">
-                            <p class="text-gray-700 italic mb-4 text-lg">
-                                「我本來以為自己再也無法像年輕時那樣活動了，但這個課程讓我發現，只要用對方法，我還是可以保持活力！現在我不只膥蓋不痛了，整個人的精神都變好了。」
-                            </p>
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center text-white text-2xl font-bold">
-                                    王
-                                </div>
-                                <div>
-                                    <p class="font-bold text-primary text-lg">王秀蘭</p>
-                                    <p class="text-gray-600">75歲，課程學員</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-3 gap-4">
-                            <div class="text-center">
-                                <p class="text-sm text-gray-600 mb-1">參與時間</p>
-                                <p class="text-3xl font-bold text-secondary">6個月</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="text-sm text-gray-600 mb-1">健康改善</p>
-                                <p class="text-3xl font-bold text-secondary">70%</p>
-                                <p class="text-xs text-gray-500">膨蓋疼痛減少</p>
-                            </div>
-                            <div class="text-center">
-                                <p class="text-sm text-gray-600 mb-1">社交連結</p>
-                                <p class="text-3xl font-bold text-secondary">8位</p>
-                                <p class="text-xs text-gray-500">結識新朋友</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-padding bg-gradient-to-br from-primary via-blue-900 to-primary text-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12 fade-in">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">高齡化社會的四大結構性風險</h2>
-                    <p class="text-xl text-blue-200 max-w-3xl mx-auto">這些風險彼此放大，形成惡性循環。點擊每個風險，深入了解其影響範圍和我們的解決方案。</p>
-                </div>
-
-                <div class="space-y-4">
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/20 hover:bg-white/15 transition-all cursor-pointer" onclick="alert('生活空間的功能斷裂\\n\\n住宅社區缺乏支持健康與互動的日常設計，導致長者隔離和功能退化。')">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center">
-                                    <i data-lucide="heart" class="w-8 h-8 text-primary"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-1">生活空間的功能斷裂</h3>
-                                    <p class="text-blue-200">住宅社區缺乏支持健康與互動的日常設計</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-5xl font-bold text-accent">78%</p>
-                                <p class="text-sm text-blue-200">受影響人口</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/20 hover:bg-white/15 transition-all cursor-pointer" onclick="alert('孤獨與照顧壓力被私化\\n\\n家庭成為長期照顧唯一承擔者，缺乏社會支持系統。')">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-16 bg-coral rounded-full flex items-center justify-center">
-                                    <i data-lucide="users" class="w-8 h-8 text-white"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-1">孤獨與照顧壗力被私化</h3>
-                                    <p class="text-blue-200">家庭成為長期照顧唯一承擔者</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-5xl font-bold text-coral">82%</p>
-                                <p class="text-sm text-blue-200">受影響人口</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/20 hover:bg-white/15 transition-all cursor-pointer" onclick="alert('高齡化下的財務脆弱\\n\\n照顧需求來自系統脆弱與缺之連結，導致財務壓力。')">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center">
-                                    <i data-lucide="trending-up" class="w-8 h-8 text-white"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-1">高齡化下的財務脆弱</h3>
-                                    <p class="text-blue-200">照顧需求來自系統脆弱與缺之連結</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-5xl font-bold text-secondary">71%</p>
-                                <p class="text-sm text-blue-200">受影響人口</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/20 hover:bg-white/15 transition-all cursor-pointer" onclick="alert('逐漸失去角色與使命感\\n\\n退休後缺乏社會參與和貢獻機會，導致失去生活目標。')">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <div class="w-16 h-16 bg-lavender rounded-full flex items-center justify-center">
-                                    <i data-lucide="file-text" class="w-8 h-8 text-white"></i>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-1">逐漸失去角色與使命感</h3>
-                                    <p class="text-blue-200">退休後缺乏社會參與和貢獻機會</p>
-                                </div>
-                            </div>
-                            <div class="text-right">
-                                <p class="text-5xl font-bold text-lavender">65%</p>
-                                <p class="text-sm text-blue-200">受影響人口</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="sop-training" class="section-padding bg-white relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5 pointer-events-none"></div>
-            
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="text-center mb-12 fade-in">
-                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4 relative inline-block">
-                        協助社區服務培訓 SOP 化流程
-                        <span class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-secondary rounded-full"></span>
-                    </h2>
-                    <p class="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">
-                        將隱性經驗轉化為顯性標準，確保服務品質一致，讓愛心與專業有效傳承。
-                    </p>
-                </div>
-
-                <div class="max-w-5xl mx-auto mb-12 shadow-2xl rounded-2xl overflow-hidden border-4 border-white/50">
-                    <img src="images/sop-flow.jpg" alt="社區服務培訓 SOP 標準化四步驟流程圖" class="w-full h-auto block hover:scale-[1.02] transition-transform duration-500">
-                </div>
-
-                <div class="bg-blue-50/80 rounded-2xl p-8 border border-blue-100 max-w-4xl mx-auto text-center">
-                    <p class="text-lg text-gray-700 leading-relaxed">
-                        我們深知社區服務的經驗往往流於口耳相傳。透過我們專業的輔導團隊，協助社區將隱性的服務智慧轉化為顯性的<span class="font-bold text-primary">「標準作業程序 (SOP)」</span>。這不僅能確保服務品質的一致性，更能讓新進人員快速上手，實現經驗傳承，提升整體社區照顧能量。
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="section-padding bg-gray-50">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12 fade-in">
-                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">專業照服員媒合精選</h2>
-                    <p class="text-xl text-gray-600">瀏覽我們精選的專業照服員，根據長輩的需求找到最適合的夥伴。</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
-                    <div class="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:-translate-y-2 transition-transform duration-300 border border-gray-100 flex flex-col">
-                        <div class="relative h-64 overflow-hidden group">
-                            <img src="images/caregiver-1.jpg" alt="照服員李秀英照片" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            <div class="absolute bottom-4 left-6 text-white">
-                                <p class="font-bold text-lg">李秀英</p>
-                                <p class="text-sm opacity-90">年資 10 年</p>
-                            </div>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col">
-                            <p class="text-primary font-bold text-sm mb-3">資深失智症照護專員</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">失智症引導</span>
-                                <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">生活自立支援</span>
-                                <span class="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">耐心陪伴</span>
-                            </div>
-                            <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-1">
-                                擁有豐富的失智長者服務經驗，擅長使用懷舊治療與非藥物引導技巧，能有效安撫長輩情緒。個性溫和有耐心，視長輩如親人。
-                            </p>
-                            <button class="w-full bg-secondary text-white font-bold py-3 rounded-xl hover:bg-secondary/90 transition shadow-md hover:shadow-lg flex items-center justify-center gap-2">
-                                預約媒合諮詢
-                                <i data-lucide="calendar-check" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:-translate-y-2 transition-transform duration-300 border border-gray-100 flex flex-col">
-                        <div class="relative h-64 overflow-hidden group">
-                            <img src="images/caregiver-2.jpg" alt="照服員陳志豪照片" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            <div class="absolute bottom-4 left-6 text-white">
-                                <p class="font-bold text-lg">陳志豪</p>
-                                <p class="text-sm opacity-90">前急診護理師</p>
-                            </div>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col">
-                            <p class="text-primary font-bold text-sm mb-3">護理背景照服員</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">重症護理輔助</span>
-                                <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">管路清潔照護</span>
-                                <span class="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">夜間觀察</span>
-                            </div>
-                            <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-1">
-                                具備專業護理師執照背景，對於有複雜醫療需求（如鼻胃管、尿管、傷口換藥）的長輩能提供專業且安心的輔助照顧。反應快、責任心強。
-                            </p>
-                            <button class="w-full bg-secondary text-white font-bold py-3 rounded-xl hover:bg-secondary/90 transition shadow-md hover:shadow-lg flex items-center justify-center gap-2">
-                                預約媒合諮詢
-                                <i data-lucide="calendar-check" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-[2rem] overflow-hidden shadow-lg hover:-translate-y-2 transition-transform duration-300 border border-gray-100 flex flex-col">
-                        <div class="relative h-64 overflow-hidden group">
-                            <img src="images/caregiver-3.jpg" alt="照服員林曉梅照片" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110">
-                            <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent"></div>
-                            <div class="absolute bottom-4 left-6 text-white">
-                                <p class="font-bold text-lg">林曉梅</p>
-                                <p class="text-sm opacity-90">樂齡活動指導</p>
-                            </div>
-                        </div>
-                        <div class="p-6 flex-1 flex flex-col">
-                            <p class="text-primary font-bold text-sm mb-3">樂齡活動帶領員</p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="bg-orange-50 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold">認知促進活動</span>
-                                <span class="bg-orange-50 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold">社區導覽陪伴</span>
-                                <span class="bg-orange-50 text-orange-700 px-3 py-1 rounded-full text-xs font-semibold">活力充滿</span>
-                            </div>
-                            <p class="text-gray-600 text-sm mb-6 leading-relaxed flex-1">
-                                充滿活力的曉梅擅長設計適合長輩的益智遊戲與輕度體能活動。不僅照顧身體，更注重長輩的心理健康與社交互動，為家中帶來歡笑。
-                            </p>
-                            <button class="w-full bg-secondary text-white font-bold py-3 rounded-xl hover:bg-secondary/90 transition shadow-md hover:shadow-lg flex items-center justify-center gap-2">
-                                預約媒合諮詢
-                                <i data-lucide="calendar-check" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <section id="calendar" class="section-padding bg-gray-50">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12 fade-in">
-                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">服務網絡地圖</h2>
-                    <p class="text-xl text-gray-600">探索我們遣布各地的服務據點、合作夥伴和成功案例</p>
-                </div>
-
-                <div class="flex justify-center gap-4 mb-8">
-                    <button class="px-6 py-3 bg-secondary text-white rounded-full font-medium hover:bg-secondary/90 transition">
-                        <i data-lucide="filter" class="w-4 h-4 inline mr-2"></i>
-                        全部顯示
-                    </button>
-                    <button class="px-6 py-3 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-100 transition border-2 border-gray-200">
-                        <i data-lucide="map-pin" class="w-4 h-4 inline mr-2"></i>
-                        服務據點
-                    </button>
-                    <button class="px-6 py-3 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-100 transition border-2 border-gray-200">
-                        <i data-lucide="file-text" class="w-4 h-4 inline mr-2"></i>
-                        合作夥伴
-                    </button>
-                    <button class="px-6 py-3 bg-white text-gray-700 rounded-full font-medium hover:bg-gray-100 transition border-2 border-gray-200">
-                        <i data-lucide="award" class="w-4 h-4 inline mr-2"></i>
-                        成功案例
-                    </button>
-                </div>
-
-                <div class="bg-white rounded-3xl shadow-xl overflow-hidden mb-8">
-                    <div class="aspect-video bg-gray-200 relative">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14632.123456789!2d120.4372!3d23.7069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQyJzI0LjgiTiAxMjDCsDI2JzE0LjAiRQ!5e0!3m2!1szh-TW!2stw!4v1234567890" 
-                            width="100%" 
-                            height="100%" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-2xl p-8 text-center shadow-lg">
-                        <div class="w-20 h-20 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i data-lucide="map-pin" class="w-10 h-10 text-secondary"></i>
-                        </div>
-                        <p class="text-5xl font-bold text-secondary mb-2">4</p>
-                        <p class="text-gray-600 font-medium">服務據點</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-8 text-center shadow-lg">
-                        <div class="w-20 h-20 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i data-lucide="file-text" class="w-10 h-10 text-accent"></i>
-                        </div>
-                        <p class="text-5xl font-bold text-accent mb-2">3</p>
-                        <p class="text-gray-600 font-medium">合作夥伴</p>
-                    </div>
-                    <div class="bg-white rounded-2xl p-8 text-center shadow-lg">
-                        <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i data-lucide="award" class="w-10 h-10 text-primary"></i>
-                        </div>
-                        <p class="text-5xl font-bold text-primary mb-2">3</p>
-                        <p class="text-gray-600 font-medium">成功案例</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer class="bg-gray-900 text-white py-12">
+        <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
             <div class="container mx-auto px-4 text-center">
                 <h3 class="text-2xl font-bold mb-2">全齡共融賦能生態圈</h3>
                 <p class="text-sm text-gray-400 mb-6">Community Living Loop</p>
-                <p class="text-xs text-gray-500">© 2025 Community Living Loop. All rights reserved.</p>
+                <p class="text-xs text-gray-500">© 2026 Community Living Loop. All rights reserved.</p>
             </div>
         </footer>
 
-        <button id="back-to-top" onclick="scrollToTop()" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full shadow-lg hover:bg-primary/90 transition z-40 flex items-center justify-center" style="opacity: 0; visibility: hidden;">
-            <i data-lucide="arrow-up" class="w-5 h-5"></i>
-        </button>
-
     </div>
 
-    <script src="js/main.js"></script>
+    <div id="icopeModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true" onclick="closeIcopeModal()"></div>
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+            <div class="inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div id="icopeStep1">
+                        <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100">
+                            <i data-lucide="activity" class="h-6 w-6 text-primary"></i>
+                        </div>
+                        <div class="mt-3 text-center sm:mt-5">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">ICOPE 簡易快篩</h3>
+                            <div class="mt-4 text-left space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">最近是否感覺小腿無力，或走路變慢？</label>
+                                    <div class="mt-2 flex gap-4">
+                                        <button class="flex-1 py-2 border rounded-lg hover:bg-red-50 hover:border-red-500 focus:ring-2 ring-red-500" onclick="selectOption(this)">是，有點無力</button>
+                                        <button class="flex-1 py-2 border rounded-lg hover:bg-green-50 hover:border-green-500" onclick="selectOption(this)">否，很正常</button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">進食時是否容易嗆到？</label>
+                                    <div class="mt-2 flex gap-4">
+                                        <button class="flex-1 py-2 border rounded-lg hover:bg-red-50 hover:border-red-500 focus:ring-2 ring-red-500" onclick="selectOption(this)">偶爾會</button>
+                                        <button class="flex-1 py-2 border rounded-lg hover:bg-green-50 hover:border-green-500" onclick="selectOption(this)">不會</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-5 sm:mt-6">
+                            <button type="button" onclick="processIcope()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-primary text-base font-medium text-white hover:bg-primary/90 focus:outline-none sm:text-sm">
+                                提交並分析
+                            </button>
+                        </div>
+                    </div>
 
+                    <div id="icopeStep2" class="hidden text-center py-10">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                        <h3 class="text-lg font-bold text-gray-900">AI 分析中...</h3>
+                        <p class="text-sm text-gray-500">正在比對資料庫，媒合鄰近專家...</p>
+                    </div>
+
+                    <div id="icopeStep3" class="hidden">
+                        <div class="text-center mb-4">
+                            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-2">
+                                <i data-lucide="check" class="h-6 w-6 text-green-600"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900">媒合成功！</h3>
+                            <p class="text-sm text-gray-500">已為您找到最適合的健康大使</p>
+                        </div>
+                        
+                        <div class="bg-gray-50 rounded-xl p-4 border border-gray-200 flex gap-4 items-start">
+                            <img src="images/caregiver-1.jpg" class="w-16 h-16 rounded-full object-cover border-2 border-white shadow-sm">
+                            <div class="flex-1 text-left">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-bold text-lg">李秀英 <span class="text-xs bg-primary text-white px-2 py-0.5 rounded-full ml-1">認證 A 級</span></h4>
+                                    <span class="text-xs text-gray-500">距離 300m</span>
+                                </div>
+                                <p class="text-sm text-secondary font-medium mb-1">專長：肌力訓練、口腔照護</p>
+                                <p class="text-xs text-gray-600">「根據您的篩檢結果，建議每週進行 2 次口腔與下肢肌力訓練。」</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 sm:mt-6">
+                            <button type="button" onclick="closeIcopeModal()" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-secondary text-base font-medium text-white hover:bg-secondary/90 focus:outline-none sm:text-sm">
+                                預約服務
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboardModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-900 bg-opacity-90 transition-opacity" aria-hidden="true" onclick="closeDashboardModal()"></div>
+            
+            <div class="inline-block align-middle bg-gray-50 rounded-xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:max-w-5xl w-full min-h-[600px] flex flex-col">
+                
+                <div class="bg-white border-b px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <h3 class="text-xl font-bold text-gray-800 flex items-center gap-2">
+                        <i data-lucide="layout" class="w-5 h-5"></i> 生態系管理後台
+                    </h3>
+                    <div class="flex bg-gray-100 p-1 rounded-lg">
+                        <button onclick="switchRole('user')" id="btn-user" class="px-4 py-2 rounded-md text-sm font-medium transition-all bg-white shadow-sm text-primary">長輩/家屬</button>
+                        <button onclick="switchRole('community')" id="btn-community" class="px-4 py-2 rounded-md text-sm font-medium transition-all text-gray-500 hover:text-gray-900">據點店長</button>
+                        <button onclick="switchRole('expert')" id="btn-expert" class="px-4 py-2 rounded-md text-sm font-medium transition-all text-gray-500 hover:text-gray-900">健康大使</button>
+                    </div>
+                    <button onclick="closeDashboardModal()" class="text-gray-400 hover:text-gray-600">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <div class="p-6 flex-1 overflow-y-auto bg-gray-50" id="dashboardContent">
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // --- ICOPE Modal Logic ---
+        function openIcopeModal() {
+            document.getElementById('icopeModal').classList.remove('hidden');
+            document.getElementById('icopeStep1').classList.remove('hidden');
+            document.getElementById('icopeStep2').classList.add('hidden');
+            document.getElementById('icopeStep3').classList.add('hidden');
+        }
+
+        function closeIcopeModal() {
+            document.getElementById('icopeModal').classList.add('hidden');
+        }
+
+        function selectOption(btn) {
+            // Visual feedback for selection
+            const parent = btn.parentElement;
+            const buttons = parent.getElementsByTagName('button');
+            for(let b of buttons) {
+                b.classList.remove('bg-red-50', 'border-red-500', 'ring-2', 'ring-red-500', 'bg-green-50', 'border-green-500');
+            }
+            if(btn.innerText.includes('是') || btn.innerText.includes('偶爾')) {
+                btn.classList.add('bg-red-50', 'border-red-500', 'ring-2', 'ring-red-500');
+            } else {
+                btn.classList.add('bg-green-50', 'border-green-500');
+            }
+        }
+
+        function processIcope() {
+            document.getElementById('icopeStep1').classList.add('hidden');
+            document.getElementById('icopeStep2').classList.remove('hidden');
+            
+            // Simulate AI delay
+            setTimeout(() => {
+                document.getElementById('icopeStep2').classList.add('hidden');
+                document.getElementById('icopeStep3').classList.remove('hidden');
+            }, 2000);
+        }
+
+        // --- Dashboard Logic ---
+        function openDashboardModal() {
+            document.getElementById('dashboardModal').classList.remove('hidden');
+            switchRole('user'); // Default view
+        }
+
+        function closeDashboardModal() {
+            document.getElementById('dashboardModal').classList.add('hidden');
+        }
+
+        // Data for different roles
+        const dashboardData = {
+            'user': {
+                title: '我的健康存摺 (使用者視角)',
+                color: 'blue',
+                content: `
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-blue-100 dashboard-card">
+                            <p class="text-sm text-gray-500 mb-1">ICOPE 健康分數</p>
+                            <h3 class="text-4xl font-bold text-primary">82 <span class="text-sm font-normal text-green-500">▲ 持穩</span></h3>
+                            <p class="text-xs text-gray-400 mt-2">上次檢測：3天前</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-blue-100 dashboard-card">
+                            <p class="text-sm text-gray-500 mb-1">累積健康點數</p>
+                            <h3 class="text-4xl font-bold text-accent">1,250 <span class="text-sm font-normal text-gray-500">pts</span></h3>
+                            <p class="text-xs text-gray-400 mt-2">可兌換 3 份營養餐盒</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-blue-100 dashboard-card">
+                            <p class="text-sm text-gray-500 mb-1">下一次課程</p>
+                            <h3 class="text-xl font-bold text-gray-800">口腔機能訓練</h3>
+                            <p class="text-xs text-primary mt-2">明日 14:00 @ 虎尾據點</p>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                        <h4 class="font-bold text-lg mb-4 text-gray-800">推薦給您的服務處方箋</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-100">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-primary">
+                                        <i data-lucide="dumbbell" class="w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-gray-800">下肢肌力強化班</p>
+                                        <p class="text-sm text-gray-500">針對行走變慢改善 | 專家：陳志豪</p>
+                                    </div>
+                                </div>
+                                <button class="px-4 py-2 bg-primary text-white text-sm rounded-lg hover:bg-primary/90">立即預約</button>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'community': {
+                title: '據點營運儀表板 (經營者視角)',
+                color: 'green',
+                content: `
+                    <div class="grid md:grid-cols-4 gap-6 mb-8">
+                        <div class="bg-white p-5 rounded-xl shadow-sm border border-green-100 dashboard-card">
+                            <p class="text-sm text-gray-500">今日訪客數</p>
+                            <h3 class="text-3xl font-bold text-gray-800">45 <span class="text-xs text-green-500">▲ 12%</span></h3>
+                        </div>
+                         <div class="bg-white p-5 rounded-xl shadow-sm border border-green-100 dashboard-card">
+                            <p class="text-sm text-gray-500">專家到場率</p>
+                            <h3 class="text-3xl font-bold text-green-600">100%</h3>
+                        </div>
+                         <div class="bg-white p-5 rounded-xl shadow-sm border border-green-100 dashboard-card">
+                            <p class="text-sm text-gray-500">待領包裹 (零庫存)</p>
+                            <h3 class="text-3xl font-bold text-orange-500">8 <span class="text-xs text-gray-400">件</span></h3>
+                        </div>
+                         <div class="bg-white p-5 rounded-xl shadow-sm border border-green-100 dashboard-card">
+                            <p class="text-sm text-gray-500">本月分潤預估</p>
+                            <h3 class="text-3xl font-bold text-gray-800">$12K</h3>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                            <h4 class="font-bold text-lg mb-4 text-gray-800">今日活動排程</h4>
+                            <ul class="space-y-3">
+                                <li class="flex justify-between items-center border-b pb-2">
+                                    <span class="flex items-center gap-2"><div class="w-2 h-2 bg-green-500 rounded-full"></div> 10:00 銀髮瑜珈</span>
+                                    <span class="text-sm bg-green-100 text-green-700 px-2 py-1 rounded">進行中</span>
+                                </li>
+                                <li class="flex justify-between items-center border-b pb-2">
+                                    <span class="flex items-center gap-2"><div class="w-2 h-2 bg-gray-300 rounded-full"></div> 14:00 口腔保健</span>
+                                    <span class="text-sm text-gray-500">李秀英 老師</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                            <h4 class="font-bold text-lg mb-4 text-gray-800">行政待辦事項</h4>
+                            <div class="flex items-center gap-3 p-3 bg-red-50 border border-red-100 rounded-lg mb-2">
+                                <i data-lucide="alert-circle" class="text-red-500"></i>
+                                <span class="text-sm text-red-700">3 位新會員尚未完成 ICOPE 初篩</span>
+                            </div>
+                            <button class="w-full py-2 bg-white border border-gray-300 rounded-lg text-sm text-gray-600 hover:bg-gray-50">查看所有通知</button>
+                        </div>
+                    </div>
+                `
+            },
+            'expert': {
+                title: '個人賦能工單 (健康大使視角)',
+                color: 'purple',
+                content: `
+                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-purple-100 dashboard-card">
+                            <p class="text-sm text-gray-500 mb-1">本月接單數</p>
+                            <h3 class="text-4xl font-bold text-purple-600">24 <span class="text-sm font-normal text-gray-500">堂</span></h3>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-purple-100 dashboard-card">
+                            <p class="text-sm text-gray-500 mb-1">學員滿意度</p>
+                            <h3 class="text-4xl font-bold text-yellow-500">4.9 <span class="text-sm font-normal text-gray-400">/ 5.0</span></h3>
+                        </div>
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-purple-100 dashboard-card">
+                            <p class="text-sm text-gray-500 mb-1">預估收入</p>
+                            <h3 class="text-4xl font-bold text-gray-800">$28,500</h3>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                        <h4 class="font-bold text-lg mb-4 text-gray-800">最新派課任務 (AI 媒合)</h4>
+                        <div class="space-y-4">
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-purple-50 rounded-xl border border-purple-100">
+                                <div class="flex items-center gap-4 mb-3 sm:mb-0">
+                                    <div class="w-12 h-12 bg-purple-200 rounded-full flex items-center justify-center text-purple-700 font-bold">
+                                        新
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-gray-900">個案：張爺爺 (需求：防跌訓練)</p>
+                                        <p class="text-sm text-gray-600">地點：虎尾社區中心 (距離 1.2km)</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2 w-full sm:w-auto">
+                                    <button class="flex-1 sm:flex-none px-4 py-2 bg-white border border-gray-300 text-gray-600 rounded-lg text-sm hover:bg-gray-50">婉拒</button>
+                                    <button class="flex-1 sm:flex-none px-4 py-2 bg-purple-600 text-white rounded-lg text-sm hover:bg-purple-700 shadow-md">確認接單</button>
+                                </div>
+                            </div>
+                             <div class="flex items-center justify-between p-4 bg-white rounded-xl border border-gray-100 opacity-75">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-500">
+                                        <i data-lucide="check" class="w-5 h-5"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-gray-900 line-through">個案：林奶奶 (需求：營養諮詢)</p>
+                                        <p class="text-sm text-gray-500">已完成授課</p>
+                                    </div>
+                                </div>
+                                <span class="text-green-600 text-sm font-bold">已入帳 $800</span>
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        function switchRole(role) {
+            // Update buttons style
+            ['user', 'community', 'expert'].forEach(r => {
+                const btn = document.getElementById(`btn-${r}`);
+                if (r === role) {
+                    btn.classList.remove('text-gray-500', 'bg-transparent');
+                    btn.classList.add('bg-white', 'shadow-sm', 'text-primary'); // Active style
+                    if(role === 'community') btn.classList.add('text-green-600');
+                    if(role === 'expert') btn.classList.add('text-purple-600');
+                } else {
+                    btn.classList.add('text-gray-500', 'bg-transparent');
+                    btn.classList.remove('bg-white', 'shadow-sm', 'text-primary', 'text-green-600', 'text-purple-600');
+                }
+            });
+
+            // Update content
+            const data = dashboardData[role];
+            const contentDiv = document.getElementById('dashboardContent');
+            contentDiv.innerHTML = `
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">${data.title}</h2>
+                ${data.content}
+            `;
+            
+            // Re-render icons for new content
+            lucide.createIcons();
+        }
+    </script>
 </body>
 </html>
