@@ -2,53 +2,437 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>產品營養組合 | 全齡共融賦能生態圈</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>健康營養市集 | 全齡共融賦能生態圈</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
     <script src="https://unpkg.com/lucide@latest"></script>
+    
     <script>
-        tailwind.config = { theme: { extend: { colors: { primary: '#1E3A8A', coral: '#FFB6A3' } } } }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                        serif: ['Noto Serif TC', 'serif']
+                    },
+                    colors: {
+                        primary: '#1E3A8A', // 深藍
+                        secondary: '#5CB89D', // 圖片中的綠色按鈕色
+                        accent: '#E6C65B', // 金色星星/價格
+                        beige: '#FFF9F0', // 淺米色背景
+                        light_blue: '#EAF6F6' // 淺藍標籤背景
+                    }
+                }
+            }
+        }
     </script>
+    <style>
+        .gradient-banner {
+            background: linear-gradient(135deg, #2C4E80 0%, #5CB89D 100%);
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+<body class="bg-beige text-gray-800 font-sans">
+
+    <nav class="bg-white shadow-sm sticky top-0 z-40">
         <div class="container mx-auto px-4 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-2 font-bold text-primary"><i data-lucide="arrow-left"></i> 返回首頁</a>
-            <h1 class="text-xl font-bold">健康營養市集</h1>
-            <button class="relative p-2" onclick="alert('購物車功能模擬')">
-                <i data-lucide="shopping-cart"></i>
-                <span class="absolute top-0 right-0 bg-coral text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">2</span>
-            </button>
+            <a href="index.html" class="flex items-center gap-2 font-bold text-primary hover:opacity-80 transition">
+                <i data-lucide="arrow-left"></i> 返回首頁
+            </a>
+            <div class="flex items-center gap-4">
+                <button class="relative p-2 hover:bg-gray-100 rounded-full transition" onclick="alert('購物車功能模擬')">
+                    <i data-lucide="shopping-cart" class="w-6 h-6 text-gray-600"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold">2</span>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <div class="container mx-auto px-4 py-8">
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-4">
-                <div class="aspect-square bg-gray-100 rounded-lg mb-4 overflow-hidden">
-                    <img src="images/product-nutrition-meal.png" alt="Meal" class="w-full h-full object-cover">
+    <header class="gradient-banner py-16 text-center text-white mb-12">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl font-bold font-serif mb-4 tracking-wide text-[#E6C65B]">全方位健康陪伴組合包</h1>
+            <p class="text-lg md:text-xl opacity-90 max-w-3xl mx-auto leading-relaxed">
+                為微型創業者打造的完整健康解決方案。透過精準的大面向分析，不再盲目安排活動。<br>
+                學提長者的關鍵能力缺口，精準對接專業的照能計畫與產品服務。
+            </p>
+        </div>
+    </header>
+
+    <section class="container mx-auto px-4 pb-20">
+        <div class="grid md:grid-cols-3 gap-8">
+            
+            <div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-lg transition-shadow border border-gray-100 flex flex-col h-full">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800 font-serif">高鈣營養組合包</h3>
+                    <div class="flex items-center gap-1 text-sm text-gray-500">
+                        <i data-lucide="star" class="w-4 h-4 fill-current text-accent"></i>
+                        <span class="font-bold text-gray-700">4.8</span> (156)
+                    </div>
                 </div>
-                <div class="mb-2"><span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">低GI</span></div>
-                <h3 class="font-bold text-lg mb-1">活力營養餐盒 (7日份)</h3>
-                <p class="text-gray-500 text-sm mb-4">專為銀髮族設計，口感軟爛易入口，營養均衡。</p>
-                <div class="flex items-center justify-between">
-                    <span class="font-bold text-primary text-xl">$1,200</span>
-                    <button class="bg-primary text-white p-2 rounded-lg hover:bg-primary/90" onclick="alert('已加入購物車')"><i data-lucide="plus"></i></button>
+                
+                <p class="text-gray-500 text-sm mb-6 leading-relaxed">
+                    專為長者設計的完整鈣質補充方案，包含鈣片、維生素D軟膠囊和強化奶粉，幫助維持骨骼健康。
+                </p>
+
+                <div class="space-y-3 mb-8 flex-1">
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>高吸收率鈣片 30錠</span>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>維生素D3軟膠囊 60顆</span>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>強化鈣質奶粉 450g</span>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>專業營養師配方</span>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>通過SGS檢驗認證</span>
+                    </div>
+                </div>
+
+                <div class="flex items-baseline gap-3 mb-6">
+                    <span class="text-3xl font-bold text-primary">NT$ 800</span>
+                    <span class="text-lg text-gray-400 line-through">NT$ 1200</span>
+                </div>
+
+                <div class="flex gap-3">
+                    <button class="flex-1 bg-secondary text-white py-3 rounded-full font-bold hover:bg-[#4aa38a] transition flex items-center justify-center gap-2 shadow-sm" onclick="openProductModal('calcium')">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i> 加入購物車
+                    </button>
+                    <button class="p-3 border border-gray-200 rounded-full hover:bg-gray-50 text-gray-500 transition">
+                        <i data-lucide="bookmark" class="w-5 h-5"></i>
+                    </button>
                 </div>
             </div>
-            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-all p-4">
-                <div class="aspect-square bg-gray-100 rounded-lg mb-4 overflow-hidden">
-                    <img src="images/product-calcium-combo.png" alt="Calcium" class="w-full h-full object-cover">
+
+            <div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-lg transition-shadow border border-gray-100 flex flex-col h-full">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800 font-serif">健康營養餐盒</h3>
+                    <div class="flex items-center gap-1 text-sm text-gray-500">
+                        <i data-lucide="star" class="w-4 h-4 fill-current text-accent"></i>
+                        <span class="font-bold text-gray-700">4.9</span> (243)
+                    </div>
                 </div>
-                <div class="mb-2"><span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">骨骼強健</span></div>
-                <h3 class="font-bold text-lg mb-1">高鈣大補帖組合</h3>
-                <p class="text-gray-500 text-sm mb-4">包含高鈣奶粉、維生素D3滴劑，預防骨質疏鬆。</p>
-                <div class="flex items-center justify-between">
-                    <span class="font-bold text-primary text-xl">$850</span>
-                    <button class="bg-primary text-white p-2 rounded-lg hover:bg-primary/90" onclick="alert('已加入購物車')"><i data-lucide="plus"></i></button>
+                
+                <p class="text-gray-500 text-sm mb-6 leading-relaxed">
+                    日式風格的均衡便當，由營養師精心設計，包含優質蛋白質、蔬菜和全穀類，適合銀髮族的營養需求。
+                </p>
+
+                <div class="space-y-3 mb-8 flex-1">
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>烤鮭魚主菜 (富含Omega-3)</span>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>新鮮蒸煮蔬菜</span>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>糙米飯 (低GI)</span>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>味噌湯</span>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>每日新鮮製作</span>
+                    </div>
+                </div>
+
+                <div class="flex items-baseline gap-3 mb-6">
+                    <span class="text-3xl font-bold text-primary">NT$ 180</span>
+                </div>
+
+                <div class="flex gap-3">
+                    <button class="flex-1 bg-secondary text-white py-3 rounded-full font-bold hover:bg-[#4aa38a] transition flex items-center justify-center gap-2 shadow-sm" onclick="openProductModal('meal')">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i> 加入購物車
+                    </button>
+                    <button class="p-3 border border-gray-200 rounded-full hover:bg-gray-50 text-gray-500 transition">
+                        <i data-lucide="bookmark" class="w-5 h-5"></i>
+                    </button>
                 </div>
             </div>
+
+            <div class="bg-white rounded-3xl p-6 shadow-sm hover:shadow-lg transition-shadow border border-gray-100 flex flex-col h-full">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800 font-serif">銀髮保健品</h3>
+                    <div class="flex items-center gap-1 text-sm text-gray-500">
+                        <i data-lucide="star" class="w-4 h-4 fill-current text-accent"></i>
+                        <span class="font-bold text-gray-700">4.7</span> (189)
+                    </div>
+                </div>
+                
+                <p class="text-gray-500 text-sm mb-6 leading-relaxed">
+                    綜合保健品組合，包含Omega-3魚油、綜合維他命和葡萄糖胺，全方位守護長者健康。
+                </p>
+
+                <div class="space-y-3 mb-8 flex-1">
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>Omega-3魚油 60顆</span>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>綜合維他命 30顆</span>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>葡萄糖胺 30顆</span>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>醫藥級品質保證</span>
+                    </div>
+                    <div class="flex items-start gap-3 text-sm text-gray-600">
+                        <i data-lucide="check" class="w-4 h-4 text-secondary mt-0.5 shrink-0"></i>
+                        <span>適合長期保養</span>
+                    </div>
+                </div>
+
+                <div class="flex items-baseline gap-3 mb-6">
+                    <span class="text-3xl font-bold text-primary">NT$ 1,200</span>
+                    <span class="text-lg text-gray-400 line-through">NT$ 1,500</span>
+                </div>
+
+                <div class="flex gap-3">
+                    <button class="flex-1 bg-secondary text-white py-3 rounded-full font-bold hover:bg-[#4aa38a] transition flex items-center justify-center gap-2 shadow-sm" onclick="openProductModal('supplement')">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i> 加入購物車
+                    </button>
+                    <button class="p-3 border border-gray-200 rounded-full hover:bg-gray-50 text-gray-500 transition">
+                        <i data-lucide="bookmark" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold mb-2">全齡共融賦能生態圈</h3>
+            <p class="text-xs text-gray-500">© 2025 Community Living Loop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="productModal" class="fixed inset-0 z-50 hidden overflow-hidden bg-gray-900 bg-opacity-75 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-2xl overflow-y-auto hide-scrollbar relative">
+            
+            <div class="sticky top-0 bg-white z-10 px-8 py-4 border-b border-gray-100 flex justify-between items-center">
+                <h2 id="modalTitle" class="text-2xl font-bold text-primary font-serif">產品詳情</h2>
+                <button onclick="closeProductModal()" class="p-2 hover:bg-gray-100 rounded-full transition">
+                    <i data-lucide="x" class="w-6 h-6 text-gray-500"></i>
+                </button>
+            </div>
+
+            <div class="p-8 space-y-12">
+                
+                <div class="text-center mb-8">
+                    <h3 class="text-3xl font-bold text-primary font-serif mb-8">使用說明與注意事項</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 text-left">
+                        <div class="border border-gray-200 rounded-2xl p-6 hover:shadow-md transition bg-white">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="text-2xl">💊</span>
+                                <h4 class="text-lg font-bold text-gray-800">服用方法</h4>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-xs text-gray-400 mb-1">建議用量</p>
+                                    <p class="text-gray-700 font-medium">每日 2 次，每次 1-2 顆，配合溫開水服用</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400 mb-1">服用時機</p>
+                                    <p class="text-gray-700 font-medium">建議於餐後服用，有助於吸收</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-2xl p-6 hover:shadow-md transition bg-white">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="text-2xl">📦</span>
+                                <h4 class="text-lg font-bold text-gray-800">儲存方式</h4>
+                            </div>
+                            <div class="h-full flex items-center">
+                                <p class="text-gray-700 font-medium">請置於陰涼乾燥處，避免高溫及陽光直射</p>
+                            </div>
+                        </div>
+
+                        <div class="border border-orange-200 bg-orange-50/50 rounded-2xl p-6 hover:shadow-md transition">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="text-2xl">⚠️</span>
+                                <h4 class="text-lg font-bold text-gray-800">注意事項</h4>
+                            </div>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-400 mt-0.5"></i> 請勿超過建議用量</li>
+                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-400 mt-0.5"></i> 孕婦、哺乳婦女請先請教醫師</li>
+                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-400 mt-0.5"></i> 服用期間請多補充水分</li>
+                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-orange-400 mt-0.5"></i> 若有不適請停止使用並請教醫師</li>
+                            </ul>
+                        </div>
+
+                        <div class="border border-red-200 bg-red-50/50 rounded-2xl p-6 hover:shadow-md transition">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="text-2xl">🚫</span>
+                                <h4 class="text-lg font-bold text-gray-800">禁忌症</h4>
+                            </div>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5"></i> 高鈣血症患者請謹慎使用</li>
+                                <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5"></i> 腸胃潰瘍者請先請教醫師</li>
+                                <li class="flex items-start gap-2"><i data-lucide="x" class="w-4 h-4 text-red-400 mt-0.5"></i> 正在服用其他藥物者請告知醫師</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 bg-yellow-50 text-yellow-800 px-4 py-3 rounded-xl text-xs flex items-center justify-center gap-2">
+                        <i data-lucide="info" class="w-4 h-4"></i>
+                        本產品為保健食品，不具有療效。如有特殊疾病或正在服用藥物，請先請教醫師或藥師。
+                    </div>
+                </div>
+
+                <div>
+                    <h3 id="reviewTitle" class="text-2xl font-bold text-primary font-serif mb-6 text-center">高鈣營養組合包 - 評價與心得</h3>
+                    
+                    <div class="bg-gray-50 rounded-full p-1 flex mb-8 max-w-md mx-auto">
+                        <button class="flex-1 py-2 rounded-full bg-white shadow-sm text-primary font-bold text-sm">查看評價</button>
+                        <button class="flex-1 py-2 rounded-full text-gray-500 font-medium text-sm hover:text-gray-700">撰寫評價</button>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-3xl p-8 mb-8 flex flex-col md:flex-row items-center gap-8 bg-white">
+                        <div class="text-center md:border-r md:pr-8 border-gray-100 w-full md:w-auto">
+                            <div class="text-6xl font-bold text-primary mb-2">0.0</div>
+                            <div class="flex justify-center gap-1 text-gray-300 mb-2">
+                                <i data-lucide="star" class="w-5 h-5"></i>
+                                <i data-lucide="star" class="w-5 h-5"></i>
+                                <i data-lucide="star" class="w-5 h-5"></i>
+                                <i data-lucide="star" class="w-5 h-5"></i>
+                                <i data-lucide="star" class="w-5 h-5"></i>
+                            </div>
+                            <p class="text-sm text-gray-500">基於 0 則評價</p>
+                        </div>
+                        <div class="flex-1 w-full space-y-2">
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-gray-500 w-8">5 星</span>
+                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary w-0"></div>
+                                </div>
+                                <span class="text-xs text-gray-400 w-4 text-right">0</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-gray-500 w-8">4 星</span>
+                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary w-0"></div>
+                                </div>
+                                <span class="text-xs text-gray-400 w-4 text-right">0</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-gray-500 w-8">3 星</span>
+                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary w-0"></div>
+                                </div>
+                                <span class="text-xs text-gray-400 w-4 text-right">0</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-gray-500 w-8">2 星</span>
+                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary w-0"></div>
+                                </div>
+                                <span class="text-xs text-gray-400 w-4 text-right">0</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs text-gray-500 w-8">1 星</span>
+                                <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="h-full bg-primary w-0"></div>
+                                </div>
+                                <span class="text-xs text-gray-400 w-4 text-right">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4 flex justify-between items-end">
+                        <h4 class="font-bold text-primary text-lg">顧客評價</h4>
+                        <select class="text-xs border-gray-200 rounded-lg px-3 py-1 bg-gray-50 text-gray-600 outline-none">
+                            <option>最新評價</option>
+                            <option>最高評價</option>
+                            <option>最低評價</option>
+                        </select>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-3xl p-12 text-center bg-white text-gray-400">
+                        目前還沒有評價，成為第一個評價此產品的人吧！
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="sticky bottom-0 bg-white p-6 border-t border-gray-100 flex justify-between items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
+                <div>
+                    <p class="text-xs text-gray-400 mb-1">總金額</p>
+                    <p class="text-2xl font-bold text-primary" id="modalPrice">NT$ 800</p>
+                </div>
+                <button class="bg-secondary text-white px-8 py-3 rounded-full font-bold hover:bg-[#4aa38a] transition shadow-md flex items-center gap-2" onclick="alert('已加入購物車！')">
+                    <i data-lucide="shopping-cart" class="w-5 h-5"></i> 立即購買
+                </button>
+            </div>
+
         </div>
     </div>
-    <script>lucide.createIcons();</script>
+
+    <script>
+        lucide.createIcons();
+
+        // 簡單的產品資料與 Modal 控制
+        const products = {
+            'calcium': {
+                title: '高鈣營養組合包',
+                price: 'NT$ 800'
+            },
+            'meal': {
+                title: '健康營養餐盒',
+                price: 'NT$ 180'
+            },
+            'supplement': {
+                title: '銀髮保健品',
+                price: 'NT$ 1,200'
+            }
+        };
+
+        const modal = document.getElementById('productModal');
+
+        function openProductModal(id) {
+            const data = products[id];
+            if (!data) return;
+
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('reviewTitle').innerText = `${data.title} - 評價與心得`;
+            document.getElementById('modalPrice').innerText = data.price;
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProductModal() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeProductModal();
+        });
+    </script>
 </body>
 </html>
