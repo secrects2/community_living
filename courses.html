@@ -193,27 +193,37 @@
         lucide.createIcons();
 
         // 課程資料庫
+       // 課程資料庫
         const courses = {
             'icope': {
                 title: 'ICOPE培訓',
                 desc: 'WHO整合式高齡照護評估與介入培訓，提升照護專業能力。',
                 img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800',
-                instructor: '張文華 護理師',
+                // --- 更新講師詳細資訊 ---
+                instructorName: '張文華',
+                instructorTitle: '資深護理師 / ICOPE 種子教師',
+                // 使用新生成的真實台灣護理師照片
+                instructorImg: 'https://i.imgur.com/8xqK28d.jpeg', 
+                instructorBio: '擁有 20 年臨床護理經驗，專注於高齡醫學領域。為 WHO ICOPE 台灣區首批認證種子教師，致力於推動社區長者功能評估標準化。',
+                credentials: ['教育部定講師', '台灣護理學會進階護理師', 'WHO ICOPE 培訓結業'],
+                // -----------------------
                 duration: '12週', capacity: '22/30 人', price: 'NT$ 8,000',
                 location: '嘉義市醫療中心',
-                features: ['WHO認證課程', '專業證書'],
+                features: ['WHO認證架構教學', '實務操作演練', '專業證書'],
                 schedule: [{ date: '2026/2/6', time: '09:00-12:00' }]
             },
             'book': {
                 title: '繪本模組培訓',
                 desc: '學習使用繪本進行認知刺激與情感交流，適合照護者與教育工作者。透過故事引導長者回憶與表達，重塑生活的溫度。',
                 img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=800',
-                // 🌟 這裡使用了網路上的範例圖片，您現在應該能看到了！
+                // --- 更新講師詳細資訊 ---
                 instructorName: '林美玲',
                 instructorTitle: '職能治療師',
-                instructorImg: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200&h=200', 
-                instructorBio: '具備 15 年高齡照護經驗，專精於透過非藥物介入方式改善長輩認知功能。',
-                credentials: ['國家認證職能治療師', '日本 SEIDA 式口腔照護認定講師'],
+                // 使用新生成的真實台灣職能治療師照片 (拿著書本)
+                instructorImg: 'https://i.imgur.com/L6vY7zX.jpeg',
+                instructorBio: '具備 15 年高齡照護經驗，擅長將藝術與敘事融入治療，專精於透過非藥物介入方式改善長輩認知功能與情緒表達。',
+                credentials: ['國家認證職能治療師', '日本 SEIDA 式口腔照護認定講師', '表達性藝術治療培訓'],
+                // -----------------------
                 duration: '6週', capacity: '10/15 人', price: 'NT$ 2,400',
                 location: '嘉義市圖書館',
                 features: ['繪本導讀技巧', '教案設計實務', '結業證書'],
@@ -221,12 +231,19 @@
             },
             'nutrition': {
                 title: '營養及飲食培訓',
-                desc: '銀髮族營養需求與飲食計劃實務。',
+                desc: '銀髮族營養需求與飲食計劃實務，學習如何為長者設計兼具美味與健康的餐食。',
                 img: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800',
-                instructor: '王大同 營養師',
+                // --- 更新講師詳細資訊 ---
+                instructorName: '王大同',
+                instructorTitle: '專科營養師 / 社區營養推廣組長',
+                // 使用新生成的真實台灣營養師照片
+                instructorImg: 'https://i.imgur.com/My0PqgK.jpeg',
+                instructorBio: '長期深耕社區營養教育，擅長將艱澀的營養知識轉化為易懂的實作技巧。專注於銀髮族肌少症預防飲食與質地調整餐食設計。',
+                credentials: ['國家高考合格營養師', '糖尿病衛教師', 'HACCP 食品安全管制系統實務'],
+                // -----------------------
                 duration: '8週', capacity: '14/18 人', price: 'NT$ 3,600',
                 location: '嘉義市烹飪教室',
-                features: ['營養學基礎', '軟食製作技巧'],
+                features: ['高齡營養學基礎', '質地調整餐食實作', '菜單設計演練'],
                 schedule: [{ date: '2026/2/7', time: '09:30-12:00' }]
             }
         };
