@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>平台運作模式流程圖 | 全齡共融賦能生態圈</title>
+    <title>平台運作模式 | 全齡共融賦能生態圈</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
     <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     
     <script>
         tailwind.config = {
@@ -18,53 +16,32 @@
                     colors: {
                         primary: '#1E3A8A',
                         secondary: '#4ECDC4',
-                        accent: '#F7DC6F'
+                        accent: '#F7DC6F',
+                        'soft-blue': '#EFF6FF'
                     }
                 }
             }
         }
-        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
     </script>
     <style>
-        /* 自定義流程圖樣式，使其更符合網站風格 */
-        .mermaid .node rect, .mermaid .node circle, .mermaid .node ellipse, .mermaid .node polygon, .mermaid .node path {
-            fill: #fff;
-            stroke: #1E3A8A;
-            stroke-width: 2px;
-        }
-        .mermaid .edgePath .path {
-            stroke: #94a3b8; /* gray-400 */
-            stroke-width: 2px;
-        }
-        .mermaid .edgeLabel {
-            background-color: #f8fafc; /* gray-50 */
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.875rem;
-            color: #475569; /* gray-600 */
-        }
-        .mermaid .cluster rect {
-            fill: #f0f9ff; /* blue-50 */
-            stroke: #bae6fd; /* blue-200 */
-        }
-        /* 強調核心平台 */
-        #mermaid-1 .node[id^="flowchart-core-"] rect {
-            fill: #1E3A8A !important;
-            stroke: #1E3A8A !important;
-            color: #fff !important;
-            font-weight: bold;
-        }
-        #mermaid-1 .node[id^="flowchart-core-"] span {
-            color: #fff !important;
+        /* 連接線動畫效果 */
+        .process-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #e2e8f0;
+            z-index: 0;
+            transform: translateY(-50%);
         }
         
-        /* 步驟說明卡片樣式 */
-        .step-card {
-            transition: all 0.3s ease;
-        }
-        .step-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.1);
+        @media (min-width: 768px) {
+            .process-step:hover .step-icon {
+                transform: scale(1.1);
+                background-color: #1E3A8A;
+                color: white;
+            }
         }
     </style>
 </head>
@@ -75,7 +52,7 @@
             <a href="index.html" class="flex items-center gap-2 font-bold text-primary text-lg hover:opacity-80 transition">
                 <i data-lucide="arrow-left"></i> 返回首頁
             </a>
-            <h1 class="text-xl font-bold text-gray-800 hidden md:block">平台運作模式解析</h1>
+            <h1 class="text-xl font-bold text-gray-800 hidden md:block">運作模式解析</h1>
             <a href="partner.html" class="bg-secondary text-white px-5 py-2 rounded-full font-bold hover:bg-[#3dbdb4] transition shadow-md text-sm">
                 成為加盟夥伴
             </a>
@@ -84,202 +61,213 @@
 
     <header class="bg-primary text-white py-16">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-3xl md:text-4xl font-bold mb-4">第三方平台運作模式流程圖</h1>
+            <span class="inline-block py-1 px-3 rounded-full bg-white/10 border border-white/20 text-sm font-bold mb-4 tracking-wider">Simple Workflow</span>
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">簡單 4 步驟，啟動社區轉型</h1>
             <p class="text-lg text-blue-100 max-w-3xl mx-auto leading-relaxed">
-                一圖看懂我們如何作為「核心中台」，串聯社區據點、居民與外部資源，打造共生共榮的生態系。
+                您不需要懂複雜的電腦系統。只要會用平板，就能連結資源、服務長輩，並為據點創造收入。
             </p>
         </div>
     </header>
 
-    <section class="py-16 overflow-x-auto">
+    <section class="py-20 overflow-hidden">
         <div class="container mx-auto px-4">
-            <div class="bg-white p-8 md:p-12 rounded-3xl shadow-lg border border-gray-100">
-                <div class="mermaid flex justify-center">
-                    %%{init: {'themeVariables': { 'fontFamily': 'Noto Sans TC, sans-serif', 'fontSize': '16px' }}}%%
-                    graph TD
-                        %% 定義節點
-                        C_USER[("C端 用戶\n(長輩/家屬)")]
-                        B_COMMUNITY["B端 社區據點\n(加盟夥伴)"]
-                        B_PROVIDER["B端 外部夥伴\n(供應商/醫療/政府)"]
-                        
-                        subgraph CORE["核心中台 (Community Living Loop)"]
-                            API_GATEWAY{"API 閘道器\n(整合介面)"}
-                            DATA_HUB[("數據中台\n(會員/活動/健康/訂單)")]
-                            AI_ENGINE["AI 智能引擎\n(媒合/分析/推薦)"]
-                            SERVICE_MODULES["服務模組\n(活動/採購/SOP/核銷)"]
-                        end
-                        
-                        %% 定義連結與互動
-                        
-                        %% C端互動
-                        C_USER --"1. 搜尋活動/服務"--> API_GATEWAY
-                        C_USER --"2. 報名/下單/記錄健康"--> API_GATEWAY
-                        API_GATEWAY --"推播通知/推薦"--> C_USER
-                        
-                        %% B端社區互動
-                        B_COMMUNITY --"3. 上架活動/管理名單"--> API_GATEWAY
-                        B_COMMUNITY --"4. 發起採購/核銷報表"--> API_GATEWAY
-                        API_GATEWAY --"營收分潤/營運數據"--> B_COMMUNITY
-                        
-                        %% B端外部夥伴互動
-                        B_PROVIDER --"5. 提供商品/專業服務"--> API_GATEWAY
-                        API_GATEWAY --"訂單拋轉/數據對接"--> B_PROVIDER
+            
+            <div class="relative hidden md:block max-w-6xl mx-auto mb-12">
+                <div class="process-line"></div>
+                <div class="grid grid-cols-4 gap-8 relative z-10">
+                    <div class="text-center process-step cursor-pointer group">
+                        <div class="step-icon w-20 h-20 bg-white border-4 border-primary text-primary rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg transition-all duration-300">1</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">導入系統</h3>
+                        <p class="text-gray-500 text-sm px-4">配置平板與帳號<br>志工輕鬆上手</p>
+                    </div>
+                    <div class="text-center process-step cursor-pointer group">
+                        <div class="step-icon w-20 h-20 bg-white border-4 border-secondary text-secondary rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg transition-all duration-300">2</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">上架服務</h3>
+                        <p class="text-gray-500 text-sm px-4">建立活動或團購<br>一鍵發布到 APP</p>
+                    </div>
+                    <div class="text-center process-step cursor-pointer group">
+                        <div class="step-icon w-20 h-20 bg-white border-4 border-accent text-accent-dark rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg transition-all duration-300">3</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">自動媒合</h3>
+                        <p class="text-gray-500 text-sm px-4">居民手機報名<br>系統自動統計</p>
+                    </div>
+                    <div class="text-center process-step cursor-pointer group">
+                        <div class="step-icon w-20 h-20 bg-white border-4 border-green-500 text-green-600 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-6 shadow-lg transition-all duration-300">4</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">獲益回饋</h3>
+                        <p class="text-gray-500 text-sm px-4">獲得營收分潤<br>掌握營運數據</p>
+                    </div>
+                </div>
+            </div>
 
-                        %% 核心內部運作
-                        API_GATEWAY <--> DATA_HUB
-                        DATA_HUB <--> AI_ENGINE
-                        AI_ENGINE --"優化建議"--> SERVICE_MODULES
-                        SERVICE_MODULES <--> API_GATEWAY
+            <div class="md:hidden space-y-8 relative">
+                <div class="absolute left-8 top-0 bottom-0 w-1 bg-gray-200 z-0"></div>
+                
+                <div class="relative z-10 flex gap-6 items-start">
+                    <div class="w-16 h-16 bg-white border-4 border-primary text-primary rounded-full flex items-center justify-center text-xl font-bold shadow-md shrink-0">1</div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex-1">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">導入系統</h3>
+                        <p class="text-gray-600">我們提供平板與教育訓練，只要會滑手機，志工就能輕鬆幫長輩簽到。</p>
+                    </div>
+                </div>
+                
+                <div class="relative z-10 flex gap-6 items-start">
+                    <div class="w-16 h-16 bg-white border-4 border-secondary text-secondary rounded-full flex items-center justify-center text-xl font-bold shadow-md shrink-0">2</div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex-1">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">上架服務</h3>
+                        <p class="text-gray-600">想辦包粽子比賽？想團購衛生紙？在後台簡單輸入，附近居民的手機 APP 馬上就能看到。</p>
+                    </div>
+                </div>
 
-                        %% 樣式類別定義
-                        classDef user fill:#fff0f0,stroke:#ffb6a3,stroke-width:2px;
-                        classDef community fill:#f0fff4,stroke:#4ecdc4,stroke-width:2px;
-                        classDef provider fill:#fffbe6,stroke:#f7dc6f,stroke-width:2px;
-                        classDef core fill:#1e3a8a,stroke:#1e3a8a,color:#fff;
+                <div class="relative z-10 flex gap-6 items-start">
+                    <div class="w-16 h-16 bg-white border-4 border-accent text-accent-dark rounded-full flex items-center justify-center text-xl font-bold shadow-md shrink-0">3</div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex-1">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">自動媒合</h3>
+                        <p class="text-gray-600">不用再打電話催人。系統自動通知有興趣的居民，報名、下單全部自動化處理。</p>
+                    </div>
+                </div>
 
-                        %% 應用樣式
-                        class C_USER user;
-                        class B_COMMUNITY community;
-                        class B_PROVIDER provider;
-                        class API_GATEWAY,DATA_HUB,AI_ENGINE,SERVICE_MODULES core;
+                <div class="relative z-10 flex gap-6 items-start">
+                    <div class="w-16 h-16 bg-white border-4 border-green-500 text-green-600 rounded-full flex items-center justify-center text-xl font-bold shadow-md shrink-0">4</div>
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex-1">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">獲益回饋</h3>
+                        <p class="text-gray-600">月底自動結算。活動費、團購分潤直接匯入，還有完整的報表讓您輕鬆核銷。</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-16 bg-soft-blue">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">實際情境：舉辦一場「地板滾球」活動</h2>
+                <p class="text-gray-600">看看平台如何幫您省下 80% 的行政時間</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 opacity-70 hover:opacity-100 transition">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center"><i data-lucide="x" class="text-gray-500"></i></div>
+                        <h3 class="font-bold text-gray-500 text-lg">傳統做法</h3>
+                    </div>
+                    <ul class="space-y-4 text-gray-500 text-sm">
+                        <li class="flex gap-2"><i data-lucide="minus" class="w-4 h-4 mt-1"></i> 手寫海報貼佈告欄</li>
+                        <li class="flex gap-2"><i data-lucide="minus" class="w-4 h-4 mt-1"></i> 志工打電話一個個通知</li>
+                        <li class="flex gap-2"><i data-lucide="minus" class="w-4 h-4 mt-1"></i> 紙本簽到，資料容易不見</li>
+                        <li class="flex gap-2"><i data-lucide="minus" class="w-4 h-4 mt-1"></i> 活動結束後，手動統計寫報告</li>
+                    </ul>
+                </div>
+
+                <div class="hidden md:flex items-center justify-center">
+                    <i data-lucide="arrow-right" class="w-12 h-12 text-primary animate-pulse"></i>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-xl border-2 border-secondary transform md:scale-105">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-secondary rounded-full flex items-center justify-center"><i data-lucide="check" class="text-white"></i></div>
+                        <h3 class="font-bold text-primary text-lg">平台做法</h3>
+                    </div>
+                    <ul class="space-y-4 text-gray-800 font-medium">
+                        <li class="flex gap-2"><i data-lucide="smartphone" class="w-5 h-5 text-secondary mt-0.5"></i> <span>APP 推播，3秒通知全社區</span></li>
+                        <li class="flex gap-2"><i data-lucide="users" class="w-5 h-5 text-secondary mt-0.5"></i> <span>居民線上報名，即時掌握人數</span></li>
+                        <li class="flex gap-2"><i data-lucide="qr-code" class="w-5 h-5 text-secondary mt-0.5"></i> <span>掃描 QR Code 簽到，自動記錄</span></li>
+                        <li class="flex gap-2"><i data-lucide="file-bar-chart" class="w-5 h-5 text-secondary mt-0.5"></i> <span>系統自動產出成果報表與照片</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+             <div class="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">已經有慣用的系統？<br><span class="text-primary">沒問題，我們幫您整合！</span></h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        我們知道改變習慣很難。所以，我們的平台就像一個「萬用插座」，可以連接您現在正在用的工具。
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center shrink-0 text-green-600"><i data-lucide="file-spreadsheet"></i></div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Google 表單/試算表</h4>
+                                <p class="text-sm text-gray-500">習慣用 Google 表單報名？資料可以自動匯入我們的平台，不用重新 Key 單。</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center shrink-0 text-orange-600"><i data-lucide="shopping-cart"></i></div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">採購與 POS 系統</h4>
+                                <p class="text-sm text-gray-500">直接對接全聯、家樂福等供應商系統，團購下單就像網購一樣簡單。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100 text-center">
+                        <div class="w-24 h-24 bg-primary text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-8 shadow-xl relative z-10">
+                            平台<br>核心
+                        </div>
+                        
+                        <div class="grid grid-cols-3 gap-4 relative">
+                            <div class="absolute left-1/2 top-[-20px] w-[2px] h-[40px] bg-gray-300 -translate-x-1/2"></div>
+                             <div class="absolute left-[20%] top-[-10px] w-[2px] h-[30px] bg-gray-300 rotate-[-45deg]"></div>
+                             <div class="absolute right-[20%] top-[-10px] w-[2px] h-[30px] bg-gray-300 rotate-[45deg]"></div>
+
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" class="w-8 h-8 mx-auto mb-2">
+                                <span class="text-xs font-bold text-gray-600">LINE 群組</span>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" class="w-12 h-8 mx-auto mb-2 object-contain">
+                                <span class="text-xs font-bold text-gray-600">表單/試算表</span>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-200">
+                                <i data-lucide="store" class="w-8 h-8 text-gray-600 mx-auto mb-2"></i>
+                                <span class="text-xs font-bold text-gray-600">既有 POS</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800">關鍵流程拆解說明</h2>
-                <p class="text-gray-600 mt-2">深入了解每個環節如何協作，創造價值</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-coral/30 step-card relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-coral/10 rounded-bl-full -mr-4 -mt-4"></div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-coral/20 text-coral rounded-full flex items-center justify-center font-bold text-xl">C</div>
-                        <h3 class="text-xl font-bold text-gray-800">用戶需求與互動</h3>
-                    </div>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-start gap-2">
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-coral shrink-0 mt-0.5"></i>
-                            <span>長輩或家屬透過 APP/網頁，搜尋附近的據點活動或所需服務。</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-coral shrink-0 mt-0.5"></i>
-                            <span>線上完成報名、團購下單，或透過 IoT 設備上傳健康數據。</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-secondary/30 step-card relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-secondary/10 rounded-bl-full -mr-4 -mt-4"></div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-secondary/20 text-secondary rounded-full flex items-center justify-center font-bold text-xl">B</div>
-                        <h3 class="text-xl font-bold text-gray-800">社區據點營運</h3>
-                    </div>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-start gap-2">
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-secondary shrink-0 mt-0.5"></i>
-                            <span>據點人員使用後台管理系統，上架活動、管理報名名單與志工人力。</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-secondary shrink-0 mt-0.5"></i>
-                            <span>發起集體採購需求，並一鍵匯出營收與核銷所需報表，簡化行政。</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-primary/30 step-card relative overflow-hidden lg:row-span-2">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-primary/10 rounded-bl-full -mr-4 -mt-4"></div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-xl"><i data-lucide="cpu" class="w-6 h-6"></i></div>
-                        <h3 class="text-xl font-bold text-gray-800">核心中台賦能</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">作為生態系的「大腦」，處理所有數據流與邏輯運算。</p>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-start gap-2">
-                            <i data-lucide="workflow" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i>
-                            <div>
-                                <span class="font-bold">API 閘道器：</span>
-                                <span>標準化介面，串接內外部所有系統，確保資訊即時同步。</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i data-lucide="database" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i>
-                            <div>
-                                <span class="font-bold">數據中台：</span>
-                                <span>統一存儲會員輪廓、活動記錄、健康數據與交易訂單，打破資料孤島。</span>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i data-lucide="brain-circuit" class="w-5 h-5 text-primary shrink-0 mt-0.5"></i>
-                            <div>
-                                <span class="font-bold">AI 智能引擎：</span>
-                                <span>分析數據，提供精準的活動推薦、健康預警與營運優化建議。</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-accent/30 step-card relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-accent/10 rounded-bl-full -mr-4 -mt-4"></div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-accent/20 text-accent-dark rounded-full flex items-center justify-center font-bold text-xl">P</div>
-                        <h3 class="text-xl font-bold text-gray-800">外部資源對接</h3>
-                    </div>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-start gap-2">
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-accent-dark shrink-0 mt-0.5"></i>
-                            <span>供應商透過 API 接收採購訂單，進行出貨配送。</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-accent-dark shrink-0 mt-0.5"></i>
-                            <span>醫療院所或政府單位可對接健康數據（需授權），提供更專業的照護服務。</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-6 rounded-2xl shadow-sm border border-green-200 step-card relative overflow-hidden">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-green-100 rounded-bl-full -mr-4 -mt-4"></div>
-                    <div class="flex items-center gap-4 mb-4">
-                        <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold text-xl"><i data-lucide="refresh-cw" class="w-6 h-6"></i></div>
-                        <h3 class="text-xl font-bold text-gray-800">生態系價值循環</h3>
-                    </div>
-                     <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-start gap-2">
-                            <i data-lucide="trending-up" class="w-5 h-5 text-green-600 shrink-0 mt-0.5"></i>
-                            <span>平台根據交易與服務量，自動計算並分配營收分潤給社區據點。</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i data-lucide="bar-chart-3" class="w-5 h-5 text-green-600 shrink-0 mt-0.5"></i>
-                            <span>回饋營運數據儀表板，幫助據點持續優化服務品質與經營策略。</span>
-                        </li>
-                    </ul>
-                </div>
-
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-2xl font-bold text-center mb-10">常見問題</h2>
+            <div class="space-y-4">
+                <details class="bg-white p-6 rounded-2xl shadow-sm cursor-pointer group">
+                    <summary class="font-bold text-gray-800 flex justify-between items-center list-none">
+                        志工年紀大，不會用平板怎麼辦？
+                        <i data-lucide="chevron-down" class="group-open:rotate-180 transition"></i>
+                    </summary>
+                    <p class="text-gray-600 mt-4 text-sm leading-relaxed">
+                        別擔心！我們的系統設計專為高齡友善，字體大、按鈕清楚。而且我們會有專人到現場進行「手把手教學」，直到志工學會為止。
+                    </p>
+                </details>
+                <details class="bg-white p-6 rounded-2xl shadow-sm cursor-pointer group">
+                    <summary class="font-bold text-gray-800 flex justify-between items-center list-none">
+                        加入平台需要付費嗎？
+                        <i data-lucide="chevron-down" class="group-open:rotate-180 transition"></i>
+                    </summary>
+                    <p class="text-gray-600 mt-4 text-sm leading-relaxed">
+                        我們採用「共好分潤制」。基礎系統使用是免費的，只有當您透過平台產生營收（如團購、付費課程）時，我們才會收取小比例的手續費。
+                    </p>
+                </details>
             </div>
         </div>
     </section>
 
-    <section class="py-20 bg-primary relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-            <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-white/10 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-secondary/20 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div class="container mx-auto px-4 text-center relative z-10">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">準備好加入這個共融生態系了嗎？</h2>
-            <p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
-                讓我們攜手合作，透過科技賦能，為您的社區據點創造永續價值，為長輩帶來更好的生活。
-            </p>
+    <section class="py-20 bg-primary text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-white mb-6">心動了嗎？讓您的社區也升級吧！</h2>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="partner.html" class="bg-secondary text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-[#3dbdb4] transition shadow-lg flex items-center justify-center gap-2">
-                    <i data-lucide="file-text" class="w-5 h-5"></i> 了解加盟方案詳情
+                <a href="partner.html" class="bg-secondary text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-[#3dbdb4] transition shadow-lg">
+                    填寫加盟意願表
                 </a>
-                <a href="contact.html" class="bg-white text-primary px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition shadow-lg flex items-center justify-center gap-2">
-                    <i data-lucide="mail" class="w-5 h-5"></i> 預約專人諮詢
+                <a href="#" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white/10 transition">
+                    下載詳細說明書 (PDF)
                 </a>
             </div>
         </div>
@@ -296,7 +284,6 @@
     </footer>
 
     <script>
-        // 初始化 Icons
         lucide.createIcons();
     </script>
 </body>
