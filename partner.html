@@ -3,509 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>社區據點賦能計畫 | 全齡共融賦能生態圈</title>
+    <title>成為合作夥伴 | 全齡共融賦能生態圈</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script src="https://unpkg.com/lucide@latest"></script>
     
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: { sans: ['Noto Sans TC', 'sans-serif'], serif: ['Noto Serif JP', 'serif'] },
                     colors: {
-                        primary: '#1E3A8A', // 深藍
-                        secondary: '#4ECDC4', // 亮綠
-                        accent: '#F7DC6F', // 黃色
-                        dark: '#0F172A' // 深灰底
+                        primary: '#1E3A8A',
+                        secondary: '#4ECDC4',
+                        accent: '#F7DC6F',
+                        'soft-blue': '#EFF6FF'
                     }
                 }
             }
         }
     </script>
-    <style>
-        /* Hero 背景圖設置 */
-        .hero-bg {
-            background-image: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.75)), url('images/partner-hero.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        /* 後台側邊欄激活樣式 */
-        .dashboard-active {
-            background-color: #1E293B; /* slate-800 */
-            color: white;
-        }
-    </style>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans">
 
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100">
         <div class="container mx-auto px-4 h-16 flex items-center justify-between">
             <a href="index.html" class="flex items-center gap-2 font-bold text-primary text-lg hover:opacity-80 transition">
-                <i data-lucide="arrow-left"></i> 返回平台首頁
+                <i data-lucide="arrow-left"></i> 返回首頁
             </a>
-            <div class="flex gap-4">
-                <button class="bg-secondary text-white px-6 py-2 rounded-full font-bold hover:bg-[#3dbdb4] transition shadow-md">申請據點轉型</button>
+            <div class="hidden md:flex items-center gap-1 text-sm font-bold text-gray-500">
+                <span class="text-secondary">合作夥伴招募</span>
+                <span class="mx-2">/</span>
+                <span>申請表單</span>
             </div>
+            <a href="#apply-form" class="bg-primary text-white px-5 py-2 rounded-full font-bold hover:bg-primary/90 transition shadow-md text-sm">
+                立即填寫申請
+            </a>
         </div>
     </nav>
 
-    <header class="hero-bg text-white py-24 md:py-32">
-        <div class="container mx-auto px-4 text-center relative z-10">
-            <span class="inline-block py-1.5 px-4 rounded-full bg-secondary/20 border border-secondary/50 text-secondary text-sm font-bold mb-6 tracking-wider">社區據點轉型賦能計畫</span>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight drop-shadow-sm">
-                讓社區據點升級為<br>「全齡健康轉運站」
-            </h1>
-            <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed drop-shadow-sm">
-                擺脫單純依賴補助的經營困境。透過系統化賦能，解決「志工培訓」、「活動帶領」、「自主財源」三大難題。<br>
-                讓您的社區發展協會，成為長輩最信賴的第二個家。
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="document.getElementById('demo-section').scrollIntoView({behavior: 'smooth'})" class="bg-accent text-primary px-8 py-4 rounded-full text-lg font-bold hover:bg-yellow-300 transition shadow-lg flex items-center justify-center gap-2 group">
-                    <i data-lucide="play-circle" class="group-hover:scale-110 transition"></i> 體驗據點管理後台
-                </button>
-                <button class="bg-transparent border-2 border-white px-8 py-4 rounded-full text-lg font-bold hover:bg-white/10 transition">
-                    預約轉型諮詢
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <section class="py-24 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-20">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">為什麼據點需要轉型？</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">我們懂社區經營的痛，用科技與制度幫您創造永續價值</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center mb-24">
-                <div class="order-2 md:order-1 relative group">
-                    <div class="absolute inset-0 bg-secondary/10 rounded-3xl transform rotate-3 group-hover:rotate-1 transition"></div>
-                    <img src="images/partner-training.jpg" alt="SOP 培訓情境" class="rounded-3xl shadow-2xl relative z-10 w-full object-cover h-[400px]">
-                </div>
-                <div class="order-1 md:order-2">
-                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="book-open-check" class="w-8 h-8 text-primary"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold mb-6 text-primary">服務/課程標準化</h3>
-                    <p class="text-gray-600 mb-8 text-lg leading-relaxed">活動內容總是千篇一律？志工帶領技巧參差不齊？導入日本 SEIDA 職人級 SOP，將專業照護拆解為易學的數位教案，讓在地志工也能變身專業活動帶領員。</p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4 text-secondary"></i></div>
-                            <span class="text-lg text-gray-700">數位化教案庫，豐富據點活動內容</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4 text-secondary"></i></div>
-                            <span class="text-lg text-gray-700">賦能在地志工，考取證照提升專業感</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center mb-24">
-                <div class="order-2 md:order-2 relative group">
-                    <div class="absolute inset-0 bg-primary/10 rounded-3xl transform -rotate-3 group-hover:-rotate-1 transition"></div>
-                    <img src="images/partner-dashboard-preview.jpg" alt="管理後台示意圖" class="rounded-3xl shadow-2xl relative z-10 w-full object-cover h-[400px]">
-                </div>
-                <div class="order-1 md:order-1">
-                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="users" class="w-8 h-8 text-green-600"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold mb-6 text-primary">人員與長輩管理</h3>
-                    <p class="text-gray-600 mb-8 text-lg leading-relaxed">還在用紙本簽到？搞不清楚哪位長輩需要什麼服務？透過據點管理中台，數位化管理長輩健康數據與出席狀況，並有效調度照服員與志工人力。</p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4 text-secondary"></i></div>
-                            <span class="text-lg text-gray-700">長輩 ICOPE 健康數據追蹤與分析</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4 text-secondary"></i></div>
-                            <span class="text-lg text-gray-700">服務人員層級管理 (據點/照服員/志工)</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
-                <div class="order-2 md:order-1 relative group">
-                    <div class="absolute inset-0 bg-accent/20 rounded-3xl transform rotate-3 group-hover:rotate-1 transition"></div>
-                    <img src="images/partner-revenue.jpg" alt="營收成長示意" class="rounded-3xl shadow-2xl relative z-10 w-full object-cover h-[400px]">
-                </div>
-                <div class="order-1 md:order-2">
-                    <div class="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="coins" class="w-8 h-8 text-yellow-600"></i>
-                    </div>
-                    <h3 class="text-3xl font-bold mb-6 text-primary">創造永續自主財源</h3>
-                    <p class="text-gray-600 mb-8 text-lg leading-relaxed">擔心補助款不穩定？系統導入多元變現機制（產品銷售、專業課程、輔具租借），自動計算分潤（平台/據點/人員），為社區創造穩定的自主營收。</p>
-                    <ul class="space-y-4">
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4 text-secondary"></i></div>
-                            <span class="text-lg text-gray-700">透明化的返點分潤機制</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <div class="w-6 h-6 rounded-full bg-secondary/20 flex items-center justify-center shrink-0 mt-0.5"><i data-lucide="check" class="w-4 h-4 text-secondary"></i></div>
-                            <span class="text-lg text-gray-700">據點營收報表一鍵匯出，核銷更輕鬆</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-   <section id="demo-section" class="py-24 bg-dark text-white relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
+    <div class="pt-16">
         
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-16">
-                <span class="text-secondary font-bold tracking-[0.2em] uppercase text-sm mb-4 block">Interactive Demo</span>
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">強大的據點管理中台</h2>
-                <p class="text-xl text-gray-400 max-w-2xl mx-auto">點擊左側選單，體驗如何輕鬆管理您的社區據點與團隊</p>
-            </div>
-
-            <div class="bg-white text-gray-900 rounded-2xl shadow-2xl overflow-hidden max-w-6xl mx-auto border border-gray-700/50 backdrop-blur-sm">
-                <div class="bg-gray-100 border-b border-gray-200 px-4 py-3 flex items-center gap-4">
-                    <div class="flex gap-2">
-                        <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                        <div class="w-3 h-3 rounded-full bg-green-400"></div>
+        <header class="bg-primary text-white py-20 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+            <div class="container mx-auto px-4 relative z-10 text-center">
+                <span class="inline-block py-1 px-3 rounded-full bg-white/10 text-secondary border border-secondary/30 text-xs font-bold mb-4 tracking-wider uppercase">Join Our Ecosystem</span>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                    尋找願意改變社區的<br><span class="text-accent">領航者與行動家</span>
+                </h1>
+                <p class="text-lg text-blue-100 max-w-2xl mx-auto mb-8">
+                    無論您是擁有空間的社區據點，或是擁有專業技術的治療師。<br>
+                    加入全齡共融賦能生態圈，我們提供系統、課程與商業模式，助您轉型升級。
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm">
+                        <i data-lucide="check-circle" class="text-secondary w-5 h-5"></i>
+                        <span>提供數位系統</span>
                     </div>
-                    <div class="flex-1 bg-white rounded-md px-4 py-1 text-center text-xs text-gray-500 font-mono border border-gray-200 shadow-sm">
-                        https://hub.community-loop.com/dashboard
+                    <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm">
+                        <i data-lucide="check-circle" class="text-secondary w-5 h-5"></i>
+                        <span>導入專業課程</span>
                     </div>
-                </div>
-
-                <div class="flex h-[700px]">
-                    <div class="w-72 bg-slate-900 text-slate-300 flex flex-col p-6">
-                        <div class="font-bold text-white text-xl mb-10 px-2 flex items-center gap-3">
-                            <div class="w-8 h-8 bg-secondary rounded-lg flex items-center justify-center"><i data-lucide="layout-grid" class="text-white w-5 h-5"></i></div>
-                            據點管理
-                        </div>
-                        <nav class="space-y-2 flex-1 overflow-y-auto">
-                            <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">核心功能</p>
-                            <button onclick="switchDemoTab('team')" id="tab-team" class="w-full flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-slate-800 hover:text-white transition text-left font-medium dashboard-active">
-                                <i data-lucide="users" class="w-5 h-5"></i> 人員層級管理
-                            </button>
-                            <button onclick="switchDemoTab('training')" id="tab-training" class="w-full flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-slate-800 hover:text-white transition text-left font-medium">
-                                <i data-lucide="graduation-cap" class="w-5 h-5"></i> 培訓認證狀況
-                            </button>
-                            <button onclick="switchDemoTab('revenue')" id="tab-revenue" class="w-full flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-slate-800 hover:text-white transition text-left font-medium">
-                                <i data-lucide="pie-chart" class="w-5 h-5"></i> 營收與返點
-                            </button>
-
-                            <p class="px-4 text-xs font-bold text-slate-500 uppercase tracking-wider mb-4 mt-8">加值服務</p>
-                            <button onclick="switchDemoTab('logistics')" id="tab-logistics" class="w-full flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-slate-800 hover:text-white transition text-left font-medium">
-                                <i data-lucide="package-check" class="w-5 h-5"></i> 零庫存物流管理
-                            </button>
-                            <button onclick="switchDemoTab('matching')" id="tab-matching" class="w-full flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-slate-800 hover:text-white transition text-left font-medium">
-                                <i data-lucide="sparkles" class="w-5 h-5"></i> 服務媒合推薦
-                            </button>
-                        </nav>
-                        <div class="mt-auto pt-6 border-t border-slate-800">
-                            <div class="flex items-center gap-4 px-2 p-3 rounded-xl bg-slate-800/50">
-                                <div class="w-12 h-12 rounded-full bg-gray-600 border-2 border-secondary overflow-hidden">
-                                    <img src="images/caregiver-1.jpg" class="w-full h-full object-cover">
-                                </div>
-                                <div>
-                                    <p class="text-white text-sm font-bold">虎尾社區據點</p>
-                                    <p class="text-xs text-slate-500 mt-1">站長：王理事長</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm">
+                        <i data-lucide="check-circle" class="text-secondary w-5 h-5"></i>
+                        <span>創造營收分潤</span>
                     </div>
-
-                    <div class="flex-1 bg-gray-50 p-10 overflow-y-auto" id="demo-content">
-                        </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </header>
 
-    <script>
-        lucide.createIcons();
-
-        // --- Demo Dashboard Logic ---
-        const demoViews = {
-            'team': `
-                <div class="flex justify-between items-center mb-8"><div><h3 class="text-3xl font-bold text-gray-800 mb-2">人員層級管理</h3><p class="text-gray-500">管理據點內的照服員、志工與微型創業者</p></div><button class="bg-primary text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-blue-800 flex items-center gap-2 shadow-sm transition"><i data-lucide="user-plus" class="w-5 h-5"></i> 新增人員</button></div><div class="grid grid-cols-3 gap-6 mb-8"><div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4"><div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-primary"><i data-lucide="users" class="w-6 h-6"></i></div><div><p class="text-sm text-gray-500 mb-1">總人員數</p><h4 class="text-2xl font-bold">12 人</h4></div></div><div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4"><div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center text-green-600"><i data-lucide="activity" class="w-6 h-6"></i></div><div><p class="text-sm text-gray-500 mb-1">目前出勤</p><h4 class="text-2xl font-bold text-green-600">8 人</h4></div></div><div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex items-center gap-4"><div class="w-12 h-12 bg-yellow-50 rounded-xl flex items-center justify-center text-yellow-600"><i data-lucide="coffee" class="w-6 h-6"></i></div><div><p class="text-sm text-gray-500 mb-1">待命/培訓</p><h4 class="text-2xl font-bold">4 人</h4></div></div></div><div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden"><table class="w-full text-left"><thead class="bg-gray-50 border-b border-gray-100"><tr><th class="p-5 text-sm font-bold text-gray-600">姓名</th><th class="p-5 text-sm font-bold text-gray-600">角色層級</th><th class="p-5 text-sm font-bold text-gray-600">目前狀態</th><th class="p-5 text-sm font-bold text-gray-600">本月服務時數</th><th class="p-5 text-sm font-bold text-gray-600 text-right">操作</th></tr></thead><tbody class="divide-y divide-gray-50"><tr class="hover:bg-blue-50/50 transition"><td class="p-5 flex items-center gap-4"><img src="images/caregiver-1.jpg" class="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"><div><p class="font-bold text-gray-800 text-lg">李秀英</p><p class="text-xs text-gray-400">ID: #Vol001</p></div></td><td class="p-5"><span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-700"><i data-lucide="heart-handshake" class="w-4 h-4"></i> 資深活動帶領員</span></td><td class="p-5"><span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-bold bg-green-100 text-green-700"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span> 帶活動中</span><p class="text-xs text-gray-500 mt-1">虎尾活動中心</p></td><td class="p-5"><p class="text-lg font-bold">45 小時</p><p class="text-xs text-green-500">好評率 98%</p></td><td class="p-5 text-right"><button class="text-primary hover:bg-blue-50 p-2 rounded-lg transition"><i data-lucide="more-horizontal"></i></button></td></tr><tr class="hover:bg-blue-50/50 transition"><td class="p-5 flex items-center gap-4"><img src="images/caregiver-2.jpg" class="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"><div><p class="font-bold text-gray-800 text-lg">陳志豪</p><p class="text-xs text-gray-400">ID: #Pro005</p></div></td><td class="p-5"><span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium bg-purple-100 text-purple-700"><i data-lucide="heart-pulse" class="w-4 h-4"></i> 專業照服員</span></td><td class="p-5"><span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-bold bg-gray-100 text-gray-600"><span class="w-2 h-2 bg-gray-400 rounded-full"></span> 待命</span><p class="text-xs text-gray-500 mt-1">最後打卡: 10分鐘前</p></td><td class="p-5"><p class="text-lg font-bold">120 小時</p><p class="text-xs text-green-500">好評率 99%</p></td><td class="p-5 text-right"><button class="text-primary hover:bg-blue-50 p-2 rounded-lg transition"><i data-lucide="more-horizontal"></i></button></td></tr></tbody></table></div>
-            `,
-            'training': `
-                <div class="flex justify-between items-center mb-8"><div><h3 class="text-3xl font-bold text-gray-800 mb-2">培訓認證狀況</h3><p class="text-gray-500">追蹤據點人員的專業證照與 SOP 學習進度，確保服務品質</p></div><div class="bg-white border border-gray-200 rounded-xl px-6 py-3 flex items-center gap-4 shadow-sm"><div class="text-right"><p class="text-sm text-gray-500">據點認證合格率</p><h4 class="text-2xl font-bold text-primary">85%</h4></div><div class="w-16 h-16 relative"><svg viewBox="0 0 36 36" class="w-full h-full text-secondary transform -rotate-90"><path stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e2e8f0" stroke-width="3"/><path stroke-dasharray="85, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div></div></div><div class="grid md:grid-cols-2 gap-8"><div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition"><div class="flex justify-between items-start mb-6"><div><h4 class="font-bold text-xl mb-2 flex items-center gap-2"><i data-lucide="book-open" class="text-secondary w-6 h-6"></i> 口腔照護引導 SOP</h4><p class="text-sm text-gray-500">餐前口腔運動標準流程</p></div><span class="bg-blue-100 text-primary text-xs font-bold px-3 py-1 rounded-full">志工必修</span></div><div class="mb-4 flex justify-between text-sm font-medium"><span>完課人數</span><span class="font-bold">4 / 5 人</span></div><div class="w-full bg-gray-100 rounded-full h-4 mb-6 p-1"><div class="bg-secondary h-full rounded-full relative" style="width: 80%"><span class="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] font-bold text-white">80%</span></div></div><div class="bg-red-50 p-4 rounded-xl flex items-start gap-3 mb-6"><i data-lucide="alert-circle" class="w-5 h-5 text-red-500 mt-0.5"></i><div><p class="text-sm font-bold text-red-700">未完課人員：1 人</p><p class="text-xs text-red-600 mt-1">林曉梅 (進度 40%) - 請督促完成</p></div></div><button class="w-full py-3 border-2 border-primary text-primary rounded-xl text-sm font-bold hover:bg-primary hover:text-white transition flex items-center justify-center gap-2"><i data-lucide="bell"></i> 發送提醒通知</button></div><div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition"><div class="flex justify-between items-start mb-6"><div><h4 class="font-bold text-xl mb-2 flex items-center gap-2"><i data-lucide="activity" class="text-green-600 w-6 h-6"></i> 防跌肌力訓練 SOP</h4><p class="text-sm text-gray-500">安全運動帶領規範</p></div><span class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full">已認證</span></div><div class="mb-4 flex justify-between text-sm font-medium"><span>完課人數</span><span class="font-bold">5 / 5 人</span></div><div class="w-full bg-gray-100 rounded-full h-4 mb-6 p-1"><div class="bg-green-500 h-full rounded-full relative" style="width: 100%"><span class="absolute right-2 top-1/2 -translate-y-1/2 text-[10px] font-bold text-white">100%</span></div></div><div class="bg-green-50 p-4 rounded-xl flex items-start gap-3 mb-6"><i data-lucide="check-circle" class="w-5 h-5 text-green-600 mt-0.5"></i><div><p class="text-sm font-bold text-green-700">全員考核通過</p><p class="text-xs text-green-600 mt-1">下次複訓日期：2025/06/15</p></div></div><button class="w-full py-3 border border-gray-200 bg-gray-50 text-gray-400 rounded-xl text-sm font-bold cursor-not-allowed flex items-center justify-center gap-2"><i data-lucide="check"></i> 狀態良好</button></div></div>
-            `,
-            'revenue': `
-                <div class="flex justify-between items-center mb-8"><div><h3 class="text-3xl font-bold text-gray-800 mb-2">營收與返點報表</h3><p class="text-gray-500">即時掌握據點自主營收（產品/課程/輔具）與分潤金額</p></div><div class="flex gap-4"><select class="border border-gray-300 rounded-xl px-4 py-2 text-sm bg-white focus:ring-2 focus:ring-primary outline-none font-medium"><option>最近 7 天</option><option>本月</option><option>上月</option></select><button class="bg-green-600 text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-green-700 flex items-center gap-2 shadow-sm transition"><i data-lucide="dollar-sign" class="w-5 h-5"></i> 申請提領</button></div></div><div class="grid grid-cols-3 gap-8 mb-10"><div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden"><div class="absolute right-0 top-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-1/2 translate-x-1/2"></div><p class="text-sm text-gray-500 font-bold mb-2 flex items-center gap-2"><i data-lucide="bar-chart-3" class="w-4 h-4"></i> 今日據點總營收</p><h3 class="text-4xl font-bold text-gray-900 mb-2">$12,500</h3><p class="text-sm text-green-600 font-bold flex items-center gap-1"><i data-lucide="trending-up" class="w-4 h-4"></i> 15% <span class="text-gray-400 font-normal">較昨日</span></p></div><div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden"><div class="absolute right-0 top-0 w-32 h-32 bg-accent/10 rounded-full -translate-y-1/2 translate-x-1/2"></div><p class="text-sm text-gray-500 font-bold mb-2 flex items-center gap-2"><i data-lucide="pie-chart" class="w-4 h-4"></i> 據點自主財源分潤 (30%)</p><h3 class="text-4xl font-bold text-primary mb-2">$3,750</h3><p class="text-sm text-orange-500 font-bold flex items-center gap-1"><i data-lucide="clock" class="w-4 h-4"></i> 待結算 <span class="text-gray-400 font-normal">(預計明日入帳)</span></p></div><div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm relative overflow-hidden"><div class="absolute right-0 top-0 w-32 h-32 bg-green-500/5 rounded-full -translate-y-1/2 translate-x-1/2"></div><p class="text-sm text-gray-500 font-bold mb-2 flex items-center gap-2"><i data-lucide="users" class="w-4 h-4"></i> 執行人員分潤 (60%)</p><h3 class="text-4xl font-bold text-gray-600 mb-2">$7,500</h3><p class="text-sm text-gray-500 font-bold flex items-center gap-1"><i data-lucide="check-circle-2" class="w-4 h-4 text-green-600"></i> 系統已自動分配</p></div></div><div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm"><div class="flex justify-between items-center mb-6"><h4 class="font-bold text-xl text-gray-800">營收來源分析</h4><div class="flex gap-4 text-sm font-bold"><div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-primary"></span> 總營收</div><div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-accent"></span> 據點分潤</div></div></div><div class="h-80"><canvas id="revenueChart"></canvas></div></div>
-            `,
-            // 🔍 新增功能 1：零庫存物流管理 View
-            'logistics': `
-                <div class="flex justify-between items-center mb-8">
-                    <div>
-                        <h3 class="text-3xl font-bold text-gray-800 mb-2">零庫存物流管理</h3>
-                        <p class="text-gray-500">追蹤會員訂購商品（輔具/營養品）的到貨與取貨狀態</p>
-                    </div>
-                    <div class="flex gap-3">
-                        <span class="px-4 py-2 bg-blue-50 text-primary rounded-lg text-sm font-bold flex items-center gap-2"><i data-lucide="truck" class="w-4 h-4"></i> 今日配送中: 3 件</span>
-                        <span class="px-4 py-2 bg-orange-50 text-orange-600 rounded-lg text-sm font-bold flex items-center gap-2"><i data-lucide="package" class="w-4 h-4"></i> 待取貨: 5 件</span>
-                    </div>
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">我們正在尋找這樣的夥伴</h2>
+                    <p class="text-gray-600">生態系雙軌招募中，請選擇適合您的角色</p>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-                    <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
-                        <h4 class="font-bold text-gray-700">近期訂單列表</h4>
-                        <div class="relative">
-                            <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                            <input type="text" placeholder="搜尋會員或訂單號..." class="pl-9 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none">
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-all group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                        <div class="relative z-10">
+                            <div class="w-14 h-14 bg-primary text-white rounded-xl flex items-center justify-center mb-6 text-2xl font-bold">A</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">場域營運夥伴</h3>
+                            <p class="text-primary font-bold text-sm mb-4">適合：社區發展協會、老人食堂、藥局、診所</p>
+                            <hr class="border-gray-100 mb-4">
+                            <ul class="space-y-3 text-gray-600 mb-8">
+                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-green-500 mt-0.5"></i> 擁有可容納 15-20 人之活動空間</li>
+                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-green-500 mt-0.5"></i> 希望導入數位化管理與多元課程</li>
+                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-green-500 mt-0.5"></i> 願意配合導入 SOP 與平板設備</li>
+                            </ul>
+                            <a href="#apply-form" onclick="selectType('venue')" class="block w-full text-center bg-gray-50 hover:bg-primary hover:text-white text-primary font-bold py-3 rounded-xl transition-colors">
+                                我是場域主，申請加入
+                            </a>
                         </div>
                     </div>
-                    <table class="w-full text-left">
-                        <thead class="bg-gray-50 border-b border-gray-100">
-                            <tr>
-                                <th class="p-5 text-sm font-bold text-gray-600">訂單資訊</th>
-                                <th class="p-5 text-sm font-bold text-gray-600">訂購會員</th>
-                                <th class="p-5 text-sm font-bold text-gray-600">物流狀態</th>
-                                <th class="p-5 text-sm font-bold text-gray-600">付款/取貨</th>
-                                <th class="p-5 text-sm font-bold text-gray-600 text-right">操作</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-50">
-                            <tr class="hover:bg-blue-50/30 transition">
-                                <td class="p-5">
-                                    <p class="font-bold text-gray-800">#ORD-25020801</p>
-                                    <p class="text-sm text-gray-500">輕量級鋁合金助行器 x1</p>
-                                </td>
-                                <td class="p-5 flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-600">張</div>
-                                    <div><p class="font-bold">張阿姨</p><p class="text-xs text-gray-400">0912-345-678</p></div>
-                                </td>
-                                <td class="p-5">
-                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-bold bg-green-100 text-green-700">
-                                        <i data-lucide="check-circle-2" class="w-4 h-4"></i> 已送達據點
-                                    </span>
-                                    <p class="text-xs text-gray-500 mt-1">2025/02/08 10:30 到貨</p>
-                                </td>
-                                <td class="p-5">
-                                    <div class="flex flex-col gap-1">
-                                        <span class="text-sm font-bold text-green-600 flex items-center gap-1"><i data-lucide="credit-card" class="w-3 h-3"></i> 已線上付款</span>
-                                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-bold bg-orange-100 text-orange-600 self-start animate-pulse">
-                                            等待會員取貨
-                                        </span>
-                                    </div>
-                                </td>
-                                <td class="p-5 text-right">
-                                    <button class="bg-primary text-white px-3 py-1.5 rounded-lg text-sm hover:bg-blue-800 transition">通知取貨</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-blue-50/30 transition">
-                                <td class="p-5">
-                                    <p class="font-bold text-gray-800">#ORD-25020755</p>
-                                    <p class="text-sm text-gray-500">高蛋白營養補充飲 (一箱) x2</p>
-                                </td>
-                                <td class="p-5 flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-600">李</div>
-                                    <div><p class="font-bold">李伯伯</p><p class="text-xs text-gray-400">0922-987-654</p></div>
-                                </td>
-                                <td class="p-5">
-                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-700">
-                                        <i data-lucide="truck" class="w-4 h-4"></i> 配送中
-                                    </span>
-                                    <p class="text-xs text-gray-500 mt-1">預計今日下午抵達</p>
-                                </td>
-                                <td class="p-5">
-                                    <span class="text-sm font-bold text-gray-500 flex items-center gap-1"><i data-lucide="banknote" class="w-3 h-3"></i> 現場付款(未付)</span>
-                                </td>
-                                <td class="p-5 text-right">
-                                    <button class="text-gray-400 hover:bg-gray-100 p-2 rounded-lg transition"><i data-lucide="more-horizontal"></i></button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-blue-50/30 transition text-gray-500">
-                                <td class="p-5">
-                                    <p class="font-bold">#ORD-25020612</p>
-                                    <p class="text-sm">居家防滑扶手組 x1</p>
-                                </td>
-                                <td class="p-5 flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center font-bold text-gray-500">陳</div>
-                                    <div><p class="font-bold">陳大姐</p></div>
-                                </td>
-                                <td class="p-5">
-                                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-600">
-                                        已完成
-                                    </span>
-                                </td>
-                                <td class="p-5">
-                                    <span class="text-sm font-bold text-green-600 flex items-center gap-1"><i data-lucide="check-check" class="w-3 h-3"></i> 已取貨結帳</span>
-                                    <p class="text-xs mt-1">2025/02/07</p>
-                                </td>
-                                <td class="p-5 text-right">
-                                    <button class="text-gray-400 hover:bg-gray-100 p-2 rounded-lg transition"><i data-lucide="more-horizontal"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            `,
-            // 🔍 新增功能 2：服務媒合推薦 View
-            'matching': `
-                <div class="flex justify-between items-start mb-8">
-                    <div>
-                        <h3 class="text-3xl font-bold text-gray-800 mb-2 flex items-center gap-2">
-                            <i data-lucide="sparkles" class="w-6 h-6 text-accent"></i> 服務媒合推薦引擎
-                        </h3>
-                        <p class="text-gray-500">系統透過 AI 分析會員健康數據與行為，自動找出有潛在需求的會員，助您精準推廣據點服務。</p>
-                    </div>
-                    <div class="bg-accent/10 text-accent-dark px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 border border-accent/30">
-                        <i data-lucide="zap" class="w-4 h-4"></i> 今日已成功媒合: 2 筆
+
+                    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-all group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                        <div class="relative z-10">
+                            <div class="w-14 h-14 bg-accent text-primary rounded-xl flex items-center justify-center mb-6 text-2xl font-bold">B</div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">專業賦能夥伴</h3>
+                            <p class="text-yellow-600 font-bold text-sm mb-4">適合：職能/物理治療師、營養師、護理師</p>
+                            <hr class="border-gray-100 mb-4">
+                            <ul class="space-y-3 text-gray-600 mb-8">
+                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-green-500 mt-0.5"></i> 具備國家級醫事人員證照</li>
+                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-green-500 mt-0.5"></i> 有意願接受日本 SEIDA 師資培訓</li>
+                                <li class="flex items-start gap-2"><i data-lucide="check" class="w-5 h-5 text-green-500 mt-0.5"></i> 希望在社區開展自費/預防課程</li>
+                            </ul>
+                            <a href="#apply-form" onclick="selectType('expert')" class="block w-full text-center bg-gray-50 hover:bg-accent hover:text-primary text-gray-700 font-bold py-3 rounded-xl transition-colors">
+                                我是專家，申請合作
+                            </a>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-2xl border-2 border-blue-100 shadow-sm overflow-hidden hover:shadow-md transition relative">
-                        <div class="absolute top-0 left-0 w-1.5 h-full bg-blue-500"></div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="flex items-center gap-4">
-                                    <div class="relative">
-                                        <div class="w-16 h-16 rounded-full bg-gray-200 border-2 border-white shadow-sm flex items-center justify-center text-xl font-bold text-gray-600">王</div>
-                                        <div class="absolute bottom-0 right-0 w-5 h-5 bg-green-500 border-2 border-white rounded-full" title="活躍會員"></div>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-xl font-bold text-gray-800">王伯伯 (78歲)</h4>
-                                        <p class="text-sm text-gray-500 flex items-center gap-1"><i data-lucide="map-pin" class="w-3 h-3"></i> 居住地: 距離據點 500m</p>
-                                    </div>
-                                </div>
-                                <span class="bg-red-50 text-red-600 text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
-                                    <i data-lucide="alert-triangle" class="w-3 h-3"></i> 高跌倒風險
-                                </span>
+        <section id="apply-form" class="py-16 bg-gray-50">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+                    <div class="bg-gray-900 p-6 text-center">
+                        <h2 class="text-2xl font-bold text-white">合作夥伴申請表</h2>
+                        <p class="text-gray-400 text-sm mt-1">填寫表單，我們的招商顧問將於 3 個工作天內聯繫您</p>
+                    </div>
+                    
+                    <form class="p-8 space-y-6" onsubmit="event.preventDefault(); alert('感謝您的申請！我們已收到您的資料，顧問將盡快與您聯繫。');">
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-3">您希望申請的合作類型 *</label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <label class="cursor-pointer border-2 border-primary bg-blue-50 rounded-xl p-4 flex flex-col items-center justify-center text-center transition hover:bg-blue-100" id="opt-venue">
+                                    <input type="radio" name="type" value="venue" class="hidden" checked onchange="updateForm(this)">
+                                    <i data-lucide="store" class="w-6 h-6 text-primary mb-2"></i>
+                                    <span class="font-bold text-primary">場域營運夥伴</span>
+                                </label>
+                                <label class="cursor-pointer border-2 border-gray-100 rounded-xl p-4 flex flex-col items-center justify-center text-center transition hover:bg-gray-50" id="opt-expert">
+                                    <input type="radio" name="type" value="expert" class="hidden" onchange="updateForm(this)">
+                                    <i data-lucide="graduation-cap" class="w-6 h-6 text-gray-400 mb-2"></i>
+                                    <span class="font-bold text-gray-500">專業賦能夥伴</span>
+                                </label>
                             </div>
+                        </div>
 
-                            <div class="bg-gray-50 rounded-xl p-4 mb-4 space-y-2">
-                                <p class="text-sm font-bold text-gray-700 mb-2 flex items-center gap-2"><i data-lucide="brain-circuit" class="w-4 h-4 text-primary"></i> AI 需求洞察分析：</p>
-                                <ul class="text-sm text-gray-600 space-y-1 pl-6 list-disc marker:text-gray-300">
-                                    <li>ICOPE 評估顯示下肢肌力評分偏低。</li>
-                                    <li>近期曾在平台上瀏覽過「助行器」輔具資訊。</li>
-                                </ul>
-                            </div>
-
+                        <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <p class="text-sm font-bold text-primary mb-2 flex items-center gap-2"><i data-lucide="gift" class="w-4 h-4"></i> 最佳推薦服務：</p>
-                                <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 flex justify-between items-center mb-4">
-                                    <div>
-                                        <h5 class="font-bold text-blue-800">週二銀髮防跌肌力班 (初階)</h5>
-                                        <p class="text-xs text-blue-600">下週二 14:00 開課 • 尚有 3 個名額</p>
-                                    </div>
-                                    <span class="text-lg font-bold text-blue-800">$150 <span class="text-xs font-normal">/堂</span></span>
-                                </div>
-                                <button class="w-full bg-primary text-white py-3 rounded-xl font-bold hover:bg-blue-800 transition flex items-center justify-center gap-2 shadow-sm">
-                                    <i data-lucide="send" class="w-4 h-4"></i> 立即推送課程邀請 (App通知)
-                                </button>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">單位/機構名稱 *</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition" placeholder="例如：快樂社區發展協會">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">聯絡人姓名 *</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition" placeholder="例如：陳大明 理事長">
                             </div>
                         </div>
-                    </div>
 
-                    <div class="bg-white rounded-2xl border-2 border-green-100 shadow-sm overflow-hidden hover:shadow-md transition relative opacity-60">
-                        <div class="absolute top-0 left-0 w-1.5 h-full bg-green-500"></div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-start mb-4">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-16 h-16 rounded-full bg-gray-200 border-2 border-white shadow-sm flex items-center justify-center text-xl font-bold text-gray-600">林</div>
-                                    <div>
-                                        <h4 class="text-xl font-bold text-gray-800">林媽媽 (65歲)</h4>
-                                        <p class="text-sm text-gray-500">興趣標籤: 烹飪、社交</p>
-                                    </div>
-                                </div>
-                                <span class="bg-green-50 text-green-600 text-xs font-bold px-2 py-1 rounded-full">
-                                    社交需求高
-                                </span>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">聯絡電話 / 手機 *</label>
+                                <input type="tel" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition" placeholder="09xx-xxx-xxx">
                             </div>
-                            <div class="bg-gray-50 rounded-xl p-4 mb-4">
-                                <p class="text-sm font-bold text-gray-700 mb-2 flex items-center gap-2"><i data-lucide="brain-circuit" class="w-4 h-4 text-primary"></i> AI 需求洞察分析：</p>
-                                <p class="text-sm text-gray-600 pl-6">已連續兩週未參加據點共餐活動，可能需要關懷或新活動刺激。</p>
-                            </div>
-                             <div>
-                                <p class="text-sm font-bold text-primary mb-2"><i data-lucide="gift" class="w-4 h-4 inline-block mr-1"></i> 最佳推薦服務：</p>
-                                <div class="bg-green-50 border border-green-200 rounded-lg p-3 mb-4 opacity-50">
-                                    <h5 class="font-bold text-green-800">週五社區烘焙交流會</h5>
-                                    <p class="text-xs text-green-600">本週五 10:00 • 已額滿</p>
-                                </div>
-                                <button class="w-full bg-gray-100 text-gray-400 py-3 rounded-xl font-bold cursor-not-allowed flex items-center justify-center gap-2">
-                                    <i data-lucide="clock" class="w-4 h-4"></i> 暫無合適名額
-                                </button>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">電子信箱 *</label>
+                                <input type="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition" placeholder="name@example.com">
                             </div>
                         </div>
-                        <div class="absolute inset-0 bg-white/50 backdrop-blur-[1px] flex items-center justify-center">
-                            <span class="bg-white px-4 py-2 rounded-full shadow-sm text-sm font-bold text-gray-500 flex items-center gap-2">
-                                <i data-lucide="lock" class="w-4 h-4"></i> 升級專業版解鎖更多推薦
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            `
-        };
 
-        function switchDemoTab(tabName) {
-            // 🔍 更新陣列，加入新的 tab 名稱
-            ['team', 'training', 'revenue', 'logistics', 'matching'].forEach(tab => {
-                const btn = document.getElementById(`tab-${tab}`);
-                if (tab === tabName) {
-                    btn.classList.remove('hover:bg-slate-800', 'text-slate-300');
-                    btn.classList.add('dashboard-active');
-                } else {
-                    btn.classList.add('hover:bg-slate-800', 'text-slate-300');
-                    btn.classList.remove('dashboard-active');
-                }
-            });
-
-            document.getElementById('demo-content').innerHTML = demoViews[tabName];
-            lucide.createIcons();
-
-            if (tabName === 'revenue') {
-                renderRevenueChart();
-            }
-        }
-        
-       
-        function renderRevenueChart() {
-            const ctx = document.getElementById('revenueChart').getContext('2d');
-            if (window.myRevenueChart) window.myRevenueChart.destroy();
-
-            window.myRevenueChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['週一', '週二', '週三', '週四', '週五', '週六', '週日'],
-                    datasets: [
-                        {
-                            label: '總營收',
-                            data: [8500, 9200, 10800, 10100, 12500, 14800, 13900],
-                            borderColor: '#1E3A8A', backgroundColor: 'rgba(30, 58, 138, 0.05)',
-                            borderWidth: 3, pointRadius: 4, pointHoverRadius: 6, fill: true, tension: 0.3
-                        },
-                        {
-                            label: '據點分潤',
-                            data: [2550, 2760, 3240, 3030, 3750, 4440, 4170],
-                            borderColor: '#F7DC6F', backgroundColor: 'transparent',
-                            borderWidth: 3, pointRadius: 4, pointHoverRadius: 6, borderDash: [5, 5], tension: 0.3
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true, maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        y: {
-                            beginAtZero: true, grid: { color: '#f1f5f9' },
-                            ticks: { callback: value => '$' + value, font: { weight: 'bold' } }
-                        },
-                        x: { grid: { display: false }, ticks: { font: { weight: 'bold' } } }
-                    }
-                }
-            });
-        }
-
-        // 初始化
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-            switchDemoTab('team'); // 預設顯示人員管理
-        });
-    </script>
-</body>
-</html>
+                        <div id="venue-fields" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">據點所在地址 *</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition" placeholder="請輸入完整地址">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">現有服務人數規模 (每月) *</label>
+                                <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none bg-white">
+                                    <option
