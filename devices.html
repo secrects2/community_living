@@ -2,46 +2,209 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>輔具申請 | 全齡共融賦能生態圈</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>空間改造與顧問 | 全齡共融賦能生態圈</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <script>
-        tailwind.config = { theme: { extend: { colors: { primary: '#1E3A8A', lavender: '#A78BFA' } } } }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Noto Sans TC', 'sans-serif'], serif: ['Noto Serif JP', 'serif'] },
+                    colors: {
+                        primary: '#1E3A8A',
+                        secondary: '#4ECDC4',
+                        accent: '#F7DC6F',
+                        coral: '#FFB6A3', 
+                        'soft-blue': '#EFF6FF'
+                    }
+                }
+            }
+        }
     </script>
 </head>
-<body class="bg-gray-50 text-gray-900">
-    <nav class="bg-white shadow-sm sticky top-0 z-50">
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100">
         <div class="container mx-auto px-4 h-16 flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-2 font-bold text-primary"><i data-lucide="arrow-left"></i> 返回首頁</a>
-            <h1 class="text-xl font-bold">專業輔具租借申請</h1>
-            <div class="w-20"></div>
+            <a href="index.html" class="flex items-center gap-2 font-bold text-primary text-lg hover:opacity-80 transition">
+                <i data-lucide="arrow-left"></i> 返回首頁
+            </a>
+            <div class="hidden md:flex items-center gap-1 text-sm font-bold text-gray-500">
+                <span class="text-secondary">場域賦能</span>
+                <span class="mx-2">/</span>
+                <span>模組化空間改造</span>
+            </div>
+            <a href="partner.html" class="bg-secondary text-white px-5 py-2 rounded-full font-bold hover:bg-[#3dbdb4] transition shadow-md text-sm flex items-center gap-2">
+                <i data-lucide="ruler" class="w-4 h-4"></i> 預約場域診斷
+            </a>
         </div>
     </nav>
 
-    <div class="container mx-auto px-4 py-8">
-        <div class="max-w-4xl mx-auto">
-            <div class="flex justify-between mb-10 relative">
-                <div class="absolute top-1/2 left-0 w-full h-1 bg-gray-200 -z-10 -translate-y-1/2"></div>
-                <div class="flex flex-col items-center bg-gray-50 px-2"><div class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold mb-2">1</div><span class="text-sm font-medium">選擇輔具</span></div>
-                <div class="flex flex-col items-center bg-gray-50 px-2"><div class="w-10 h-10 bg-white border-2 border-primary text-primary rounded-full flex items-center justify-center font-bold mb-2">2</div><span class="text-sm font-medium text-gray-500">填寫資料</span></div>
-                <div class="flex flex-col items-center bg-gray-50 px-2"><div class="w-10 h-10 bg-white border-2 border-gray-300 text-gray-400 rounded-full flex items-center justify-center font-bold mb-2">3</div><span class="text-sm font-medium text-gray-500">評估審核</span></div>
-                <div class="flex flex-col items-center bg-gray-50 px-2"><div class="w-10 h-10 bg-white border-2 border-gray-300 text-gray-400 rounded-full flex items-center justify-center font-bold mb-2">4</div><span class="text-sm font-medium text-gray-500">領取/配送</span></div>
+    <div class="pt-16">
+        
+        <header class="bg-white py-20 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1600')] bg-cover bg-center opacity-5"></div>
+            <div class="container mx-auto px-4 relative z-10 text-center">
+                <span class="inline-block py-1 px-3 rounded-full bg-secondary/10 text-secondary border border-secondary/30 text-xs font-bold mb-4 tracking-wider uppercase">Space Transformation</span>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-tight">
+                    把舊空間，變成<br><span class="text-secondary">智慧健康的轉運站</span>
+                </h1>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
+                    不用花大錢打掉重練。我們引入「模組化設計」概念，<br>
+                    透過專業顧問的診斷與重組，讓您的據點瞬間擁有健康檢測、社交共餐與專業服務的功能。
+                </p>
             </div>
+        </header>
 
-            <h2 class="text-2xl font-bold mb-6">熱門租借項目</h2>
-            <div class="space-y-4 mb-8">
-                <div class="bg-white p-4 rounded-xl border border-gray-200 flex flex-col md:flex-row gap-6 items-center">
-                    <div class="w-32 h-32 bg-gray-100 rounded-lg shrink-0 overflow-hidden"><img src="images/device-wheelchair.jpg" class="w-full h-full object-cover"></div>
-                    <div class="flex-1 text-center md:text-left">
-                        <h3 class="font-bold text-lg">輕量化鋁合金輪椅</h3>
-                        <p class="text-gray-500 text-sm mt-1">適合外出就醫、短期復健使用。重量僅 11kg。</p>
-                        <div class="mt-2 text-lavender font-bold">租金：$500 / 月 (保證金 $2000)</div>
+        <section class="py-20 bg-soft-blue">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">誰來幫您改造？專業顧問團隊</h2>
+                    <p class="text-gray-600">我們不只提供設計圖，更提供營運思維的注入</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -mr-4 -mt-4"></div>
+                        <div class="relative z-10">
+                            <div class="w-20 h-20 rounded-full bg-gray-200 mb-6 overflow-hidden border-4 border-white shadow-md">
+                                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=200" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">場域動線規劃師</h3>
+                            <p class="text-sm text-primary font-bold mb-4">Space Designer</p>
+                            <hr class="border-gray-100 mb-4">
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                「我的任務是『釋放空間』。透過評估長輩的行動路線，找出安全隱患，並置入適合的模組傢俱，讓 20 坪看起來像 40 坪一樣好用。」
+                            </p>
+                            <ul class="text-sm text-gray-500 space-y-2">
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary"></i> 無障礙動線優化</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary"></i> 安全防跌評估</li>
+                            </ul>
+                        </div>
                     </div>
-                    <button class="px-6 py-2 border-2 border-primary text-primary rounded-full hover:bg-primary hover:text-white transition-colors">選擇此項</button>
+
+                    <div class="bg-white p-8 rounded-3xl shadow-lg border-2 border-secondary transform md:-translate-y-4 group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-secondary/10 rounded-bl-full -mr-4 -mt-4"></div>
+                        <div class="relative z-10">
+                            <div class="w-20 h-20 rounded-full bg-gray-200 mb-6 overflow-hidden border-4 border-white shadow-md">
+                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">數位轉型顧問</h3>
+                            <p class="text-sm text-secondary font-bold mb-4">Digital Consultant</p>
+                            <hr class="border-gray-100 mb-4">
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                「我負責讓空間變聰明。協助您安裝數位中台、平板簽到系統與 ICOPE 檢測站，讓硬體空間與軟體數據完美串接。」
+                            </p>
+                            <ul class="text-sm text-gray-500 space-y-2">
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary"></i> 數位中台架設</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary"></i> 志工操作培訓</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-xl transition-all group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-yellow-50 rounded-bl-full -mr-4 -mt-4"></div>
+                        <div class="relative z-10">
+                            <div class="w-20 h-20 rounded-full bg-gray-200 mb-6 overflow-hidden border-4 border-white shadow-md">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=200" class="w-full h-full object-cover">
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800">服務流程設計師</h3>
+                            <p class="text-sm text-accent font-bold mb-4">Service Designer</p>
+                            <hr class="border-gray-100 mb-4">
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                「硬體只是載體，服務才是靈魂。我協助您導入 SEIDA 照護標準與團購選品流程，確保每個走進來的長輩都能獲得標準化的服務體驗。」
+                            </p>
+                            <ul class="text-sm text-gray-500 space-y-2">
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary"></i> 服務 SOP 導入</li>
+                                <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-secondary"></i> 選品陳列指導</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section class="py-20 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">像樂高一樣靈活的「功能模組」</h2>
+                    <p class="text-gray-600">依照您的場域大小與需求，自由組合以下模組</p>
+                </div>
+
+                <div class="space-y-12 max-w-5xl mx-auto">
+                    <div class="flex flex-col md:flex-row items-center gap-8 border-b border-gray-100 pb-12 last:border-0">
+                        <div class="md:w-1/2">
+                            <img src="https://images.unsplash.com/photo-1576091160550-2187d80aeff2?auto=format&fit=crop&q=80&w=800" class="rounded-2xl shadow-lg" alt="Health Station">
+                        </div>
+                        <div class="md:w-1/2">
+                            <span class="text-secondary font-bold text-sm tracking-wider uppercase mb-2 block">Module A</span>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">智慧健康檢測站</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                只要 1 坪空間。整合血壓計、握力器與 ICOPE 評估平板。
+                                長輩一進門就能自助量測，數據自動上傳雲端，這裡是連結「醫療」與「生活」的第一站。
+                            </p>
+                            <div class="flex gap-3">
+                                <span class="px-3 py-1 bg-gray-100 rounded-full text-xs text-gray-600">自動化數據</span>
+                                <span class="px-3 py-1 bg-gray-100 rounded-full text-xs text-gray-600">佔地極小</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row-reverse items-center gap-8 border-b border-gray-100 pb-12 last:border-0">
+                        <div class="md:w-1/2">
+                            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=800" class="rounded-2xl shadow-lg" alt="Social Dining">
+                        </div>
+                        <div class="md:w-1/2">
+                            <span class="text-accent font-bold text-sm tracking-wider uppercase mb-2 block">Module B</span>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">多功能共融餐桌</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                變形金剛般的空間設計。中午是「老人食堂」，下午變身「賦能教室」，晚上則是「社區交誼廳」。
+                                透過可移動、可拼接的家具設計，讓坪效發揮到極致。
+                            </p>
+                            <div class="flex gap-3">
+                                <span class="px-3 py-1 bg-gray-100 rounded-full text-xs text-gray-600">靈活拼接</span>
+                                <span class="px-3 py-1 bg-gray-100 rounded-full text-xs text-gray-600">複合用途</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-primary text-white text-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-blue-900/50"></div>
+            <div class="container mx-auto px-4 relative z-10">
+                <i data-lucide="ruler" class="w-12 h-12 mx-auto mb-4 text-secondary"></i>
+                <h2 class="text-3xl font-bold mb-6">您的空間，其實可以更值錢</h2>
+                <p class="text-blue-100 mb-8 text-lg max-w-2xl mx-auto">
+                    別讓空間閒置。立即預約顧問場域診斷，讓我們為您量身打造改造計畫。
+                </p>
+                <div class="flex justify-center gap-4">
+                    <a href="partner.html" class="bg-secondary text-primary px-8 py-3 rounded-full font-bold hover:bg-[#3dbdb4] transition shadow-lg">
+                        預約場域診斷
+                    </a>
+                    <button class="bg-transparent border-2 border-white px-8 py-3 rounded-full font-bold hover:bg-white/10 transition">
+                        看更多改造案例
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="bg-gray-900 text-white py-12 border-t border-gray-800">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm text-gray-500">© 2025 Community Living Loop. All rights reserved.</p>
+            </div>
+        </footer>
+
     </div>
-    <script>lucide.createIcons();</script>
+
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
