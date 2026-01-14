@@ -125,39 +125,44 @@
 
     <div class="pt-16">
         
-        <section id="home" class="relative overflow-hidden py-16 md:py-24 bg-gray-50/30">
-            <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blob-purple opacity-60 mix-blend-multiply filter blur-3xl animate-pulse-slow rounded-blob-1"></div>
-            <div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-blob-peach opacity-60 mix-blend-multiply filter blur-3xl animate-pulse-slow rounded-blob-2" style="animation-delay: 1s;"></div>
-            <div class="absolute top-[20%] left-[30%] w-[400px] h-[400px] bg-blob-teal opacity-50 mix-blend-multiply filter blur-3xl animate-pulse-slow rounded-blob-3" style="animation-delay: 2s;"></div>
+        <section id="home" class="relative overflow-hidden min-h-[85vh] flex items-center justify-center">
+            
+            <div class="absolute inset-0 -z-20 overflow-hidden">
+                <img id="hero-image" src="images/hero-japanese-community.jpg" alt="Community Background" class="w-full h-full object-cover object-center scale-110 transition-transform duration-100 ease-out will-change-transform opacity-90">
+            </div>
 
-            <div class="container mx-auto px-4 relative fade-in" style="z-index: 1;">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="order-2 lg:order-1">
-                        <div class="inline-block mb-6 px-4 py-2 bg-white/80 backdrop-blur-sm border-2 border-secondary/50 rounded-full shadow-sm">
-                            <span class="text-sm font-medium text-primary">#S2B2C 全齡共融賦能生態系</span>
-                        </div>
-                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
-                            <span class="text-primary block">用一套好機制</span>
-                            <span class="text-secondary block">串聯社區資源</span>
-                            <span class="text-gray-800 block text-2xl mt-4 font-normal">讓每個人都能在熟悉的環境裡，<br>健康、安心、有價值地生活。</span>
-                        </h1>
-                        <p class="text-lg text-gray-600 mb-8 max-w-xl leading-relaxed">
-                            我們以數位中台為核心，對上賦能據點夥伴 (2B)，對下服務長輩居民 (2C)，解決長照資源斷裂的痛點。
-                        </p>
-                        <div class="flex gap-4">
-                            <a href="family.html" class="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all group">
-                                <span>我是居民 (需求端)</span>
-                                <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
-                            </a>
-                            <a href="partner.html" class="inline-flex items-center gap-2 bg-white text-primary border-2 border-primary hover:bg-blue-50 px-6 py-3 rounded-full text-lg font-medium shadow-md transition-all">
-                                <span>我是夥伴 (供應端)</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="order-1 lg:order-2 relative text-center z-10">
-    <img id="hero-image" src="images/hero-japanese-community.jpg" alt="Community Illustration" class="w-full max-w-4xl mx-auto drop-shadow-2xl rounded-2xl transition-transform duration-200 ease-out will-change-transform">
-</div>
+            <div class="absolute inset-0 bg-white/70 backdrop-blur-sm -z-10"></div>
+
+            <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blob-purple opacity-40 mix-blend-multiply filter blur-3xl animate-pulse-slow rounded-blob-1 -z-10"></div>
+            <div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-blob-peach opacity-40 mix-blend-multiply filter blur-3xl animate-pulse-slow rounded-blob-2 -z-10" style="animation-delay: 1s;"></div>
+
+            <div class="container mx-auto px-4 relative z-10 text-center fade-in">
+                
+                <div class="inline-block mb-6 px-6 py-2 bg-white/90 backdrop-blur-md border border-secondary/30 rounded-full shadow-lg">
+                    <span class="text-sm font-bold text-primary tracking-widest uppercase">#S2B2C 全齡共融賦能生態系</span>
                 </div>
+
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight tracking-tight drop-shadow-sm">
+                    <span class="text-primary block mb-2">用一套好機制</span>
+                    <span class="text-gray-800 block text-3xl md:text-5xl lg:text-6xl font-normal mt-4">讓每個人都能在熟悉的環境裡，<br>健康、安心、有價值地生活。</span>
+                </h1>
+
+                <p class="text-xl text-gray-700 mb-10 max-w-3xl mx-auto leading-relaxed font-medium">
+                    我們以<span class="text-primary font-bold">數位中台</span>為核心，對上賦能據點夥伴 (2B)，對下服務長輩居民 (2C)，<br class="hidden md:block">解決長照資源斷裂的痛點，串聯起社區的溫暖與價值。
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center gap-6">
+                    <a href="family.html" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-full text-xl font-bold shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all group min-w-[200px]">
+                        <span>我是居民</span>
+                        <span class="text-sm font-normal opacity-80">(需求端)</span>
+                        <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                    <a href="partner.html" class="inline-flex items-center justify-center gap-2 bg-white text-primary border-2 border-primary hover:bg-blue-50 px-8 py-4 rounded-full text-xl font-bold shadow-md hover:shadow-lg hover:-translate-y-1 transition-all min-w-[200px]">
+                        <span>我是夥伴</span>
+                        <span class="text-sm font-normal opacity-80">(供應端)</span>
+                    </a>
+                </div>
+
             </div>
         </section>
 
