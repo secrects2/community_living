@@ -155,7 +155,7 @@
                         </div>
                     </div>
                     <div class="order-1 lg:order-2 relative text-center z-10">
-                        <img src="images/hero-japanese-community.jpg" alt="Community Illustration" class="w-full max-w-xl mx-auto drop-shadow-2xl animate-float rounded-2xl">
+                        <img id="hero-image" src="images/hero-japanese-community.jpg" alt="Community Illustration" class="w-full max-w-xl mx-auto drop-shadow-2xl rounded-2xl transition-transform duration-200 ease-out will-change-transform">
                     </div>
                 </div>
             </div>
@@ -462,7 +462,35 @@
             document.getElementById('ecosystemApp').classList.add('hidden');
             document.body.style.overflow = '';
         }
+        // --- Hero Image 視差互動效果 (Parallax) ---
+        document.addEventListener('mousemove', (e) => {
+            const heroImg = document.getElementById('hero-image');
+            if (!heroImg) return;
+
+            // 1. 取得視窗中心點
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+
+            // 2. 計算滑鼠距離中心的偏移量
+            // 除以 40 是為了減緩移動速度 (數字越大，移動越慢/越微小)
+            const moveX = (e.clientX - centerX) / 40;
+            const moveY = (e.clientY - centerY) / 40;
+
+            // 3. 應用變形 (讓圖片往滑鼠的反方向移動，產生景深感)
+            // 如果希望同方向移動，將負號拿掉即可
+            heroImg.style.transform = `translate(${-moveX}px, ${-moveY}px)`;
+        });
         
+        // 手機版優化：透過裝置傾斜 (Gyroscope) 產生視差 (選用)
+        window.addEventListener('deviceorientation', (e) => {
+            const heroImg = document.getElementById('hero-image');
+            if (!heroImg) return;
+            
+            const moveX = e.gamma / 2; // 左右傾斜
+            const moveY = e.beta / 2;  // 前後傾斜
+            
+            heroImg.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
         let map;
         let markers = [];
         const locations = [
