@@ -22,19 +22,41 @@ const translations = {
         nav_home: '首頁',
         nav_activities: '社區活動',
         nav_nutrition: '產品營養',
-        nav_devices: '輔具申請',
+        nav_devices: '場域賦能', // 已更新
         nav_pro: '專業課程',
         nav_family: '家人守護',
+        nav_workflow: '運作模式', // 已更新
+        nav_partner: '合作夥伴',
+        
         btn_ecosystem: '生態系整合功能',
-        hero_t1: '您的', hero_t2: '全方位', hero_t3: '樂齡生活', hero_t4: '最佳夥伴',
-        hero_desc: '連結社區、健康與專業照護。探索附近活動、訂購營養餐點、申請專業輔具租借服務，您的所有需求都在這裡。',
+        
+        // Hero 區域更新 (對應 S2B2C 文案)
+        hero_t1: '用一套好機制',
+        hero_t2: '串聯社區資源',
+        hero_t3: '讓每個人都能在熟悉的環境裡，<br>健康、安心、有價值地生活。', 
+        hero_t4: '', // 新版設計中此行留空或依需求調整
+        hero_desc: '我們以數位中台為核心，對上賦能據點夥伴 (2B)，對下服務長輩居民 (2C)，解決長照資源斷裂的痛點。',
         btn_explore: '開始探索服務',
-        contents_desc: '探索我們的服務內容',
-        cat_market: '社區活動 & 課程', cat_street: '產品營養組合', cat_furniture: '輔具申請租借', cat_journal: '社區資源入口',
-        map_title: '服務網絡地圖', stat_loc: '服務據點', stat_partner: '合作夥伴', stat_success: '成功案例',
+        
+        contents_desc: '針對 B 端與 C 端需求設計的六大核心引擎', // 已更新
+        
+        // 類別 (若首頁仍有用到這些 key)
+        cat_market: '社區活動 & 課程', 
+        cat_street: '產品營養組合', 
+        cat_furniture: '場域賦能改造', // 已更新
+        cat_journal: '社區資源入口',
+        
+        map_title: '服務據點與成果', 
+        stat_loc: '服務據點', 
+        stat_partner: '合作夥伴', 
+        stat_success: '成功案例',
+        
         footer_title: '全齡共融賦能生態圈',
-        sop_title: '專業照護 SOP', sop_desc: '標準化場域與服務，確保品質',
-        nav_partner: '合作夥伴招募', // 新增
+        
+        // SOP 區域更新
+        sop_title: 'SOP 導入顧問服務', 
+        sop_desc: '我們不只提供軟體，更提供落地的顧問輔導，確保服務品質標準化。',
+        
         app_title: '全齡生態系整合平台'
     },
     'en': {
@@ -42,19 +64,40 @@ const translations = {
         nav_home: 'Home',
         nav_activities: 'Activities',
         nav_nutrition: 'Nutrition',
-        nav_devices: 'Devices',
+        nav_devices: 'Space Empowerment', // Updated
         nav_pro: 'Pro Courses',
         nav_family: 'Family Care',
+        nav_workflow: 'Business Model', // Updated
+        nav_partner: 'Partners',
+        
         btn_ecosystem: 'Ecosystem App',
-        hero_t1: 'Your', hero_t2: 'Comprehensive', hero_t3: 'Cool-Aging Life', hero_t4: 'Partner',
-        hero_desc: 'Connecting Community, Health, and Professional Care. All your needs in one place.',
+        
+        // Hero Section Updated
+        hero_t1: 'A Robust Mechanism',
+        hero_t2: 'Connecting Resources',
+        hero_t3: 'Living a healthy, secure, and valuable life<br>in a familiar environment.',
+        hero_t4: '',
+        hero_desc: 'Core digital middleware empowering partners (2B) and serving seniors (2C) to bridge the care resource gap.',
         btn_explore: 'Start Exploring',
-        contents_desc: 'Explore Our Services',
-        cat_market: 'Activities & Classes', cat_street: 'Nutrition Products', cat_furniture: 'Assistive Devices', cat_journal: 'Community Resources',
-        map_title: 'Service Network', stat_loc: 'Locations', stat_partner: 'Partners', stat_success: 'Success Stories',
+        
+        contents_desc: 'Six Core Engines Designed for 2B and 2C Needs', // Updated
+        
+        cat_market: 'Activities & Classes', 
+        cat_street: 'Nutrition Products', 
+        cat_furniture: 'Space Transformation', // Updated
+        cat_journal: 'Community Resources',
+        
+        map_title: 'Service Network', 
+        stat_loc: 'Locations', 
+        stat_partner: 'Partners', 
+        stat_success: 'Success Cases',
+        
         footer_title: 'Community Living Loop',
-        sop_title: 'Professional Care SOP', sop_desc: 'Standardized services ensuring quality',
-        nav_partner: 'Become a Partner', // 新增
+        
+        // SOP Section Updated
+        sop_title: 'SOP Consultancy', 
+        sop_desc: 'Providing not just software, but on-site consultancy to ensure service standardization.',
+        
         app_title: 'Ecosystem Platform'
     }
 };
