@@ -20,7 +20,8 @@
                         secondary: '#4ECDC4',
                         accent: '#F7DC6F',
                         coral: '#FFB6A3', 
-                        'soft-blue': '#EFF6FF'
+                        'soft-blue': '#EFF6FF',
+                        'line-green': '#06C755' // 新增 LINE 品牌色
                     }
                 }
             }
@@ -37,10 +38,10 @@
             <div class="hidden md:flex items-center gap-1 text-sm font-bold text-gray-500">
                 <span class="text-coral">家人守護</span>
                 <span class="mx-2">/</span>
-                <span>數位健康護照</span>
+                <span>LINE 數位健康護照</span>
             </div>
-            <button class="bg-coral text-white px-5 py-2 rounded-full font-bold hover:bg-orange-400 transition shadow-md text-sm flex items-center gap-2">
-                <i data-lucide="log-in" class="w-4 h-4"></i> 登入家屬帳號
+            <button class="bg-[#06C755] text-white px-5 py-2 rounded-full font-bold hover:bg-[#05b34c] transition shadow-md text-sm flex items-center gap-2">
+                <i data-lucide="message-circle" class="w-4 h-4"></i> LINE 帳號綁定
             </button>
         </div>
     </nav>
@@ -48,34 +49,62 @@
     <div class="pt-16">
         
         <header class="bg-white py-20 relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-coral/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-line-green/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
             <div class="container mx-auto px-4 relative z-10 grid md:grid-cols-2 gap-12 items-center">
                 <div>
-                    <span class="inline-block py-1 px-3 rounded-full bg-coral/20 text-orange-600 text-xs font-bold mb-4 tracking-wider uppercase">Family Care Cloud</span>
+                    <span class="inline-block py-1 px-3 rounded-full bg-[#06C755]/10 text-[#06C755] border border-[#06C755]/20 text-xs font-bold mb-4 tracking-wider uppercase">LINE LIFF Technology</span>
                     <h1 class="text-4xl md:text-5xl font-bold mb-6 text-gray-900 leading-tight">
-                        不在身邊，<br>也能<span class="text-coral">看見</span>父母的健康
+                        不用下載 APP，<br>爸媽的健康 <span class="text-[#06C755]">LINE 裡面</span>就看得到
                     </h1>
                     <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                        我們透過社區據點的數位系統，將長輩的 ICOPE 健康數據、活動參與狀況，即時同步到您的手機。<br>
-                        讓「守護」不再只是電話裡的問候，而是看得見的數據。
+                        我們透過 <strong>LINE LIFF 技術</strong>，將專業的長照系統整合進您最熟悉的聊天室。<br>
+                        當爸媽在據點量完血壓、做完運動，您的 LINE 就會收到即時通知與健康報告。
                     </p>
-                    <div class="flex gap-4">
-                        <button class="bg-primary text-white px-8 py-3 rounded-full font-bold hover:bg-primary/90 transition shadow-lg flex items-center gap-2">
-                            <i data-lucide="smartphone" class="w-5 h-5"></i> 下載家屬 APP
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-[#06C755] text-white px-8 py-3 rounded-full font-bold hover:bg-[#05b34c] transition shadow-lg flex items-center gap-2">
+                            <i data-lucide="user-plus" class="w-5 h-5"></i> 加入官方帳號
                         </button>
                         <a href="#icope-section" class="bg-white text-gray-700 border border-gray-300 px-8 py-3 rounded-full font-bold hover:bg-gray-50 transition flex items-center gap-2">
-                            了解 ICOPE 指標
+                            <i data-lucide="scan-line" class="w-5 h-5"></i> 體驗 LIFF 介面
                         </a>
                     </div>
                 </div>
                 <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&q=80&w=800" class="rounded-[2rem] shadow-2xl relative z-10" alt="Grandma using tablet">
-                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg z-20 animate-bounce" style="animation-duration: 3s;">
+                    <div class="relative z-10 mx-auto max-w-[300px] bg-gray-900 rounded-[2.5rem] p-3 shadow-2xl border-4 border-gray-800">
+                        <div class="bg-white rounded-[2rem] overflow-hidden h-[500px] relative">
+                            <div class="bg-[#2d3445] text-white p-4 text-center text-sm font-bold">全齡共融賦能小幫手</div>
+                            <div class="p-4 space-y-4 bg-[#8caec4]/20 h-full">
+                                <div class="flex gap-2">
+                                    <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-xs font-bold border">Logo</div>
+                                    <div class="bg-white p-3 rounded-xl rounded-tl-none shadow-sm text-xs max-w-[80%]">
+                                        <p class="font-bold mb-1 text-[#06C755]">今日健康快報 🔔</p>
+                                        <p>陳媽媽今天在據點完成了 30 分鐘紅繩運動！</p>
+                                        <p class="mt-1 text-gray-500">血壓：128/82 mmHg (正常)</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-xs font-bold border">Logo</div>
+                                    <div class="bg-white rounded-xl rounded-tl-none shadow-sm overflow-hidden max-w-[80%] border border-gray-100">
+                                        <div class="h-24 bg-orange-100 flex items-center justify-center">
+                                            <i data-lucide="activity" class="w-8 h-8 text-orange-500"></i>
+                                        </div>
+                                        <div class="p-3">
+                                            <p class="font-bold text-sm mb-1">ICOPE 評估報告出爐</p>
+                                            <p class="text-xs text-gray-500 mb-2">點擊查看本季度的六大面向雷達圖分析。</p>
+                                            <button class="w-full bg-[#06C755] text-white text-xs py-2 rounded font-bold">開啟 LIFF 查看詳情</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute top-10 -right-4 bg-white p-4 rounded-xl shadow-lg z-20 animate-bounce" style="animation-duration: 3s;">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600"><i data-lucide="activity"></i></div>
+                            <div class="w-10 h-10 bg-[#06C755]/10 rounded-full flex items-center justify-center text-[#06C755]"><i data-lucide="bell"></i></div>
                             <div>
-                                <p class="text-xs text-gray-500 font-bold">今日步數</p>
-                                <p class="text-lg font-bold text-gray-800">8,243 步</p>
+                                <p class="text-xs text-gray-500 font-bold">即時推播</p>
+                                <p class="text-sm font-bold text-gray-800">掌握家人動態</p>
                             </div>
                         </div>
                     </div>
@@ -86,9 +115,9 @@
         <section id="icope-section" class="py-20 bg-soft-blue">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-4">導入 WHO ICOPE 長者功能評估</h2>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">WHO ICOPE 長者功能評估</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">
-                        預防失能的關鍵，在於及早發現衰退徵兆。我們在社區據點協助長輩進行六大面向監測。
+                        所有數據皆透過平板與 LINE 自動串接。您不需要懂醫學術語，圖表化的 LIFF 介面讓您秒懂父母的健康趨勢。
                     </p>
                 </div>
 
@@ -150,7 +179,7 @@
                         <h2 class="text-3xl font-bold text-gray-900 mb-6">讓爸媽不只是「被照顧」，<br>更成為「被需要」的人</h2>
                         <p class="text-gray-600 mb-6 leading-relaxed">
                             在全齡賦能生態圈，我們鼓勵長輩參與「健康大使」培訓。許多長輩在這裡學會了帶領體操、講繪本，甚至成為社區的種子老師。<br><br>
-                            當他們重新獲得「被需要」的感覺，身心健康狀況往往會有驚人的改善。
+                            這些精彩的瞬間，都會透過 LINE 傳送給您，讓您看見爸媽發光的樣子。
                         </p>
                         <div class="bg-gray-50 p-6 rounded-xl border border-gray-100">
                             <div class="flex items-center gap-4 mb-3">
@@ -160,7 +189,7 @@
                                     <p class="text-xs text-gray-500">虎尾社區 - 繪本導讀大使</p>
                                 </div>
                             </div>
-                            <p class="text-sm text-gray-600 italic">「以前在家只會看電視發呆，現在每週要去據點講故事給小朋友聽，覺得自己年輕了好幾歲！」</p>
+                            <p class="text-sm text-gray-600 italic">「孫子在 LINE 看到我講故事的照片，都說阿嬤好厲害！這讓我好有成就感。」</p>
                         </div>
                     </div>
                 </div>
@@ -169,50 +198,52 @@
 
         <section class="py-20 bg-gray-50">
             <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl font-bold text-gray-800 mb-12">一站式家人守護服務</h2>
+                <h2 class="text-3xl font-bold text-gray-800 mb-12">打開 LINE，就能完成所有事</h2>
                 <div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                    <a href="nutrition.html" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all group">
+                    <a href="nutrition.html" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all group border-b-4 border-transparent hover:border-[#06C755]">
                         <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                             <i data-lucide="utensils" class="w-8 h-8 text-green-600"></i>
                         </div>
                         <h3 class="font-bold text-gray-800 mb-2">營養餐點訂購</h3>
-                        <p class="text-sm text-gray-500">專業營養師調配，可配送至據點或家中。</p>
+                        <p class="text-sm text-gray-500">在聊天室點餐，營養餐點直接送到據點。</p>
                     </a>
-                    <a href="devices.html" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all group">
+                    <a href="devices.html" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all group border-b-4 border-transparent hover:border-[#06C755]">
                         <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                             <i data-lucide="armchair" class="w-8 h-8 text-blue-600"></i>
                         </div>
                         <h3 class="font-bold text-gray-800 mb-2">輔具租借申請</h3>
-                        <p class="text-sm text-gray-500">輪椅、助行器等專業輔具，線上申請即可。</p>
+                        <p class="text-sm text-gray-500">輪椅、助行器，透過選單一鍵申請租借。</p>
                     </a>
-                    <a href="courses.html" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all group">
+                    <a href="courses.html" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all group border-b-4 border-transparent hover:border-[#06C755]">
                         <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                             <i data-lucide="calendar-heart" class="w-8 h-8 text-yellow-600"></i>
                         </div>
                         <h3 class="font-bold text-gray-800 mb-2">賦能課程預約</h3>
-                        <p class="text-sm text-gray-500">預防延緩失能課程，保持身心活躍。</p>
+                        <p class="text-sm text-gray-500">瀏覽本月課表，直接幫爸媽報名。</p>
                     </a>
-                    <a href="#" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all group">
+                    <a href="#" class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all group border-b-4 border-transparent hover:border-[#06C755]">
                         <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                             <i data-lucide="message-circle" class="w-8 h-8 text-purple-600"></i>
                         </div>
-                        <h3 class="font-bold text-gray-800 mb-2">線上諮詢</h3>
-                        <p class="text-sm text-gray-500">有照護疑問？線上連結專業個管師諮詢。</p>
+                        <h3 class="font-bold text-gray-800 mb-2">個管師諮詢</h3>
+                        <p class="text-sm text-gray-500">有照護疑問？直接傳訊息給專業個管師。</p>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="py-20 bg-coral text-white text-center">
-            <div class="container mx-auto px-4">
-                <h2 class="text-3xl font-bold mb-6">讓距離不再是擔憂的理由</h2>
-                <p class="text-white/90 mb-8 text-lg">立即綁定家人帳號，開始體驗全齡共融的數位照護服務。</p>
+        <section class="py-20 bg-[#06C755] text-white text-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-black/10 pattern-dots"></div>
+            <div class="container mx-auto px-4 relative z-10">
+                <i data-lucide="message-circle" class="w-12 h-12 mx-auto mb-4 text-white/80"></i>
+                <h2 class="text-3xl font-bold mb-6">現在就加入官方帳號，開始守護</h2>
+                <p class="text-white/90 mb-8 text-lg">免註冊、免下載，掃描 QR Code 或點擊按鈕即可啟用。</p>
                 <div class="flex justify-center gap-4">
-                    <button class="bg-white text-coral px-8 py-3 rounded-full font-bold hover:bg-orange-50 transition shadow-lg">
-                        連結家人帳號
+                    <button class="bg-white text-[#06C755] px-8 py-3 rounded-full font-bold hover:bg-green-50 transition shadow-lg flex items-center gap-2">
+                        <i data-lucide="user-plus" class="w-5 h-5"></i> 加好友開始使用
                     </button>
                     <button class="bg-transparent border-2 border-white px-8 py-3 rounded-full font-bold hover:bg-white/10 transition">
-                        尋找附近據點
+                        查看操作教學
                     </button>
                 </div>
             </div>
