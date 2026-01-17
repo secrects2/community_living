@@ -71,60 +71,8 @@
 
     <section class="py-16">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div class="dashed-card bg-white overflow-hidden p-2 flex flex-col h-full">
-                    <div class="relative h-56 rounded-2xl overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800" alt="ICOPE" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-4 right-4 bg-yellow-400 text-primary px-3 py-1 rounded-full text-sm font-bold shadow-sm">專業認證</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-2xl font-bold text-primary font-serif mb-3">ICOPE培訓</h3>
-                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">WHO整合式高齡照護評估與介入培訓，提升照護專業能力。</p>
-                        <div class="mt-auto flex items-center justify-between pt-4 border-t border-dashed border-gray-200">
-                            <span class="text-2xl font-bold text-[#E6C65B]">NT$ 8,000</span>
-                            <div class="flex gap-2">
-                                <button onclick="openModal('icope')" class="px-4 py-1.5 bg-secondary text-white rounded-full font-medium hover:bg-[#3dbdb4] transition flex items-center gap-1">查看詳情 <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="courseGrid">
                 </div>
-
-                <div class="dashed-card bg-white overflow-hidden p-2 flex flex-col h-full">
-                    <div class="relative h-56 rounded-2xl overflow-hidden">
-                         <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=800" alt="Book" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-4 right-4 bg-yellow-400 text-primary px-3 py-1 rounded-full text-sm font-bold shadow-sm">認知訓練</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-2xl font-bold text-primary font-serif mb-3">繪本模組培訓</h3>
-                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">學習使用繪本進行認知刺激與情感交流，適合照護者與教育工作者。</p>
-                        <div class="mt-auto flex items-center justify-between pt-4 border-t border-dashed border-gray-200">
-                            <span class="text-2xl font-bold text-[#E6C65B]">NT$ 2,400</span>
-                            <div class="flex gap-2">
-                                <button onclick="openModal('book')" class="px-4 py-1.5 bg-secondary text-white rounded-full font-medium hover:bg-[#3dbdb4] transition flex items-center gap-1">查看詳情 <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                 <div class="dashed-card bg-white overflow-hidden p-2 flex flex-col h-full">
-                    <div class="relative h-56 rounded-2xl overflow-hidden">
-                         <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800" alt="Nutrition" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                        <span class="absolute top-4 right-4 bg-yellow-400 text-primary px-3 py-1 rounded-full text-sm font-bold shadow-sm">營養專業</span>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col">
-                        <h3 class="text-2xl font-bold text-primary font-serif mb-3">營養及飲食培訓</h3>
-                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">銀髮族營養需求與飲食計劃實務。</p>
-                        <div class="mt-auto flex items-center justify-between pt-4 border-t border-dashed border-gray-200">
-                            <span class="text-2xl font-bold text-[#E6C65B]">NT$ 3,600</span>
-                            <div class="flex gap-2">
-                                <button onclick="openModal('nutrition')" class="px-4 py-1.5 bg-secondary text-white rounded-full font-medium hover:bg-[#3dbdb4] transition flex items-center gap-1">查看詳情 <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </section>
 
@@ -192,60 +140,177 @@
     <script>
         lucide.createIcons();
 
-        // 課程資料庫
+        // 課程資料庫 (包含原有的3個 + 新增的6個)
         const courses = {
             'icope': {
+                id: 'icope',
+                tag: '專業認證',
                 title: 'ICOPE培訓',
-                desc: 'WHO整合式高齡照護評估與介入培訓，提升照護專業能力。',
+                shortDesc: 'WHO整合式高齡照護評估與介入培訓。',
+                desc: 'WHO整合式高齡照護評估與介入培訓，提升照護專業能力，學習如何全面評估長者功能。',
                 img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800',
-                // --- 更新講師詳細資訊 ---
-                instructorName: '張文華',
-                instructorTitle: '資深護理師 / ICOPE 種子教師',
-                // 使用新生成的真實台灣護理師照片
-                instructorImg: 'images/8xqK28d.jpeg', 
-                instructorBio: '擁有 20 年臨床護理經驗，專注於高齡醫學領域。為 WHO ICOPE 台灣區首批認證種子教師，致力於推動社區長者功能評估標準化。',
-                credentials: ['教育部定講師', '台灣護理學會進階護理師', 'WHO ICOPE 培訓結業'],
-                // -----------------------
+                instructor: '張文華 (資深護理師)',
                 duration: '12週', capacity: '22/30 人', price: 'NT$ 8,000',
                 location: '嘉義市醫療中心',
                 features: ['WHO認證架構教學', '實務操作演練', '專業證書'],
                 schedule: [{ date: '2026/2/6', time: '09:00-12:00' }]
             },
             'book': {
+                id: 'book',
+                tag: '認知訓練',
                 title: '繪本模組培訓',
+                shortDesc: '學習使用繪本進行認知刺激與情感交流。',
                 desc: '學習使用繪本進行認知刺激與情感交流，適合照護者與教育工作者。透過故事引導長者回憶與表達，重塑生活的溫度。',
                 img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=800',
-                // --- 更新講師詳細資訊 ---
-                instructorName: '林美玲',
-                instructorTitle: '職能治療師',
-                // 使用新生成的真實台灣職能治療師照片 (拿著書本)
-                instructorImg: 'images/L6vY7zX.jpeg',
-                instructorBio: '具備 15 年高齡照護經驗，擅長將藝術與敘事融入治療，專精於透過非藥物介入方式改善長輩認知功能與情緒表達。',
-                credentials: ['國家認證職能治療師', '日本 SEIDA 式口腔照護認定講師', '表達性藝術治療培訓'],
-                // -----------------------
+                instructor: '林美玲 (職能治療師)',
                 duration: '6週', capacity: '10/15 人', price: 'NT$ 2,400',
                 location: '嘉義市圖書館',
                 features: ['繪本導讀技巧', '教案設計實務', '結業證書'],
                 schedule: [{ date: '2026/2/4', time: '14:00-16:00' }, { date: '2026/2/11', time: '14:00-16:00' }]
             },
             'nutrition': {
+                id: 'nutrition',
+                tag: '營養專業',
                 title: '營養及飲食培訓',
-                desc: '銀髮族營養需求與飲食計劃實務，學習如何為長者設計兼具美味與健康的餐食。',
+                shortDesc: '銀髮族營養需求與飲食計劃實務。',
+                desc: '銀髮族營養需求與飲食計劃實務，學習如何為長者設計兼具美味與健康的餐食，預防肌少症。',
                 img: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=800',
-                // --- 更新講師詳細資訊 ---
-                instructorName: '王大同',
-                instructorTitle: '專科營養師 / 社區營養推廣組長',
-                // 使用新生成的真實台灣營養師照片
-                instructorImg: 'images/My0PqgK.jpeg',
-                instructorBio: '長期深耕社區營養教育，擅長將艱澀的營養知識轉化為易懂的實作技巧。專注於銀髮族肌少症預防飲食與質地調整餐食設計。',
-                credentials: ['國家高考合格營養師', '糖尿病衛教師', 'HACCP 食品安全管制系統實務'],
-                // -----------------------
+                instructor: '王大同 (專科營養師)',
                 duration: '8週', capacity: '14/18 人', price: 'NT$ 3,600',
                 location: '嘉義市烹飪教室',
                 features: ['高齡營養學基礎', '質地調整餐食實作', '菜單設計演練'],
                 schedule: [{ date: '2026/2/7', time: '09:30-12:00' }]
+            },
+            // 新增課程 1: 認知活力訓練 (Cognitive)
+            'cognitive': {
+                id: 'cognitive',
+                tag: '認知活力',
+                title: '長者認知活力訓練',
+                shortDesc: '透過數位工具與遊戲，活化大腦功能。',
+                desc: '專為長者設計的認知訓練課程，結合平板操作與趣味遊戲，有效刺激記憶力、專注力與邏輯思考能力，預防認知退化。',
+                // 使用新生成的台灣場景圖片
+                img: 'image_8.png', 
+                instructor: '李曉雯 (臨床心理師)',
+                duration: '10週', capacity: '12/20 人', price: 'NT$ 5,000',
+                location: '台北市社區活動中心',
+                features: ['數位認知工具應用', '個人化訓練計畫', '前後測評估報告'],
+                schedule: [{ date: '2026/3/1', time: '10:00-12:00' }]
+            },
+             // 新增課程 2: 防跌倒運動班 (Mobility)
+            'mobility': {
+                id: 'mobility',
+                tag: '行動防跌',
+                title: '銀髮族防跌倒運動班',
+                shortDesc: '增強肌力與平衡感，降低跌倒風險。',
+                desc: '由物理治療師指導，針對下肢肌力與核心肌群進行強化訓練，並搭配平衡感練習，有效提升長者行動自信，減少跌倒意外。',
+                // 使用新生成的台灣場景圖片
+                img: 'image_15.png',
+                instructor: '陳志豪 (物理治療師)',
+                duration: '12週', capacity: '15/20 人', price: 'NT$ 4,800',
+                location: '台中市健康健身中心',
+                features: ['防跌風險評估', '循序漸進肌力訓練', '居家運動指導'],
+                schedule: [{ date: '2026/3/5', time: '14:30-16:00' }]
+            },
+             // 新增課程 3: 銀髮族營養指南 (Nutrition - 替代/進階)
+             'nutrition_adv': {
+                id: 'nutrition_adv',
+                tag: '營養諮詢',
+                title: '銀髮族個人化營養指南',
+                shortDesc: '一對一營養諮詢，量身打造飲食計畫。',
+                desc: '提供專業的一對一營養諮詢服務，根據長者的健康狀況、飲食習慣與生活型態，量身制定專屬的營養補充與飲食調整計畫。',
+                 // 使用新生成的台灣場景圖片
+                img: 'image_10.png',
+                instructor: '林雅婷 (資深營養師)',
+                duration: '預約制', capacity: '名額有限', price: 'NT$ 1,200/次',
+                location: '高雄市營養諮詢中心',
+                features: ['個別化飲食評估', '慢性病飲食指導', '營養品補充建議'],
+                schedule: [{ date: '請來電預約', time: '彈性時間' }]
+            },
+            // 新增課程 4: 視力保健講座 (Vision)
+            'vision': {
+                id: 'vision',
+                tag: '視力保健',
+                title: '高齡視力保健講座',
+                shortDesc: '了解常見眼疾，學習日常護眼知識。',
+                desc: '邀請眼科醫師講解白內障、青光眼、黃斑部病變等高齡常見眼疾的成因、症狀與預防治療方法，並教授日常護眼保健操。',
+                 // 使用新生成的日本場景圖片 (示意高品質檢查)
+                img: 'image_11.png',
+                instructor: '田中醫師 (眼科專科醫師)',
+                duration: '單場講座', capacity: '45/50 人', price: '免費參加',
+                location: '台北市松山區民活動中心',
+                features: ['專業醫師解說', '現場視力篩檢', '護眼手冊發放'],
+                schedule: [{ date: '2026/3/15', time: '14:00-16:00' }]
+            },
+             // 新增課程 5: 聽力篩檢與保健 (Hearing)
+            'hearing': {
+                id: 'hearing',
+                tag: '聽力保健',
+                title: '聽力篩檢與保健工作坊',
+                shortDesc: '早期發現聽力問題，改善溝通品質。',
+                desc: '提供專業的聽力篩檢服務，並教導如何保護聽力、正確使用助聽器，以及與聽力退化長者溝通的技巧，改善生活品質與人際關係。',
+                 // 使用新生成的台灣場景圖片
+                img: 'image_12.png',
+                instructor: '黃嘉玲 (聽力師)',
+                duration: '半日工作坊', capacity: '20/30 人', price: 'NT$ 500 (含篩檢費)',
+                location: '高雄市聽力保健中心',
+                features: ['標準聽力檢查', '助聽輔具介紹', '溝通策略演練'],
+                schedule: [{ date: '2026/3/22', time: '09:00-12:00' }]
+            },
+             // 新增課程 6: 心理健康講座 (Psychology)
+            'psychology': {
+                id: 'psychology',
+                tag: '心理健康',
+                title: '銀髮族樂活心理講座',
+                shortDesc: '調適退休心情，建立正向老化心態。',
+                desc: '透過團體分享與專家引導，探討退休後的心理調適、孤獨感排解與情緒管理，協助長者建立積極正向的老化心態，享受樂齡生活。',
+                 // 使用新生成的台灣場景圖片
+                img: 'image_13.png',
+                instructor: '陳心怡 (諮商心理師)',
+                duration: '系列講座 (共4場)', capacity: '25/30 人', price: 'NT$ 2,000',
+                location: '台南市社區大學',
+                features: ['情緒壓力檢測', '團體支持分享', '正念減壓練習'],
+                schedule: [{ date: '2026/4/1 起每週三', time: '19:00-21:00' }]
+            },
+             // 新增課程 7: 口腔機能照護 (Oral Care - 替代/進階)
+            'oral_care': {
+                id: 'oral_care',
+                tag: '口腔照護',
+                title: '高齡口腔機能照護實務',
+                shortDesc: '預防吸入性肺炎，維持咀嚼吞嚥功能。',
+                desc: '學習正確的口腔清潔技巧、健口操與吞嚥訓練方法，有效預防吸入性肺炎，維持長者良好的咀嚼吞嚥功能與口腔衛生。',
+                 // 使用新生成的日本場景圖片 (示意專業指導)
+                img: 'image_14.png',
+                instructor: '佐藤歯科衛生士',
+                duration: '一日課程', capacity: '18/20 人', price: 'NT$ 3,000',
+                location: '台北市牙醫師公會',
+                features: ['口腔清潔實作', '健口操帶領技巧', '吞嚥困難評估'],
+                schedule: [{ date: '2026/4/12', time: '09:00-16:00' }]
             }
         };
+
+        // 動態生成課程卡片
+        const courseGrid = document.getElementById('courseGrid');
+        Object.values(courses).forEach(course => {
+            const cardHtml = `
+                <div class="dashed-card bg-white overflow-hidden p-2 flex flex-col h-full">
+                    <div class="relative h-56 rounded-2xl overflow-hidden">
+                        <img src="${course.img}" alt="${course.title}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-4 right-4 bg-yellow-400 text-primary px-3 py-1 rounded-full text-sm font-bold shadow-sm">${course.tag}</span>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <h3 class="text-2xl font-bold text-primary font-serif mb-3">${course.title}</h3>
+                        <p class="text-gray-500 text-sm mb-6 leading-relaxed">${course.shortDesc}</p>
+                        <div class="mt-auto flex items-center justify-between pt-4 border-t border-dashed border-gray-200">
+                            <span class="text-2xl font-bold text-[#E6C65B]">${course.price}</span>
+                            <div class="flex gap-2">
+                                <button onclick="openModal('${course.id}')" class="px-4 py-1.5 bg-secondary text-white rounded-full font-medium hover:bg-[#3dbdb4] transition flex items-center gap-1">查看詳情 <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            courseGrid.innerHTML += cardHtml;
+        });
 
         const modal = document.getElementById('courseModal');
         const instructorSection = document.getElementById('instructorProfileSection');
@@ -261,27 +326,15 @@
             document.getElementById('modalCapacity').innerText = data.capacity;
             document.getElementById('modalPrice').innerText = data.price;
 
-            // 🌟 處理講師顯示邏輯
-            if (data.instructorName && data.instructorImg) {
-                instructorSection.classList.remove('hidden');
-                const credentialsHtml = data.credentials.map(c => `<li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i> ${c}</li>`).join('');
-                instructorSection.innerHTML = `
-                    <div class="flex-shrink-0">
-                        <img src="${data.instructorImg}" alt="${data.instructorName}" class="w-24 h-24 rounded-full border-4 border-white shadow-md object-cover">
-                    </div>
-                    <div>
-                        <span class="inline-block px-2 py-1 bg-white text-secondary text-xs font-bold rounded mb-2">課程講師</span>
-                        <h3 class="text-xl font-bold text-primary mb-1">${data.instructorName} <small class="text-gray-500 text-sm font-normal ml-1">${data.instructorTitle}</small></h3>
-                        <p class="text-gray-600 text-sm mb-3 leading-relaxed">${data.instructorBio}</p>
-                        <ul class="text-sm text-gray-700 font-medium space-y-1">${credentialsHtml}</ul>
-                    </div>
-                `;
-            } else {
-                instructorSection.classList.remove('hidden');
-                instructorSection.innerHTML = `<div><p class="text-sm text-gray-400 mb-1">課程講師</p><p class="text-lg font-bold text-gray-800">${data.instructor || '未定'}</p></div>`;
-            }
+            // 簡化的講師資訊顯示 (因部分新課程未生成詳細講師資料)
+            instructorSection.classList.remove('hidden');
+            instructorSection.innerHTML = `
+                <div>
+                    <p class="text-sm text-gray-400 mb-1">課程講師</p>
+                    <p class="text-lg font-bold text-gray-800">${data.instructor}</p>
+                </div>
+            `;
 
-            // 簡化的 Features 和 Schedule 渲染 (為了縮短代碼)
             document.getElementById('modalFeatures').innerHTML = data.features.map(f => `<div class="flex items-center gap-2 text-gray-600"><i data-lucide="check-circle-2" class="w-5 h-5 text-secondary"></i> ${f}</div>`).join('');
             document.getElementById('modalSchedule').innerHTML = data.schedule.map(s => `<div class="border border-gray-200 rounded-xl p-4"><p class="font-bold">${s.date}</p><p class="text-sm text-gray-500">${s.time} | ${data.location}</p></div>`).join('');
             document.getElementById('formScheduleOptions').innerHTML = data.schedule.map((s, i) => `<label class="flex items-center p-3 border rounded-lg bg-white"><input type="radio" name="timeSlot" class="text-secondary" ${i===0?'checked':''}><span class="ml-3">${s.date} ${s.time}</span></label>`).join('');
